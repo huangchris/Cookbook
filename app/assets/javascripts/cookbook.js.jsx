@@ -1,7 +1,26 @@
-(function(root) {
+$(function(root) {
   'use strict';
+  root.App = React.createClass({
+    render: function ()  {
+      debugger;
+      return (
+        <div className="App">
+          <Navbar/>
+          {this.props.children}
+
+        </div>
+      )
+    }
+  })
+
+  var Router = ReactRouter.Router;
+  var Route = ReactRouter.Route;
+  var IndexRoute = ReactRouter.IndexRoute;
   React.render(
-    <UploadPic/>,
-    document.getElementbyId("content")
+    <Router>
+      <Route path="/" component={root.App}>
+      </Route>
+    </Router>,
+    document.getElementById("content")
   )
-}(this));
+}).bind(this);
