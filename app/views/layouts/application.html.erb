@@ -11,15 +11,18 @@
       cloud_name: "<%=ENV['CLOUD_NAME']%>",
       upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
     };
+    window.USER_ID = <%= current_user %>
   </script>
 </head>
 <body>
+  <!-- stick this in a partial -->
   <% if flash[:errors] %>
     <% flash[:errors].each do |error| %>
       <%= error %>
       <br>
     <% end %>
   <% end %>
+  <!-- a -->
 <%= yield %>
 
 </body>

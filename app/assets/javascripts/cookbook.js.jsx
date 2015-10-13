@@ -2,7 +2,6 @@ $(function(root) {
   'use strict';
   root.App = React.createClass({
     render: function ()  {
-      debugger;
       return (
         <div className="App">
           <Navbar/>
