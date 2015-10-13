@@ -15,27 +15,37 @@
 class User < ActiveRecord::Base
   validates :email, :password_digest, :name, presence: true
   validates :email, uniqueness: true
+  validates :password, length: {minimum: 6, allow_nil: true}
+
   attr_reader :password
 
 
   def assign_session_token
-    current_user.update(session_token: SecureRandom.urlsafe_base64)
+    self.update(session_token: SecureRandom.urlsafe_base64)
+  end
+
+  def self.find_by_credentials(user_params)
+    user = User.find_by_email(user_params[:email])
+    if user.is_password?(user_params[:password])
+      return user
+    end
   end
 
   def logout
-    current_user.update(session_token: nil)
+    self.update(session_token: nil)
   end
 
-  def current_user
-    User.where(session_token: session[:session_token])
+  def self.find_by_token(session_token)
+    User.find_by_session_token(session_token)
   end
 
   def password=(password)
+    @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 
   def is_password?(password)
-    Bcrypt::Password.new(current_user.password_digest).is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
 end
