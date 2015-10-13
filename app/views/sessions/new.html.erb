@@ -1,8 +1,14 @@
 <h1>Log In</h1>
 
+<%= link_to "Sign Up", new_user_url %>
 <form action= "<%= session_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%=auth_token%>">
   Email<input type="email" name="user[email]" value="<%=@user.email%>">
   Password<input type="password" name="user[password]" value="">
   <input type="submit">
+  <input id="myBtn" type="submit" value="Log In as Guest">
 </form>
+
+<script type="text/javascript">
+  document.getElementById("myBtn").addEventListener("click", demoLogin)
+</script>

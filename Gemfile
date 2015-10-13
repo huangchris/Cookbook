@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'react-rails'
 gem 'flux-rails-assets'
 gem 'bcrypt'
+gem 'figaro'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -47,6 +48,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
+  gem 'faker'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
