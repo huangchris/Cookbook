@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6, allow_nil: true}
 
   attr_reader :password
+  has_many :user_groups
+  has_many :groups, through: :user_groups
+  has_many :group_admins
+  has_many :adminned_groups, through: :group_admins
 
 
   def assign_session_token

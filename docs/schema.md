@@ -9,7 +9,7 @@ email           | string    | not null, indexed, unique
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
 name            | string    | not null
-avatar_img      | string    |
+image           | string    |
 
 ## usergroups
 
