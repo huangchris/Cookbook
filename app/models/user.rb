@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   def self.find_by_credentials(user_params)
     user = User.find_by_email(user_params[:email])
-    if user.is_password?(user_params[:password])
+    if user && user.is_password?(user_params[:password])
       return user
     end
   end
@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_token(session_token)
+    return if session_token.nil?
     User.find_by_session_token(session_token)
   end
 

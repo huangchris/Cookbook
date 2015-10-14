@@ -11,6 +11,15 @@
         success: APIAction.setCurrentUser
       })
 
+    },
+
+    fetchFamily: function() {
+      $.ajax({
+        url: "api/group",
+        type: "get",
+        success: APIAction.setFamily
+        // could also grab all user_recipes here (and all fam recipes?)
+      })
     }
   }
 }(this));

@@ -15,7 +15,6 @@
 
 
     render: function () {
-      debugger;
       if(!this.props.user.image) {
         return (
           <div className="UploadPic"
@@ -25,7 +24,7 @@
       else {
         return (
           <div>
-            <img src={this.props.user.image} />
+            <img className="profile-pic" src={this.props.user.image} />
             <div className="UploadPic"
               onClick={this.handleClick}>
               Upload a new Profile Picture</div>

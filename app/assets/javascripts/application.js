@@ -17,6 +17,9 @@
 //= require react_router.min
 //= require flux
 //= require eventemitter
+//= require util/constants
+//= require dispatcher/app_dispatcher
+//= require stores/user_store
 //= require components
- //= require bootstrap
+//= require bootstrap
 //= require_tree .
