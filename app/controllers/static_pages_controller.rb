@@ -1,7 +1,12 @@
 class StaticPagesController < ApplicationController
+  before_action :require_logged_in
 
   def home
-    p current_user
-    redirect_to new_user_url unless current_user
   end
+
+  def require_logged_in
+   unless current_user
+     redirect_to new_session_url # halts request cycle
+   end
+ end
 end

@@ -3,6 +3,15 @@ $(function(root) {
   root.App = React.createClass({
     mixins: [ReactRouter.History],
 
+    getInitialState: function(){
+      return {user: UserStore.currentUser()}
+    },
+
+    componentDidMount: function() {
+      UserStore.on(StoreConst.CURRENT_USER, function() {
+        this.setState({user: UserStore.currentUser()})
+      }.bind(this))
+    },
 
 
     clickBack: function(e) {
@@ -14,6 +23,7 @@ $(function(root) {
     render: function ()  {
       return (
         <div onClick={this.clickBack} className="App">
+          <div onClick={this.clickBack}>{this.state.user.name}</div>
           <Navbar/>
           {this.props.children}
 
@@ -22,10 +32,7 @@ $(function(root) {
     }
   })
 
-  if(!window.USER_ID && window.location.pathname !== "/session/new") {
-    window.location.replace("/session/new")
-  }else if(window.location.pathname !== "/session/new"){
-    debugger;
+  if(window.USER_ID !== undefined && window.location.pathname !== "/session/new") {
     $.ajax({
       url: "api/users/" + window.USER_ID,
       type: "get",

@@ -18,6 +18,7 @@ column name     | data type | details
 id              | integer   | not null, primary key
 user_id         | integer   | not null, foreign key (references users), indexed
 group_id        | integer   | not null, foreign key (references groups), indexed
+status          | string    | (pending, member, admin)
 
 ## groups
 
@@ -26,13 +27,13 @@ column name     | data type | details
 id              | integer   | not null, primary key
 name            | string    | not null, indexed, unique
 
-## groupadmins
+<!-- ## groupadmins
 
 column name     | data type | details
 ----------------|-----------|------------------------
 id              | integer   | not null, primary key
 user_id         | integer   | not null, foreign key (references users), indexed
-group_id        | integer   | not null, foreign key (references groups), indexed
+group_id        | integer   | not null, foreign key (references groups), indexed -->
 
 ## recipes
 

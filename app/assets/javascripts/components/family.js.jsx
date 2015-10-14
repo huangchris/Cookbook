@@ -2,7 +2,7 @@
   'use strict';
   root.Family = React.createClass({
     getInitialState: function () {
-      return {family: UserStore.family(), users: UserStore.all()}
+      return {family: UserStore.family(), users: UserStore.all(), editting: false}
     },
 
     componentDidMount: function () {
@@ -12,17 +12,25 @@
       }.bind(this))
     },
 
-    clickUser: function() {},
 
     render: function () {
-      if (this.state.family) {
+      if (this.state.family.id) {
+        var editOptions
+        if( UserStore.admin === true && !this.state.editting) {
+          editOptions = <li onClick={this.editGroup}>Edit Group</li>
+        } else if (this.state.editting) {
+          editOptions = <li onClick={this.editGroup}>Done</li>
+        }
+
         return (
           <div>
             <div>{this.state.family.name}</div>
             <ul>
               {this.state.users.map(function(user){
-                return <li onClick={Family.clickUser}>{user.name}</li>
+                // return <li editting={this.state.editting} key={user.id}> {FamilyMember}</li>
+                return <li key={user.id}>{user.name}</li>
               })}
+              {editOptions}
             </ul>
           </div>
         )
