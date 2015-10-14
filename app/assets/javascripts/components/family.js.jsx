@@ -12,24 +12,27 @@
       }.bind(this))
     },
 
+    editGroup: function() {
+      this.setState({editting: !this.state.editting})
+    },
+
 
     render: function () {
       if (this.state.family.id) {
         var editOptions
-        if( UserStore.admin === true && !this.state.editting) {
+        if( UserStore.admin() && !this.state.editting) {
           editOptions = <li onClick={this.editGroup}>Edit Group</li>
         } else if (this.state.editting) {
           editOptions = <li onClick={this.editGroup}>Done</li>
         }
-
         return (
           <div>
             <div>{this.state.family.name}</div>
-            <ul>
+            <ul className= "list-group">
               {this.state.users.map(function(user){
-                // return <li editting={this.state.editting} key={user.id}> {FamilyMember}</li>
-                return <li key={user.id}>{user.name}</li>
-              })}
+                return <li key={user.id}><FamilyMember editting={this.state.editting} user={user} /></li>
+                // return <li key={user.id}>{user.name}</li>
+              }.bind(this))}
               {editOptions}
             </ul>
           </div>

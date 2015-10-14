@@ -3,10 +3,42 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .profile-pic {
-  height: 250px;
-  width: 250px;
+  max-height: 250px;
+  max-width: 250px;
+  width:auto;
+  height: auto;
 }
 
+.thumbnail {
+  max-height: 50px;
+  max-width: 50px;
+  width:auto;
+  height: auto;
+}
+
+.family-index-item {
+  position: relative;
+  float:left
+}
+
+.family-index-item::after {
+  content:"";
+  clear:both;
+}
+
+.family-index-item > div, img {
+  float:left;
+  height: 100%;
+}
+
+.list-group-item {
+  position: relative;
+}
+
+.list-group-item::after {
+  content: "";
+  clear: both;
+}
 // :hover {
 //   background-color: grey
 // }
