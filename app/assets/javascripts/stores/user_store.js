@@ -2,6 +2,7 @@
   'use strict';
   var _currentUser = {};
   var _users = [];
+  
   var _dispatches = function(action) {
     switch (action.actionType) {
       case DispatcherConst.CURRENT_USER:
@@ -12,6 +13,7 @@
 
     }
   }
+
   root.UserStore = $.extend({}, EventEmitter.prototype, {
     DispatcherId: AppDispatcher.register(_dispatches),
     all: function () { return _users},

@@ -48,4 +48,8 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
+  def find_family
+    # does nothing until we have families
+  end
+
 end

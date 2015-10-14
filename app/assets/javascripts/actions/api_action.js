@@ -1,7 +1,7 @@
 (function(root) {
   'use strict';
   root.APIAction = {
-    setCurrentUser = function (user) {
+    setCurrentUser: function (user) {
       AppDispatcher.dispatch({
         actionType: DispatcherConst.CURRENT_USER,
         data: user

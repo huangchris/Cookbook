@@ -3,9 +3,9 @@
   root.APIUtil = {
     updateProfilePic: function(urlstring) {
       $.ajax({
-        url: "api/user" + current_user.id,
+        url: "api/users/" + UserStore.currentUser().id,
         type: "patch",
-        data: {img: urlstring}
+        data: {user: {image: urlstring} }
       })
 
     }

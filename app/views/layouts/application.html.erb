@@ -6,13 +6,15 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script src = "http://widget.cloudinary.com/global/all.js"></script>
-  <script>
-    window.CLOUDINARY_OPTIONS = {
-      cloud_name: "<%=ENV['CLOUD_NAME']%>",
-      upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
-    };
-    window.USER_ID = <%= current_user %>
-  </script>
+  <% if current_user %>
+    <script>
+      window.CLOUDINARY_OPTIONS = {
+        cloud_name: "<%=ENV['CLOUD_NAME']%>",
+        upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
+      };
+      window.USER_ID = <%= current_user.id %>
+    </script>
+  <% end %>
 </head>
 <body>
   <!-- stick this in a partial -->
