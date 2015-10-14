@@ -5,7 +5,8 @@
       $.ajax({
         url: "api/users/" + UserStore.currentUser().id,
         type: "patch",
-        data: {user: {image: urlstring} }
+        data: {user: {image: urlstring} },
+        success: APIAction.setCurrentUser
       })
 
     }

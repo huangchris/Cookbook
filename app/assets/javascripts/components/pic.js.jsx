@@ -23,7 +23,14 @@
             Upload a Profile Picture</div>
         )}
       else {
-        return <img src={this.props.user.image} />
+        return (
+          <div>
+            <img src={this.props.user.image} />
+            <div className="UploadPic"
+              onClick={this.handleClick}>
+              Upload a new Profile Picture</div>
+          </div>
+        )
       }
     }
   })
