@@ -9,6 +9,7 @@
     },
 
     setFamily: function(family) {
+      debugger;
       AppDispatcher.dispatch({
         actionType: DispatcherConst.CURRENT_FAMILY,
         data: family

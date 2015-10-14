@@ -15,6 +15,11 @@
 #  index_user_groups_on_user_id               (user_id)
 #  index_user_groups_on_user_id_and_group_id  (user_id,group_id) UNIQUE
 #
+# Foreign Keys
+#
+#  fk_rails_6d478d2f65  (group_id => groups.id)
+#  fk_rails_c298be7f8b  (user_id => users.id)
+#
 
 class UserGroup < ActiveRecord::Base
   validates :user_id, :group_id, presence: true

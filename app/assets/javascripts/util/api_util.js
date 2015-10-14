@@ -10,7 +10,6 @@
         data: {user: {image: urlstring} },
         success: APIAction.setCurrentUser
       })
-
     },
 
     fetchFamily: function() {

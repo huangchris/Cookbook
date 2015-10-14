@@ -5,8 +5,10 @@ root.FamilyMember = React.createClass ({
     //history.pushState(/recipes)
   },
 
-  kickMember: function () {
+  kickMember: function (e) {
     console.log("call APIUtil and delete a user_group")
+    debugger;
+    APIUtil.kickMember(e.target.dataset.id)
   },
 
   adminize: function () {
@@ -19,8 +21,10 @@ root.FamilyMember = React.createClass ({
     // for whatever reason, false has evaluated truthy before...
     // update: because I'm dumb and didn't invoke a function, just looked at it.
     if (this.props.editting ) {
-      kick = <div onClick={this.kickMember}>Remove</div>
-      promote = <div onClick={this.adminize}>Make Admin</div>
+      if(!UserStore.isAdmin(this.props.user.id)) {
+        promote = <div onClick={this.adminize}>Make Admin</div>
+      }
+        kick = <div data-id={this.props.user.id} onClick={this.kickMember}>Remove</div>
     }
     return (
       <div className="family-index-item list-group-item" onClick={this.handleClick}>
