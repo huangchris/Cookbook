@@ -9,13 +9,16 @@
 #  updated_at :datetime         not null
 #  status     :string
 #
-# Foreign Keys
+# Indexes
 #
-#  fk_rails_6d478d2f65  (group_id => groups.id)
-#  fk_rails_c298be7f8b  (user_id => users.id)
+#  index_user_groups_on_group_id              (group_id)
+#  index_user_groups_on_user_id               (user_id)
+#  index_user_groups_on_user_id_and_group_id  (user_id,group_id) UNIQUE
 #
 
 class UserGroup < ActiveRecord::Base
+  validates :user_id, :group_id, presence: true
+  validates :status, inclusion: %w(pending member admin)
   belongs_to :user
   belongs_to :group
 end
