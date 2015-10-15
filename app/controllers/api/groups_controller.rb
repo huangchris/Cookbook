@@ -12,9 +12,10 @@ class Api::GroupsController < ApplicationController
     end
   end
 
+  def index
+  end
+
   def create
   end
 
-  def update
-  end
 end

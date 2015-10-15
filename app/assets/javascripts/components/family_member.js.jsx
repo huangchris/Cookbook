@@ -27,8 +27,8 @@ root.FamilyMember = React.createClass ({
     return (
       <div className="family-index-item list-group-item" onClick={this.handleClick}>
         {kick}
-          <img className="thumbnail"  src={this.props.user.image}></img>
-          <div>{this.props.user.name}</div>
+        <img className="thumbnail"  src={this.props.user.image}></img>
+        <div>{this.props.user.name}</div>
         {promote}
       </div>
     )

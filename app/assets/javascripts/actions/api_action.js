@@ -14,6 +14,12 @@
         actionType: DispatcherConst.CURRENT_FAMILY,
         data: family
       })
+    },
+    updateFamilies: function(response) {
+      AppDispatcher.dispatch({
+        actionType: DispatcherConst.FAMILIES,
+        data: response
+      })
     }
   }
 }(this));

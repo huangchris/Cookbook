@@ -56,7 +56,9 @@
           </div>
         )
       } else {
-        return <div>You don't have a family yet. Make or Join one!</div>
+        return <div>You don't have a family yet. Make or Join one!
+          <FamilyFinder/>
+        </div>
       }
     }
   })

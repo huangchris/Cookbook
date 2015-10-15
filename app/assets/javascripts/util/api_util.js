@@ -1,6 +1,13 @@
 (function(root) {
   'use strict';
   root.APIUtil = {
+    getFamilies: function() {
+      // grab a list of families
+      $.ajax({
+        url: "api/groups",
+        success: APIAction.updateFamilies
+      })
+    },
     updateProfilePic: function(urlstring) {
       //I could check it's a valid URL by $.ajax it first, and do the rest on
       // success.  Could read the API to check that it returns an img, too
@@ -12,8 +19,6 @@
       })
     },
 
-    // APIUtil.kickMember(e.target.dataset.id)
-    // APIUtil.promoteMember(e.target.dataset.id)
     kickMember: function(id) {
       $.ajax({
         url: "api/user_groups/" + id,
@@ -47,7 +52,7 @@
         url: "api/group",
         type: "get",
         success: APIAction.setFamily
-        // could also grab all user_recipes here (and all fam recipes?)
+        // could also grab all user_recipes on success (and all fam recipes?)
       })
     }
   }

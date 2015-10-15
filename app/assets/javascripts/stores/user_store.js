@@ -7,6 +7,8 @@
   var _adminsList = [];
   var _pendingUsers = [];
 
+//I should move current family to the new FamilyStore
+
   var _dispatches = function(action) {
     switch (action.actionType) {
       case DispatcherConst.CURRENT_USER:
