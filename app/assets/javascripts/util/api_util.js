@@ -12,6 +12,36 @@
       })
     },
 
+    // APIUtil.kickMember(e.target.dataset.id)
+    // APIUtil.promoteMember(e.target.dataset.id)
+    kickMember: function(id) {
+      $.ajax({
+        url: "api/user_groups/" + id,
+        type: "delete",
+        success: APIAction.setFamily
+      })
+    },
+
+    promoteMember: function(id) {
+      debugger;
+      var data = {user_group: {status: "admin"}}
+      this.updateUser(id, data)
+    },
+
+    approveUser: function(id) {
+      var data = {user_group: {status: "member"}}
+      this.updateUser(id, data)
+    },
+
+    updateUser: function(id, data) {
+      $.ajax({
+        url: "api/user_groups/" + id,
+        type: "patch",
+        data: data,
+        success: APIAction.setFamily
+      })
+    },
+
     fetchFamily: function() {
       $.ajax({
         url: "api/group",

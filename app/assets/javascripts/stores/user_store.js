@@ -5,6 +5,7 @@
   var _family = {};
   var _admin = false;
   var _adminsList = [];
+  var _pendingUsers = [];
 
   var _dispatches = function(action) {
     switch (action.actionType) {
@@ -18,6 +19,7 @@
           _family = action.data.family
           _admin = action.data.admin
           _adminsList = action.data.admin_ids
+          _pendingUsers = action.data.new_users
           UserStore.emit(StoreConst.CURRENT_FAMILY);
         }
       default:
@@ -33,6 +35,7 @@
     admin: function() {return _admin},
     isAdmin: function (id) {
       return (_adminsList.indexOf(id) !== -1)
-    }
+    },
+    pendingUsers: function () {return _pendingUsers.slice()}
   });
 }(this));

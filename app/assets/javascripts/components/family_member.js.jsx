@@ -11,20 +11,18 @@ root.FamilyMember = React.createClass ({
     APIUtil.kickMember(e.target.dataset.id)
   },
 
-  adminize: function () {
+  adminize: function (e) {
+    debugger;
     console.log("call APIUtil and update a user_group to 'admin'")
+    APIUtil.promoteMember(e.target.dataset.id)
   },
 
   render: function () {
     var kick;
     var promote;
-    // for whatever reason, false has evaluated truthy before...
-    // update: because I'm dumb and didn't invoke a function, just looked at it.
-    if (this.props.editting ) {
-      if(!UserStore.isAdmin(this.props.user.id)) {
-        promote = <div onClick={this.adminize}>Make Admin</div>
-      }
-        kick = <div data-id={this.props.user.id} onClick={this.kickMember}>Remove</div>
+    if (this.props.editting && !UserStore.isAdmin(this.props.user.id)) {
+      promote = <div data-id={this.props.user.id} onClick={this.adminize}>Make Admin</div>
+      kick = <div data-id={this.props.user.id} onClick={this.kickMember}>Remove</div>
     }
     return (
       <div className="family-index-item list-group-item" onClick={this.handleClick}>

@@ -13,8 +13,10 @@ class Group < ActiveRecord::Base
 
   has_many :user_groups
   has_many :users, through: :user_groups
+
   def valid_users
-    self.users.joins(:user_groups).where("user_groups.status != pending")
+    self.users.joins(:user_groups)
+    .where("user_groups.status = ? OR user_groups.status = ?","member","admin")
   end
 
   def pending_users
