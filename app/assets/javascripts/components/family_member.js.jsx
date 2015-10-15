@@ -1,8 +1,10 @@
 (function(root) {
   'use strict';
 root.FamilyMember = React.createClass ({
+  mixins: [ReactRouter.History],
+
   handleClick: function() {
-    //history.pushState(/recipes)
+    this.history.pushState(null,"/member/"+this.props.user.id+"/recipes")
   },
 
   kickMember: function (e) {

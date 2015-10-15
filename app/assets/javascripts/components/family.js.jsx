@@ -1,6 +1,8 @@
 (function(root) {
   'use strict';
   root.Family = React.createClass({
+    mixins: [ReactRouter.History],
+
     getInitialState: function () {
       return {family: UserStore.family(), users: UserStore.all(), editting: false}
     },
@@ -25,6 +27,10 @@
       APIUtil.approveUser(e.target.dataset.id)
     },
 
+    sharedBook: function() {
+      this.history.pushState(null,"/shared")
+    },
+
     render: function () {
       if (this.state.family.id) {
         var editOptions;
@@ -41,19 +47,24 @@
               {UserStore.pendingUsers().map(function(user) {
                 return <li key={user.id} >
                   {user.name}
-                  <div onClick={this.addUser} data-id={user.id}>Add User</div>
+                  <button onClick={this.addUser} data-id={user.id}>Approve</button>
                 </li>
               }.bind(this))}
             </ul>
           )
         }
         return (
-          <div>
+          <div className="col-xs-4">
             <h2>{this.state.family.name}</h2>
             <ul className= "list-group">
+              <li key={"shared"}
+                  onClick={this.sharedBook}>
+                <div className="family-index-item list-group-item">Shared Recipes</div></li>
               {this.state.users.map(function(user){
-                return <li key={user.id}><FamilyMember editting={this.state.editting} user={user} /></li>
-                // return <li key={user.id}>{user.name}</li>
+                return <li key={user.id}>
+                    <FamilyMember editting={this.state.editting}
+                                  user={user} />
+                </li>
               }.bind(this))}
               {pendingUsers}
               {editOptions}
@@ -61,7 +72,7 @@
           </div>
         )
       } else {
-        return <div>You don't have a family yet. Make or Join one!
+        return <div className="col-xs-4">You don't have a family yet. Make or Join one!
           <FamilyFinder/>
         </div>
       }

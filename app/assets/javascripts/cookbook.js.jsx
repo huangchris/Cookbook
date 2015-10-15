@@ -23,9 +23,10 @@ $(function(root) {
     render: function ()  {
       return (
         <div onClick={this.clickBack} className="App">
-          <div onClick={this.clickBack}>{this.state.user.name}</div>
           <Navbar/>
-          {this.props.children}
+          <div className="row">
+            {this.props.children}
+          </div>
 
         </div>
       )
@@ -48,6 +49,9 @@ $(function(root) {
     <Router>
       <Route path="/" component={root.App}>
         <Route path="/family" component={Family}/>
+        <Route path="/member/:id/recipes" components={{comp1: Family, comp2: Recipes}}/>
+        <Route path="/recipes" component={Recipes}/>
+        <Route path="/shared" components={{comp1: Family, comp2: Recipes}}/>
       </Route>
     </Router>,
     document.getElementById("content")

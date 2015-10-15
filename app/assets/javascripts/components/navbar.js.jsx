@@ -9,7 +9,7 @@
 
     clickBack: function(e) {
       if (e.target === e.currentTarget) {
-        this.History.pushState(null, "/")
+        this.history.pushState(null, "/")
       }
     },
     storeListener: function () {
@@ -30,13 +30,26 @@
 
     render: function () {
       return (
-        <div onClick={this.clickBack}>
-          <ul className="Nav list-group">
-            <li className="list-group-item"><Pic user={this.state.user}/></li>
-            <li className="list-group-item" onClick={this.familyClick}>Family</li>
-          </ul>
-          {this.props.children}
-        </div>
+        <nav className="navbar-default">
+          <div className="container-fluid" onClick={this.clickBack}>
+            <div className="navbar-header">
+            </div>
+            <ul className="nav navbar-nav navbar-left">
+              <li><a className="" href="#">{this.state.user.name}</a></li>
+              <li className=""><a href="#/recipes">My Book</a></li>
+
+              <li className=""><a href="#/shared">Family Book</a></li>
+
+              <li className=""><a href="#/family">My Family</a></li>
+            </ul>
+
+            <ul className="nav navbar-nav navbar-right">
+              <li className=""><Pic user={this.state.user}/></li>
+              <li className=""><a href="/session/new">Logout</a></li>
+            </ul>
+          </div>
+            {this.props.children}
+        </nav>
       )
     }
 

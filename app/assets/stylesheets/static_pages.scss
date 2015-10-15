@@ -3,10 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .profile-pic {
-  max-height: 250px;
-  max-width: 250px;
+  max-height: 50px;
+  max-width: 50px;
   width:auto;
   height: auto;
+  float: left;
+}
+
+.upload-pic {
+  float: left;
 }
 
 .thumbnail {
@@ -29,15 +34,6 @@
 .family-index-item > div, img {
   float:left;
   height: 100%;
-}
-
-.list-group-item {
-  position: relative;
-}
-
-.list-group-item::after {
-  content: "";
-  clear: both;
 }
 
 .selected-family {
