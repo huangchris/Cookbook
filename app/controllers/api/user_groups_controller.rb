@@ -17,7 +17,7 @@ class Api::UserGroupsController < ApplicationController
     @user_group = UserGroup.new(user_id: current_user.id,
       group_id: params[:group_id], status: "pending")
     if @user_group.save
-      redirect_to "api/groups/show"
+      redirect_to api_group_url
     else
       render json: @user_group.errors.full_messages, status: 422
     end

@@ -3,7 +3,6 @@ class Api::GroupsController < ApplicationController
     @group = current_user.groups.first
     if @group
       @users = @group.valid_users
-      p @users
       @new_users = @group.pending_users
       @admins = @group.admins
       render :show
