@@ -5,9 +5,13 @@
       // grab a list of families
       $.ajax({
         url: "api/groups",
-        success: APIAction.updateFamilies
+        success: APIAction.updateFamilies,
+        error: function () {
+          console.log("tried to grab families when not needed")
+        }
       })
     },
+
     updateProfilePic: function(urlstring) {
       //I could check it's a valid URL by $.ajax it first, and do the rest on
       // success.  Could read the API to check that it returns an img, too
@@ -54,6 +58,33 @@
         success: APIAction.setFamily
         // could also grab all user_recipes on success (and all fam recipes?)
       })
+    },
+
+    makeFamily: function(data) {
+      $.ajax({
+        url: "api/group",
+        type: "post",
+        data: data,
+        // success: APIUtil.joinFamily.bind(null,"admin",id)
+        success: APIAction.setFamily
+      })
     }
   }
+
+// probably can (and should) do this on the backend
+  //   joinFamily: function(status, id, response) {
+  //     var data = {
+  //       user_id: id,
+  //       group_id: response.group.id,
+  //       status: status
+  //     };
+  //
+  //     $.ajax({
+  //       url: "api/user_groups",
+  //       type: "post",
+  //       data: data,
+  //       success: APIAction.setFamily
+  //     })
+  //   }
+  // }
 }(this));

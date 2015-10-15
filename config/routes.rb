@@ -13,6 +13,7 @@
 #                 PUT    /api/users/:id(.:format)       api/users#update {:format=>:json}
 #       api_group POST   /api/group(.:format)           api/groups#create {:format=>:json}
 #                 GET    /api/group(.:format)           api/groups#show {:format=>:json}
+#      api_groups GET    /api/groups(.:format)          api/groups#index {:format=>:json}
 # api_user_groups POST   /api/user_groups(.:format)     api/user_groups#create {:format=>:json}
 #  api_user_group PATCH  /api/user_groups/:id(.:format) api/user_groups#update {:format=>:json}
 #                 PUT    /api/user_groups/:id(.:format) api/user_groups#update {:format=>:json}
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:show, :index, :update]
     resource :group, only: [:index, :show, :create]
+    get "groups", to: "groups#index"
     resources :user_groups, only: [:create, :update, :destroy]
   end
 

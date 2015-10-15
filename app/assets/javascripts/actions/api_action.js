@@ -16,6 +16,7 @@
       })
     },
     updateFamilies: function(response) {
+      debugger;
       AppDispatcher.dispatch({
         actionType: DispatcherConst.FAMILIES,
         data: response
