@@ -7,12 +7,10 @@ root.FamilyMember = React.createClass ({
 
   kickMember: function (e) {
     console.log("call APIUtil and delete a user_group")
-    debugger;
     APIUtil.kickMember(e.target.dataset.id)
   },
 
   adminize: function (e) {
-    debugger;
     console.log("call APIUtil and update a user_group to 'admin'")
     APIUtil.promoteMember(e.target.dataset.id)
   },

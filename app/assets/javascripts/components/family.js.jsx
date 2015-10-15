@@ -5,18 +5,23 @@
       return {family: UserStore.family(), users: UserStore.all(), editting: false}
     },
 
+    storeListener:  function () {
+      this.setState({family: UserStore.family(), users: UserStore.all()})
+    },
+
     componentDidMount: function () {
       APIUtil.fetchFamily()
-      UserStore.on(StoreConst.CURRENT_FAMILY, function () {
-        this.setState({family: UserStore.family(), users: UserStore.all()})
-      }.bind(this))
+      UserStore.on(StoreConst.CURRENT_FAMILY, this.storeListener)
+    },
+
+    componentWillUnmount: function () {
+      UserStore.removeListener(StoreConst.CURRENT_FAMILY, this.storeListener)
     },
 
     editGroup: function() {
       this.setState({editting: !this.state.editting})
     },
     addUser: function(e) {
-      debugger;
       APIUtil.approveUser(e.target.dataset.id)
     },
 

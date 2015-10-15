@@ -32,7 +32,6 @@
     },
 
     promoteMember: function(id) {
-      debugger;
       var data = {user_group: {status: "admin"}}
       this.updateUser(id, data)
     },

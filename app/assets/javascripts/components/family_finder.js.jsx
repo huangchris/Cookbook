@@ -6,13 +6,6 @@
       return({name: ""})
     },
 
-    componentDidMount: function() {
-      // APIUtil.getFamilies();
-      // FamilyStore.on(StoreConst.FAMILIES, function(){
-      //   this.setState({familyList: FamilyStore.families()})
-      // }.bind(this))
-      // Since we're making a subcomponent FamilyList, this should be there.
-    },
 
     makeFamily: function(e) {
       e.preventDefault();
@@ -27,7 +20,7 @@
           <input type="submit"></input>
         </form>
         Or join an existing one:
-
+        <FamilyList/>
       </div>
     }
           //so apparently you can't put comments inside the render divs... interesting.

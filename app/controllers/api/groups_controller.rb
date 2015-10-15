@@ -13,7 +13,7 @@ class Api::GroupsController < ApplicationController
   end
 
   def index
-    if current_user.group
+    if !current_user.groups.empty?
       # this may change in the future to allow multiple groups.
       render nothing: true, status: 400
     else

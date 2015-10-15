@@ -15,7 +15,6 @@
         }
       break;
       case DispatcherConst.FAMILIES:
-        debugger;
         _families = action.data.families;
         FamilyStore.emit(StoreConst.FAMILIES);
       break;
@@ -27,7 +26,6 @@
   root.FamilyStore = $.extend({}, EventEmitter.prototype, {
     DispatcherId: AppDispatcher.register(_dispatches),
     families: function () {
-      debugger;
       return _families.slice() },
     family: function() {return $.extend({},_family) }
   });

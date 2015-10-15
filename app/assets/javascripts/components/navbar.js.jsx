@@ -12,11 +12,16 @@
         this.History.pushState(null, "/")
       }
     },
+    storeListener: function () {
+      this.setState({user: UserStore.currentUser()})
+    },
 
     componentDidMount: function () {
-      UserStore.on(StoreConst.CURRENT_USER, function () {
-        this.setState({user: UserStore.currentUser()})
-      }.bind(this))
+      UserStore.on(StoreConst.CURRENT_USER, this.storeListener)
+    },
+
+    componentWillUnmount: function () {
+      FamilyStore.removeListener(StoreConst.CURRENT_USER, this.storeListener)
     },
 
     familyClick: function() {
