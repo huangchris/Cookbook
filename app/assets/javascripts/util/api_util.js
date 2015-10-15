@@ -6,9 +6,7 @@
       $.ajax({
         url: "api/groups",
         success: APIAction.updateFamilies,
-        error: function () {
-          console.log("tried to grab families when not needed")
-        }
+        error: APIUtil.logError
       })
     },
 
@@ -19,7 +17,8 @@
         url: "api/users/" + UserStore.currentUser().id,
         type: "patch",
         data: {user: {image: urlstring} },
-        success: APIAction.setCurrentUser
+        success: APIAction.setCurrentUser,
+        error: APIUtil.logError
       })
     },
 
@@ -27,7 +26,8 @@
       $.ajax({
         url: "api/user_groups/" + id,
         type: "delete",
-        success: APIAction.setFamily
+        success: APIAction.setFamily,
+        error: APIUtil.logError
       })
     },
 
@@ -46,7 +46,8 @@
         url: "api/user_groups/" + id,
         type: "patch",
         data: data,
-        success: APIAction.setFamily
+        success: APIAction.setFamily,
+        error: APIUtil.logError
       })
     },
 
@@ -54,7 +55,8 @@
       $.ajax({
         url: "api/group",
         type: "get",
-        success: APIAction.setFamily
+        success: APIAction.setFamily,
+        error: APIUtil.logError
         // could also grab all user_recipes on success (and all fam recipes?)
       })
     },
@@ -64,26 +66,28 @@
         url: "api/group",
         type: "post",
         data: data,
-        // success: APIUtil.joinFamily.bind(null,"admin",id)
-        success: APIAction.setFamily
+        success: APIAction.setFamily,
+        error: APIUtil.logError
+
       })
+    },
+
+    joinFamily: function(id) {
+      var data = {
+        group_id: id
+      };
+
+      $.ajax({
+        url: "api/user_groups",
+        type: "post",
+        data: data,
+        success: APIAction.setFamily,
+        error: APIUtil.logError
+      })
+    },
+
+    logError: function(response) {
+      console.log(response)
     }
   }
-
-// probably can (and should) do this on the backend
-  //   joinFamily: function(status, id, response) {
-  //     var data = {
-  //       user_id: id,
-  //       group_id: response.group.id,
-  //       status: status
-  //     };
-  //
-  //     $.ajax({
-  //       url: "api/user_groups",
-  //       type: "post",
-  //       data: data,
-  //       success: APIAction.setFamily
-  //     })
-  //   }
-  // }
 }(this));

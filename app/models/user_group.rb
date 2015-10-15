@@ -24,6 +24,7 @@
 class UserGroup < ActiveRecord::Base
   validates :user_id, :group_id, presence: true
   validates :status, inclusion: %w(pending member admin)
+  validates :user_id, uniqueness: { scope: :group_id }
   belongs_to :user
   belongs_to :group
 end

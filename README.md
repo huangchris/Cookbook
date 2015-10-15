@@ -10,9 +10,9 @@ OurCookbook is a site for family members to share traditional recipes or new fav
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Create an account
-- [ ] Log in / Log out
-- [ ] Create / Join a family group
+- [X] Create an account
+- [X] Log in / Log out
+- [X] Create / Join a family group
 - [ ] Create, read, edit recipes
 - [ ] Comment on recipes
 - [ ] Tag recipes with multiple tags and search by tag or by name

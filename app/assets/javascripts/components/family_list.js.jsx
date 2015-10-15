@@ -2,7 +2,7 @@
   'use strict';
   root.FamilyList = React.createClass({
     getInitialState: function () {
-      return {familyList: []};
+      return {familyList: [], selected: null};
     },
 
     storeListener: function () {
@@ -17,8 +17,30 @@
       FamilyStore.removeListener(StoreConst.FAMILIES, this.storeListener)
     },
 
+    selectFamily: function(e) {
+      this.setState({selected: e.target.dataset.id})
+    },
+
+    joinFamily: function(e) {
+      debugger
+      APIUtil.joinFamily(this.state.selected)
+    },
+
     render: function () {
-      return <div>This is where a list of {this.state.familyList.length} families would go</div>
+      return(
+        <ul>
+          {this.state.familyList.map(function(family){
+            var selected = (parseInt(this.state.selected) === family.id ?
+              "selected-family" : "")
+            return <li key={family.id}
+                    className={selected}
+                    data-id={family.id}
+                    onClick={this.selectFamily}>
+                    {family.name}</li>
+          }.bind(this))}
+          <li onClick={this.joinFamily}>Request to Join!</li>
+        </ul>
+      )
     }
-  })
+  });
 }(this));

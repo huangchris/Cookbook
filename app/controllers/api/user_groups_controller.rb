@@ -14,6 +14,13 @@ class Api::UserGroupsController < ApplicationController
   end
 
   def create
+    @user_group = UserGroup.new(user_id: current_user.id,
+      group_id: params[:group_id], status: "pending")
+    if @user_group.save
+      redirect_to "api/groups/show"
+    else
+      render json: @user_group.errors.full_messages, status: 422
+    end
   end
 
   def destroy
