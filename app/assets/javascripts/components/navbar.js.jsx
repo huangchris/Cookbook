@@ -29,7 +29,6 @@
     },
 
     render: function () {
-      debugger;
       return (
         <nav className="navbar-default">
           <div className="container-fluid" onClick={this.clickBack}>
