@@ -28,7 +28,7 @@
 ##EUTM
 
 class Recipe < ActiveRecord::Base
-  validates :user_id, :group_id, :personal, :title, :photo, :ingredients,
+  validates :user_id, :group_id, :title, :ingredients,
     :instructions, presence: true
   validate :shared_recipe_dups
 
@@ -46,8 +46,16 @@ class Recipe < ActiveRecord::Base
 
 
   def shared_recipe_dups
-    if Recipe.where(group_id: self.group_id).where(personal: false).where(title: self.title).any?
-      errors[:title] << "Already have a recipe for this"
+    # so .where("id != NULL") doesn't work...
+    shared_recipes = Recipe.where(group_id: self.group_id)
+      .where(personal: false).where(title: self.title)
+    personal_recipes = Recipe.where(user_id: self.user_id)
+      .where(title: self.title)
+    if self.id.nil? && (shared_recipes.any? || personal_recipes.any?)
+        errors[:title] << "Already have a recipe for this"
+    elsif shared_recipes.where("id != ?", self.id).any? ||
+      personal_recipes.where("id != ?", self.id).any?
+        errors[:title] << "Already have a recipe for this"
     end
   end
 end

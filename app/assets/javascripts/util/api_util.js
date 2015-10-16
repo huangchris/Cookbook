@@ -111,8 +111,31 @@
 
     },
 
+    newRecipe: function(data) {
+      debugger;
+      $.ajax({
+        url:"/api/recipes",
+        type: "post",
+        data: {recipe: data},
+        success: APIAction.updateRecipes,
+        error:this.logError
+      })
+    },
+
+    editRecipe: function(data) {
+      debugger;
+      $.ajax({
+        url:"/api/recipes/" + data.id,
+        type: "patch",
+        data: {recipe: data},
+        success: APIAction.updateRecipes,
+        error:this.logError
+      })
+    },
+
     logError: function(response) {
       console.log(response)
     }
   }
 }(this));
+// this.props.recipe ? APIUtil.newRecipe(this.state) : APIUtil.editRecipe(this.state)

@@ -11,6 +11,6 @@ json.data "Request received"
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 json.recipes @recipes do |recipe|
-  json.extract! recipe, :id, :user_id, :personal, :title, :photo, :description,
+  json.extract! recipe, :id, :user_id, :group_id, :personal, :title, :photo, :description,
     :ingredients, :instructions
 end

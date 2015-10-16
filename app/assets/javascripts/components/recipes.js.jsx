@@ -1,12 +1,14 @@
 (function(root) {
   'use strict';
+  var _blankRecipe = {
+    id: null, user_id: null, group_id: null,
+    personal: false, title: "", photo: "",
+    description: "", ingredients: "", instructions: ""
+  }
+
   root.Recipes = React.createClass({
     getInitialState: function(){
-      return({recipes: [], activeRecipe: {
-        id: null, user_id: null, group_id: null,
-        personal: false, title: "", photo: "",
-        description: "", ingredients: "", instructions: ""
-      }})
+      return({recipes: [], activeRecipe: _blankRecipe})
     },
 
     storeListener: function(){
@@ -23,9 +25,14 @@
     },
 
     openRecipe: function(e) {
-      this.setState({activeRecipe: RecipeStore.find(e.target.dataset.id)})
-      $("#modal").addClass("active-modal")
-      $("#modal").removeClass("hidden-modal")
+      debugger;
+      if(e.target.dataset.id === undefined) {
+        this.setState({activeRecipe: _blankRecipe})
+      } else {
+        this.setState({activeRecipe: RecipeStore.find(e.target.dataset.id)})
+      }
+        $("#modal").addClass("active-modal")
+        $("#modal").removeClass("hidden-modal")
     },
 
     render: function () {
@@ -41,7 +48,7 @@
                         {recipe.title}
                      </li>
             })}
-            <li><button>Add a new Recipe</button></li>
+            <li key="new"><button>Add a new Recipe</button></li>
           </ul>
             <RecipeModal recipe={this.state.activeRecipe}/>
         </div>

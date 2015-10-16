@@ -43,6 +43,10 @@
       return (
         <nav className="navbar-default">
           <div className="container-fluid" onClick={this.clickBack}>
+            <div className="navbar-brand"
+                  onClick={this.clickBack}>
+                  CookBooks
+            </div>
             <ul className="nav navbar-nav navbar-left">
               <li><a className="" href="#">{this.state.user.name}</a></li>
               <li className=""><a href="#/recipes">My Book</a></li>
@@ -54,7 +58,7 @@
 
             <ul className="nav navbar-nav navbar-right">
               <li className=""><Pic user={this.state.user}/></li>
-              <li className="" onClick={this.logout}><a>Logout</a></li>
+              <li className=""><a href="#" onClick={this.logout}>Logout</a></li>
             </ul>
           </div>
             {this.props.children}

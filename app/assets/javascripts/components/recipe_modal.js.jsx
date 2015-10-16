@@ -6,6 +6,7 @@
     getInitialState: function() {
       return {editting: false}
     },
+
     hideModal: function(e){
       if (e.target === e.currentTarget){
         $("#modal").removeClass("active-modal").addClass("hidden-modal")
@@ -24,7 +25,7 @@
         <section id="modal"
           className="hidden-modal"
           onClick={this.hideModal}>
-          <RecipeForm/>
+          <RecipeForm recipe={this.props.recipe}/>
         </section>
       )
     }
@@ -57,15 +58,22 @@
 
   root.RecipeForm = React.createClass({
     mixins: [React.addons.LinkedStateMixin],
+
     getInitialState: function() {
-      return{} // store the form inputs here.
+      return $.extend({},this.props.recipe) // store the form inputs here.
+      // return {title: "title", description: "stuff", ingredients: "stuff", instructions: "stuff"}
     },
 
     handleSubmit: function(e) {
-      this.props.recipe ? APIUtil.newRecipe(this.state) : APIUtil.editRecipe(this.state)
+      e.preventDefault();
+      this.props.recipe ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
+      $("#modal").removeClass("active-modal").addClass("hidden-modal")
     },
-
-    handlePic: function () {
+    componentWillReceiveProps: function(newprops) {
+      this.setState($.extend({},newprops.recipe))
+    },
+    handlePic: function (e) {
+      e.preventDefault()
       cloudinary.openUploadWidget(window.CLOUDINARY_OPTIONS,
         function (error, response) {
           if(error) {}//{alert("picture failed to upload")}
@@ -94,19 +102,27 @@
        <form onSubmit={this.handleSubmit}>
          <div className="form-group">
            <label htmlFor="Title">Title</label>
-           <input type="text" id="Title"></input>
+           <input type="text" id="Title"
+                  valueLink={this.linkState("title")}>
+           </input>
          </div>
          <div className="form-group">
            <label htmlFor="Description">Description</label>
-           <input type="text" id="Description"></input>
+           <input type="text" id="Description"
+             valueLink={this.linkState("description")}>
+           </input>
          </div>
          <div className="form-group">
            <label htmlFor="Ingredients">Ingredients</label>
-           <textarea id="Ingredients"></textarea>
+           <textarea id="Ingredients"
+             valueLink={this.linkState("ingredients")}>
+           </textarea>
          </div>
          <div className="form-group">
            <label htmlFor="Instructions">Instructions</label>
-           <textarea type="text" id="Instructions"></textarea>
+           <textarea type="text" id="Instructions"
+             valueLink={this.linkState("instructions")}>
+           </textarea>
          </div>
          <div className="form-group">
            {pic}
