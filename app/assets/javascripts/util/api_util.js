@@ -6,7 +6,12 @@
       $.ajax({
         url: "api/groups",
         success: APIAction.updateFamilies,
-        error: APIUtil.logError
+        error: function(response){
+          if(response.status === 400){
+            console.log("This error is probably because an unnecessary" +
+              " request was canceled by the server")
+          } else { console.log(response)}
+        }
       })
     },
 

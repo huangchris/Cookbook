@@ -32,8 +32,6 @@
       return (
         <nav className="navbar-default">
           <div className="container-fluid" onClick={this.clickBack}>
-            <div className="navbar-header">
-            </div>
             <ul className="nav navbar-nav navbar-left">
               <li><a className="" href="#">{this.state.user.name}</a></li>
               <li className=""><a href="#/recipes">My Book</a></li>

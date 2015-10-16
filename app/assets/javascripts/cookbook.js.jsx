@@ -24,7 +24,7 @@ $(function(root) {
       return (
         <div onClick={this.clickBack} className="App">
           <Navbar/>
-          <div className="row">
+          <div id="body" className="row">
             {this.props.children}
           </div>
 

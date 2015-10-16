@@ -17,10 +17,10 @@
         return { id: recipe.id, user_id: recipe.user_id, title: recipe.title};
       })
     },
-    
+
     find: function(id) {
       return _recipes.filter(function(recipe){
-        return recipe.id === id;
+        return recipe.id === parseInt(id);
       })[0];
     }
   })
