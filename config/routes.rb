@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     resources :user_groups, only: [:create, :update, :destroy]
     resources :recipes, only: [:create, :index, :update, :destroy, :show]
     namespace :recipes do
+      # these overlap with show and with each other 
       get "shared", to: "recipes#index_shared"
       get "/:id", to: "recipes#index_sibling"
     end

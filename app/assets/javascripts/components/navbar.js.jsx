@@ -34,7 +34,7 @@
               <li><a className="" href="#">{this.state.user.name}</a></li>
               <li className=""><a href="#/recipes">My Book</a></li>
 
-              <li className=""><a href="#/shared">Family Book</a></li>
+              <li className=""><a href="#/family/recipes">Family Book</a></li>
 
               <li className=""><a href="#/family">My Family</a></li>
             </ul>
