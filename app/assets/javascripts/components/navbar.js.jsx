@@ -24,10 +24,6 @@
       FamilyStore.removeListener(StoreConst.CURRENT_USER, this.storeListener)
     },
 
-    familyClick: function() {
-      this.history.pushState(null, "/family")
-    },
-
     render: function () {
       return (
         <nav className="navbar-default">

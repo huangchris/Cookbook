@@ -28,7 +28,7 @@
     },
 
     sharedBook: function() {
-      this.history.pushState(null,"/shared")
+      this.history.pushState({index:"shared"},"/family/recipes")
     },
 
     render: function () {
@@ -54,6 +54,7 @@
           )
         }
         return (
+          <div>
           <div className="col-xs-4">
             <h2>{this.state.family.name}</h2>
             <ul className= "list-group">
@@ -70,6 +71,8 @@
               {editOptions}
             </ul>
           </div>
+          {this.props.children}
+        </div>
         )
       } else {
         return <div className="col-xs-4">You don't have a family yet. Make or Join one!

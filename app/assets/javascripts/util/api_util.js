@@ -86,6 +86,31 @@
       })
     },
 
+    getRecipeIndex: function(route, id) {
+      debugger;
+      var url;
+      switch (route.path) {
+        case "family":
+          url = "api/recipes/shared";
+          break;
+        case "recipes":
+          url = "api/recipes"
+          break;
+        case "member/:id/recipes":
+          url = "api/recipes" + id
+          break;
+      }
+
+
+      $.ajax({
+        url: url,
+        type: "get",
+        success: this.logError,
+        error: this.logError
+      })
+
+    },
+
     logError: function(response) {
       console.log(response)
     }

@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :user_groups
   has_many :group_admins
   has_many :adminned_groups, through: :group_admins
+  has_many :recipes
 
 
   def assign_session_token

@@ -4,16 +4,16 @@ root.FamilyMember = React.createClass ({
   mixins: [ReactRouter.History],
 
   handleClick: function() {
-    this.history.pushState(null,"/member/"+this.props.user.id+"/recipes")
+    var path = "/member/"+this.props.user.id+"/recipes";
+    this.history.pushState(null, path);
+    APIUtil.getRecipeIndex({path: path},this.props.user.id)
   },
 
   kickMember: function (e) {
-    console.log("call APIUtil and delete a user_group")
     APIUtil.kickMember(e.target.dataset.id)
   },
 
   adminize: function (e) {
-    console.log("call APIUtil and update a user_group to 'admin'")
     APIUtil.promoteMember(e.target.dataset.id)
   },
 

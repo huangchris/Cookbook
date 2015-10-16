@@ -9,6 +9,7 @@
   root.StoreConst = {
     CURRENT_USER: "The backbone of my code is where I write junk",
     CURRENT_FAMILY: "I wonder if I'm not taking this seriously enough sometimes",
-    FAMILIES: "Then this nonsense could be more practical while still meaningless"
+    FAMILIES: "Then this nonsense could be more practical while still meaningless",
+    RECIPE_INDEX: "Then, everything changed when the Fire Nation attacked."
   }
 }(this));

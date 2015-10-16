@@ -48,10 +48,11 @@ $(function(root) {
   React.render(
     <Router>
       <Route path="/" component={root.App}>
-        <Route path="/family" component={Family}/>
+        <Route path="family" component={Family}>
+          <Route path="recipes" component={Recipes}/>
+        </Route>
         <Route path="/member/:id/recipes" components={{comp1: Family, comp2: Recipes}}/>
-        <Route path="/recipes" component={Recipes}/>
-        <Route path="/shared" components={{comp1: Family, comp2: Recipes}}/>
+        <Route path="recipes" component={Recipes}/>
       </Route>
     </Router>,
     document.getElementById("content")

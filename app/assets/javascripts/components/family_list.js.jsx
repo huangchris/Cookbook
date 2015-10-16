@@ -22,7 +22,6 @@
     },
 
     joinFamily: function(e) {
-      debugger
       APIUtil.joinFamily(this.state.selected)
     },
 
