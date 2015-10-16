@@ -28,6 +28,17 @@
       FamilyStore.removeListener(StoreConst.CURRENT_USER, this.storeListener)
     },
 
+    logout: function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: "/session",
+        type: "delete",
+        success: function() {
+          window.location = "/session/new"
+        }
+      })
+    },
+
     render: function () {
       return (
         <nav className="navbar-default">
@@ -43,7 +54,7 @@
 
             <ul className="nav navbar-nav navbar-right">
               <li className=""><Pic user={this.state.user}/></li>
-              <li className=""><a href="/session/new">Logout</a></li>
+              <li className="" onClick={this.logout}><a>Logout</a></li>
             </ul>
           </div>
             {this.props.children}

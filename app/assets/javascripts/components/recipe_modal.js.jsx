@@ -65,7 +65,31 @@
       this.props.recipe ? APIUtil.newRecipe(this.state) : APIUtil.editRecipe(this.state)
     },
 
+    handlePic: function () {
+      cloudinary.openUploadWidget(window.CLOUDINARY_OPTIONS,
+        function (error, response) {
+          if(error) {}//{alert("picture failed to upload")}
+          //maybe add an errors store? or maybe just do nothing?
+          //most of the time this pops up because I canceled the widget.
+          else{
+            this.setState({photo: response[0].url})
+          }
+        }.bind(this)
+      );
+    },
+
     render: function() {
+      var pic;
+      if (this.state.photo) {
+        pic = (
+          <div>
+            <img className="thumbnail" src={this.state.photo}></img>
+            <button onClick={this.handlePic}>Upload a Pic</button>
+          </div>
+        )
+      }else{
+        pic = <button onClick={this.handlePic}>Upload a Pic</button>
+      }
       return (
        <form onSubmit={this.handleSubmit}>
          <div className="form-group">
@@ -75,6 +99,17 @@
          <div className="form-group">
            <label htmlFor="Description">Description</label>
            <input type="text" id="Description"></input>
+         </div>
+         <div className="form-group">
+           <label htmlFor="Ingredients">Ingredients</label>
+           <textarea id="Ingredients"></textarea>
+         </div>
+         <div className="form-group">
+           <label htmlFor="Instructions">Instructions</label>
+           <textarea type="text" id="Instructions"></textarea>
+         </div>
+         <div className="form-group">
+           {pic}
          </div>
          <div className="form-group">
            <input type="submit"></input>
