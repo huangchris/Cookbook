@@ -41,6 +41,7 @@
                         {recipe.title}
                      </li>
             })}
+            <li><button>Add a new Recipe</button></li>
           </ul>
             <RecipeModal recipe={this.state.activeRecipe}/>
         </div>

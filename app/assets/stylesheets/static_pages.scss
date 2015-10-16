@@ -14,6 +14,12 @@
   float: left;
 }
 
+// for some reason this collapses the li height.
+// so I have bullets or unreadable.
+// li {
+//   list-style:none;
+// }
+
 .thumbnail {
   max-height: 50px;
   max-width: 50px;
@@ -62,6 +68,13 @@
   display: inherit;
   background-color: white;
   opacity: 1;
+}
+#modal form {
+  display: inherit;
+  background-color: white;
+  opacity: 1;
+  margin: 10px;
+  margin-right: 50px;
 }
 // :hover {
 //   background-color: grey
