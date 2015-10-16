@@ -1,3 +1,7 @@
+// EUTM
+// The problem with <a> links is I want to run APIUtil calls on click to refresh data
+// At which point I might as well not use links
+
 (function(root) {
   'use strict';
   root.Navbar = React.createClass({

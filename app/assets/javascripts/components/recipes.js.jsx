@@ -1,9 +1,12 @@
 (function(root) {
   'use strict';
   root.Recipes = React.createClass({
+    getInitialState: function(){
+      return({recipes: []})
+    },
 
     storeListener: function(){
-      this.setState({Recipes: RecipeStore.all()})
+      this.setState({recipes: RecipeStore.all()})
     },
 
     componentDidMount: function() {
@@ -16,7 +19,20 @@
     },
 
     render: function () {
-      return <div className="col-xs-8">Recipes should be here</div>
+      return (
+        <div className="col-xs-8">
+          <h2>Recipes</h2>
+          <h4>will be tabbed by category</h4>
+          <ul className="list-group">
+            {this.state.recipes.map(function(recipe){
+              return <li key={recipe.id}
+                        className="list-group-item">
+                        {recipe.title}
+                     </li>
+            })}
+          </ul>
+        </div>
+      )
     }
   });
 }(this));

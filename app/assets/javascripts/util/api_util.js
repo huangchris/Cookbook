@@ -87,25 +87,20 @@
     },
 
     getRecipeIndex: function(route, id) {
-      debugger;
-      var url;
-      switch (route.path) {
-        case "family":
-          url = "api/recipes/shared";
-          break;
-        case "recipes":
-          url = "api/recipes"
-          break;
-        case "member/:id/recipes":
-          url = "api/recipes" + id
-          break;
+      var data;
+      if(route.path === "family") {
+          data = {indexType:"family"};
+      } else if ( route.path === "recipes") {
+          data = {};
+      } else {
+          data = {indexType: "user", id: id};
       }
 
-
       $.ajax({
-        url: url,
+        url: "api/recipes",
         type: "get",
-        success: this.logError,
+        data: data,
+        success: APIAction.updateRecipes,
         error: this.logError
       })
 

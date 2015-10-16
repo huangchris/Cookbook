@@ -1,3 +1,7 @@
+//EUTM
+
+//Oh I can DRY this, can't I, have all of them call a method with diff. args
+
 (function(root) {
   'use strict';
   root.APIAction = {
@@ -14,9 +18,17 @@
         data: family
       })
     },
+
     updateFamilies: function(response) {
       AppDispatcher.dispatch({
         actionType: DispatcherConst.FAMILIES,
+        data: response
+      })
+    },
+    
+    updateRecipes: function(response) {
+      AppDispatcher.dispatch({
+        actionType: DispatcherConst.RECIPES,
         data: response
       })
     }

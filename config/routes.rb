@@ -18,15 +18,15 @@
 #     api_user_group PATCH  /api/user_groups/:id(.:format) api/user_groups#update {:format=>:json}
 #                    PUT    /api/user_groups/:id(.:format) api/user_groups#update {:format=>:json}
 #                    DELETE /api/user_groups/:id(.:format) api/user_groups#destroy {:format=>:json}
-#        api_recipes GET    /api/recipes(.:format)         api/recipes#index {:format=>:json}
-#                    POST   /api/recipes(.:format)         api/recipes#create {:format=>:json}
-#         api_recipe GET    /api/recipes/:id(.:format)     api/recipes#show {:format=>:json}
-#                    PATCH  /api/recipes/:id(.:format)     api/recipes#update {:format=>:json}
-#                    PUT    /api/recipes/:id(.:format)     api/recipes#update {:format=>:json}
-#                    DELETE /api/recipes/:id(.:format)     api/recipes#destroy {:format=>:json}
+#         api_recipe POST   /api/recipe(.:format)          api/recipes#create {:format=>:json}
+#                    GET    /api/recipe(.:format)          api/recipes#show {:format=>:json}
+#                    PATCH  /api/recipe(.:format)          api/recipes#update {:format=>:json}
+#                    PUT    /api/recipe(.:format)          api/recipes#update {:format=>:json}
+#                    DELETE /api/recipe(.:format)          api/recipes#destroy {:format=>:json}
 # api_recipes_shared GET    /api/recipes/shared(.:format)  api/recipes/recipes#index_shared {:format=>:json}
-#                    GET    /api/recipes/:id(.:format)     api/recipes/recipes#index_sibling {:format=>:json}
+#        api_recipes GET    /api/recipes/:id(.:format)     api/recipes/recipes#index_sibling {:format=>:json}
 #
+## EUTM
 
 Rails.application.routes.draw do
   root to: "static_pages#home"
@@ -36,15 +36,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:show, :index, :update]
-    resource :group, only: [:index, :show, :create]
+    resource :group, only: [:show, :create]
     get "groups", to: "groups#index"
     resources :user_groups, only: [:create, :update, :destroy]
     resources :recipes, only: [:create, :index, :update, :destroy, :show]
-    namespace :recipes do
-      # these overlap with show and with each other 
-      get "shared", to: "recipes#index_shared"
-      get "/:id", to: "recipes#index_sibling"
-    end
   end
 
 end

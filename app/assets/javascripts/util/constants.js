@@ -3,7 +3,8 @@
   root.DispatcherConst = {
     CURRENT_USER: "My code runs on random sentences I write here.",
     CURRENT_FAMILY: "Seriously, this is random wlkrjehg",
-    FAMILIES: "It would be sort of cool to put a SecureRandom.urlsafe_base64"
+    FAMILIES: "It would be sort of cool to put a SecureRandom.urlsafe_base64",
+    RECIPES: "Attacking each day with ENTHUSIASM UNKNOWN TO MANKIND"
   }
 
   root.StoreConst = {
