@@ -84,8 +84,9 @@
     },
 
     handleSubmit: function(e) {
+      debugger;
       e.preventDefault();
-      this.props.recipe ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
+      this.props.recipe.id ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
       $("#modal").removeClass("active-modal").addClass("hidden-modal")
     },
 
