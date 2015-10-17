@@ -12,7 +12,6 @@
     },
 
     componentDidMount: function(){
-      debugger;
       if (this.state.editting){
         this.editRecipe();
       } else{

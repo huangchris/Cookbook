@@ -50,7 +50,7 @@
             })}
             <li key="new"><button>Add a new Recipe</button></li>
           </ul>
-            <RecipeModal recipe={this.state.activeRecipe}/>
+            <RecipeModal editting={this.state.editting} recipe={this.state.activeRecipe}/>
         </div>
       )
     }
