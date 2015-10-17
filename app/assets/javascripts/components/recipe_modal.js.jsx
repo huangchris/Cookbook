@@ -3,46 +3,67 @@
 (function(root) {
   'use strict';
   root.RecipeModal = React.createClass({
-    getInitialState: function() {
-      return {editting: false}
+    getInitialState: function () {
+      return {editting: this.props.editting}
     },
 
-    hideModal: function(e){
-      if (e.target === e.currentTarget){
-        $("#modal").removeClass("active-modal").addClass("hidden-modal")
+    componentWillReceiveProps: function(newProps) {
+      this.setState({editting: newProps.editting})
+    },
+
+    componentDidMount: function(){
+      debugger;
+      if (this.state.editting){
+        this.editRecipe();
+      } else{
+        this.unEditRecipe();
       }
     },
 
+    hideModal: function(e) {
+      if (e.target === e.currentTarget){
+        $("#modal").removeClass("active-modal").addClass("hidden-modal")
+        this.setState({editting: false})
+      }
+    },
+
+    editRecipe: function (e) {
+      //maybe make the form and this visible/invisible, and put this back into the main?
+      //or just put the button on the main?  that would be weird, but would work.
+      $("#recipe-form").removeClass("hidden");
+      $("#recipe-detail").addClass("hidden");
+      this.editting= true;
+    },
+
+    unEditRecipe: function() {
+      $("#recipe-form").addClass("hidden");
+      $("#recipe-detail").removeClass("hidden");
+      this.editting= false;
+    },
+
     render: function() {
-      // var modalData;
-      // if (this.state.editting || this.props.recipe.id === null) {
-      //   modalData = <RecipeForm recipe={this.props.recipe}/>
-      // } else {
-      //   modalData = <RecipeShow recipe={this.props.recipe}/>
-      // }
-          // {modalData}
+      // that was dumb: the button is invisible when it's cancel.
+      // var buttonText = (this.editting ? "Cancel" : "Edit Recipe")
       return (
         <section id="modal"
           className="hidden-modal"
           onClick={this.hideModal}>
-          <RecipeForm recipe={this.props.recipe}/>
+          <div id="recipe-form" className="hidden">
+            <RecipeForm recipe={this.props.recipe}/>
+            <button onClick={this.unEditRecipe}>Cancel</button>
+          </div>
+          <div id="recipe-detail">
+            <RecipeShow recipe={this.props.recipe}/>
+            <button onClick={this.editRecipe}>Edit Recipe</button>
+          </div>
         </section>
       )
     }
   })
 
   root.RecipeShow = React.createClass({
-    editRecipe: function (e) {
-      //maybe make the form and this visible/invisible, and put this back into the main?
-      //or just put the button on the main?  that would be weird, but would work.
-    },
 
     render: function () {
-      var button;
-      if(UserStore.currentUser().id === this.props.recipe.user_id ||
-        this.props.recipe.personal === false){
-          button = <button onClick={this.editRecipe}>Edit this Recipe</button>
-        }
         return (
           <div>
             <h2>{this.props.recipe.title}</h2>
@@ -50,7 +71,6 @@
             <h4>{this.props.recipe.description}</h4>
             <p>{this.props.recipe.ingredients}</p>
             <p>{this.props.recipe.instructions}</p>
-            {button}
           </div>
         )
     }
@@ -69,9 +89,11 @@
       this.props.recipe ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
       $("#modal").removeClass("active-modal").addClass("hidden-modal")
     },
+
     componentWillReceiveProps: function(newprops) {
       this.setState($.extend({},newprops.recipe))
     },
+
     handlePic: function (e) {
       e.preventDefault()
       cloudinary.openUploadWidget(window.CLOUDINARY_OPTIONS,
@@ -130,7 +152,7 @@
          <div className="form-group">
            <input type="submit"></input>
          </div>
-
+         <button onClick={RecipeModal.hideModal}>Cancel</button>
       </form>
       )
     }

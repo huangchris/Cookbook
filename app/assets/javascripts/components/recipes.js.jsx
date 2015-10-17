@@ -8,7 +8,7 @@
 
   root.Recipes = React.createClass({
     getInitialState: function(){
-      return({recipes: [], activeRecipe: _blankRecipe})
+      return({recipes: [], activeRecipe: _blankRecipe, editting: false})
     },
 
     storeListener: function(){
@@ -25,11 +25,11 @@
     },
 
     openRecipe: function(e) {
-      debugger;
       if(e.target.dataset.id === undefined) {
-        this.setState({activeRecipe: _blankRecipe})
+        this.setState({activeRecipe: _blankRecipe, editting: true})
       } else {
         this.setState({activeRecipe: RecipeStore.find(e.target.dataset.id)})
+        this.setState({editting: false})
       }
         $("#modal").addClass("active-modal")
         $("#modal").removeClass("hidden-modal")
