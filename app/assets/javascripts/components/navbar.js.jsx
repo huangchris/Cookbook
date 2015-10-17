@@ -43,10 +43,10 @@
       return (
         <nav className="navbar-default">
           <div className="container-fluid" onClick={this.clickBack}>
-            <div className="navbar-brand"
-                  onClick={this.clickBack}>
-                  CookBooks
-            </div>
+            <img className="navbar-brand"
+                  onClick={this.clickBack}
+                  src="/assets/CookBooks-logo.png">
+            </img>
             <ul className="nav navbar-nav navbar-left">
               <li><a className="" href="#">{this.state.user.name}</a></li>
               <li className=""><a href="#/recipes">My Book</a></li>
