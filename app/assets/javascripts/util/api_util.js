@@ -112,7 +112,6 @@
     },
 
     newRecipe: function(data) {
-      debugger;
       $.ajax({
         url:"/api/recipes",
         type: "post",
@@ -123,7 +122,6 @@
     },
 
     editRecipe: function(data) {
-      debugger;
       $.ajax({
         url:"/api/recipes/" + data.id,
         type: "patch",
