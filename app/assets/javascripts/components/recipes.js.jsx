@@ -8,7 +8,7 @@
 
   root.Recipes = React.createClass({
     getInitialState: function(){
-      return({recipes: [], activeRecipe: _blankRecipe, editting: false})
+      return({recipes: [], activeRecipe: _blankRecipe, editting: false, showModal: false})
     },
 
     storeListener: function(){
@@ -25,17 +25,38 @@
     },
 
     openRecipe: function(e) {
+      var recipe, edit;
       if(e.target.dataset.id === undefined) {
-        this.setState({activeRecipe: _blankRecipe, editting: true})
+        recipe = _blankRecipe;
+        edit = true;
       } else {
-        this.setState({activeRecipe: RecipeStore.find(e.target.dataset.id)})
-        this.setState({editting: false})
+        recipe = RecipeStore.find(e.target.dataset.id)
+        edit = false;
       }
-        $("#modal").addClass("active-modal")
-        $("#modal").removeClass("hidden-modal")
+      this.setState({activeRecipe: recipe, editting: edit, showModal: true})
+      //not sure I need this now.
+        // $("#modal").addClass("active-modal")
+        // $("#modal").removeClass("hidden-modal")
     },
 
+    hideModal: function (e) {
+      if (e.target === e.currentTarget) {
+        this.setState({showModal: false})
+      }
+    },
+
+    closeModal: function () { this.setState({showModal: false})},
+
     render: function () {
+      var modal;
+      if (this.state.showModal) {
+        modal = ( <section id="modal" onClick={this.hideModal}>
+                    <RecipeModal editting={this.state.editting}
+                                  hideModal={this.closeModal}
+                                  recipe={this.state.activeRecipe}
+                                  />
+                  </section>)
+      }
       return (
         <div className="col-xs-8">
           <h2>Recipes</h2>
@@ -50,7 +71,7 @@
             })}
             <li key="new"><button>Add a new Recipe</button></li>
           </ul>
-            <RecipeModal editting={this.state.editting} recipe={this.state.activeRecipe}/>
+          {modal}
         </div>
       )
     }

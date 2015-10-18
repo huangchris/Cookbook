@@ -7,56 +7,52 @@
       return {editting: this.props.editting}
     },
 
+    // Probably don't need this:
     componentWillReceiveProps: function(newProps) {
       this.setState({editting: newProps.editting})
     },
 
     componentDidMount: function(){
-      if (this.state.editting){
-        this.editRecipe();
-      } else{
-        this.unEditRecipe();
-      }
     },
-
-    hideModal: function(e) {
-      if (e.target === e.currentTarget){
-        $("#modal").removeClass("active-modal").addClass("hidden-modal")
-        this.setState({editting: false})
-      }
-    },
+    // uh... we're calling this function still somehow?
+    // hideModal: function(e) {
+    //   if (e.target === e.currentTarget){
+    //     $("#modal").removeClass("active-modal").addClass("hidden-modal")
+    //     this.setState({editting: false})
+    //   }
+    // },
 
     editRecipe: function (e) {
       //maybe make the form and this visible/invisible, and put this back into the main?
       //or just put the button on the main?  that would be weird, but would work.
-      $("#recipe-form").removeClass("hidden");
-      $("#recipe-detail").addClass("hidden");
-      this.editting= true;
+      this.setState({editting: true})
     },
 
-    unEditRecipe: function() {
-      $("#recipe-form").addClass("hidden");
-      $("#recipe-detail").removeClass("hidden");
-      this.editting= false;
+    unEditRecipe: function(e) {
+      debugger;
+      if (this.props.recipe.id) {
+        this.setState({editting: false})
+      } else {
+        this.props.hideModal()
+      }
     },
 
     render: function() {
-      // that was dumb: the button is invisible when it's cancel.
-      // var buttonText = (this.editting ? "Cancel" : "Edit Recipe")
-      return (
-        <section id="modal"
-          className="hidden-modal"
-          onClick={this.hideModal}>
-          <div id="recipe-form" className="hidden">
+      if (this.state.editting) {
+        return (
+          <div id="recipe-form">
             <RecipeForm recipe={this.props.recipe}/>
             <button onClick={this.unEditRecipe}>Cancel</button>
           </div>
+        )
+      } else {
+        return (
           <div id="recipe-detail">
             <RecipeShow recipe={this.props.recipe}/>
             <button onClick={this.editRecipe}>Edit Recipe</button>
           </div>
-        </section>
-      )
+        )
+      }
     }
   })
 
@@ -151,7 +147,6 @@
          <div className="form-group">
            <input type="submit"></input>
          </div>
-         <button onClick={RecipeModal.hideModal}>Cancel</button>
       </form>
       )
     }

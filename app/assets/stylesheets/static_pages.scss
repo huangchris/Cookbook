@@ -54,7 +54,7 @@
 //   background-color: darkred;
 // }
 
-.active-modal {
+#modal {
   display: block;
   position: fixed;
   left:0;
@@ -69,21 +69,18 @@
 }
 
 #modal div {
-  display: inherit;
+  display: block;
   background-color: white;
   opacity: 1;
   margin: 50px;
 }
 #modal form {
-  display: inherit;
+  display: block;
   background-color: white;
   opacity: 1;
   margin: 50px;
 }
 
-.hidden {
-  display:none;
-}
 // :hover {
 //   background-color: grey
 // }
