@@ -2,17 +2,15 @@
 #
 # Table name: recipes
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer          not null
-#  group_id     :integer          not null
-#  personal     :boolean          not null
-#  title        :string           not null
-#  photo        :string
-#  description  :text
-#  ingredients  :text             not null
-#  instructions :text             not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id          :integer          not null, primary key
+#  user_id     :integer          not null
+#  group_id    :integer          not null
+#  personal    :boolean          not null
+#  title       :string           not null
+#  photo       :string
+#  description :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
@@ -25,15 +23,15 @@
 #  fk_rails_0274796f21  (group_id => groups.id)
 #  fk_rails_9606fce865  (user_id => users.id)
 #
-##EUTM
 
 class Recipe < ActiveRecord::Base
-  validates :user_id, :group_id, :title, :ingredients,
-    :instructions, presence: true
+  validates :user_id, :group_id, :title, presence: true
   validate :shared_recipe_dups
 
   belongs_to :user
   belongs_to :group
+  has_many :ingredients
+  has_many :instructions
 
   def self.find_by_user(id)
     User.find(id).recipes
