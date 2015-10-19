@@ -1,4 +1,6 @@
 class Api::UserGroupsController < ApplicationController
+  before_action :validate_user
+  
 
   def update
     @user_group = UserGroup.find_by_user_id(params[:id])

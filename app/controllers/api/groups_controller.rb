@@ -1,4 +1,6 @@
 class Api::GroupsController < ApplicationController
+  before_action :validate_user
+  
   def show
     @group = current_user.groups.first
     if @group

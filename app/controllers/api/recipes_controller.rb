@@ -1,5 +1,6 @@
 # EUTM!!!
 class Api::RecipesController < ApplicationController
+  before_action :validate_user
 
   def index
     if params[:id]
@@ -21,6 +22,13 @@ class Api::RecipesController < ApplicationController
 
     @recipe = Recipe.new(data)
     if @recipe.save
+        params[:recipe][:ingredients].each_with_index do |ing, idx|
+          Ingredient.create(ing: ing, recipe_id: @recipe.id, ord: (idx + 1))
+        end
+        params[:recipe][:instructions].each_with_index do |inst, idx|
+          Instruction.create(inst: inst, recipe_id: @recipe.id, ord: (idx + 1))
+        end
+
       @recipes = ( @recipe.personal ?
         Recipe.find_by_user(current_user.id) :
         Recipe.find_by_current_family(current_user) )
@@ -48,7 +56,7 @@ class Api::RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:id, :title, :description, :ingredients, :instructions,
+    params.require(:recipe).permit(:id, :title, :description,
       :user_id, :group_id, :personal, :photo)
   end
 end
