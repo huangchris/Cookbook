@@ -7,7 +7,7 @@ class Api::GroupsController < ApplicationController
       @admins = @group.admins
       render :show
     else
-      render json: nil
+      render json: nil, status: 404
     end
   end
 

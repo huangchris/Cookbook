@@ -29,7 +29,6 @@
     },
 
     unEditRecipe: function(e) {
-      debugger;
       if (this.props.recipe.id) {
         this.setState({editting: false})
       } else {
@@ -72,17 +71,22 @@
   });
 
   root.RecipeForm = React.createClass({
-    mixins: [React.addons.LinkedStateMixin],
+    mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
     getInitialState: function() {
-      return $.extend({},this.props.recipe) // store the form inputs here.
-      // return {title: "title", description: "stuff", ingredients: "stuff", instructions: "stuff"}
+      return $.extend({},this.props.recipe);
     },
 
     handleSubmit: function(e) {
+      // so, we need a family...
       e.preventDefault();
-      this.props.recipe.id ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
-      $("#modal").removeClass("active-modal").addClass("hidden-modal")
+      if (FamilyStore.family().id !== undefined) {
+        this.props.recipe.id ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
+        $("#modal").removeClass("active-modal").addClass("hidden-modal")
+      } else {
+        alert("You can't add recipes if you're not part of a family. I know, it sucks.")
+        this.history.pushState(null, "/family")
+      }
     },
 
     componentWillReceiveProps: function(newprops) {
@@ -103,6 +107,10 @@
       );
     },
 
+    changePersonal: function(e) {
+      this.setState({personal: e.target.value})
+    },
+
     render: function() {
       var pic;
       if (this.state.photo) {
@@ -115,6 +123,8 @@
       }else{
         pic = <button onClick={this.handlePic}>Upload a Pic</button>
       }
+      // Ingredients, Instructions, Personality.
+
       return (
        <form onSubmit={this.handleSubmit}>
          <div className="form-group">
@@ -122,6 +132,15 @@
            <input type="text" id="Title"
                   valueLink={this.linkState("title")}>
            </input>
+         </div>
+         <div className="form-group">
+           <label htmlFor="Personal">Personal </label>
+           <input type="radio" selected={this.state.personal} name="personal"
+             value="true" id="Personal" onChange={this.changePersonal}></input>
+           <br/>
+           <label htmlFor="Shared"> Shared </label>
+           <input type="radio" selected={!this.state.personal} name="personal"
+             value="false" id="Shared" onChange={this.changePersonal}></input>
          </div>
          <div className="form-group">
            <label htmlFor="Description">Description</label>

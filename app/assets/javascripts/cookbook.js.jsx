@@ -8,6 +8,10 @@ $(function(root) {
     },
 
     componentDidMount: function() {
+      APIUtil.fetchFamily(null, function(){
+        APIUtil.getFamilies();
+        this.history.pushState(null,"/family")
+      }.bind(this))
       UserStore.on(StoreConst.CURRENT_USER, function() {
         this.setState({user: UserStore.currentUser()})
       }.bind(this))

@@ -56,12 +56,22 @@
       })
     },
 
-    fetchFamily: function() {
+    fetchFamily: function(successCallback, failCallback) {
+      console.log("fetch called")
+      if(typeof successCallback !== "function") {
+        successCallback = APIAction.setfamily
+      }
+      if(typeof failCallback !== "function") {
+        failCallback = function (response) {
+          console.log(response);
+          APIUtil.getFamilies();
+        }
+      }
       $.ajax({
         url: "api/group",
         type: "get",
-        success: APIAction.setFamily,
-        error: APIUtil.logError
+        success: successCallback,
+        error: failCallback
         // could also grab all user_recipes on success (and all fam recipes?)
       })
     },
@@ -78,6 +88,7 @@
     },
 
     joinFamily: function(id) {
+      if(id === null) {return;}
       var data = {
         group_id: id
       };
@@ -112,6 +123,7 @@
     },
 
     newRecipe: function(data) {
+      debugger;
       $.ajax({
         url:"/api/recipes",
         type: "post",
@@ -122,6 +134,7 @@
     },
 
     editRecipe: function(data) {
+      debugger;
       $.ajax({
         url:"/api/recipes/" + data.id,
         type: "patch",

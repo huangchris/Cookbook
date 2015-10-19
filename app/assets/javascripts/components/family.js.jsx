@@ -12,7 +12,6 @@
     },
 
     componentDidMount: function () {
-      APIUtil.fetchFamily()
       UserStore.on(StoreConst.CURRENT_FAMILY, this.storeListener)
     },
 

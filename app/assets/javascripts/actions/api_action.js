@@ -13,6 +13,7 @@
     },
 
     setFamily: function(family) {
+      console.log(family)
       AppDispatcher.dispatch({
         actionType: DispatcherConst.CURRENT_FAMILY,
         data: family
@@ -25,7 +26,7 @@
         data: response
       })
     },
-    
+
     updateRecipes: function(response) {
       AppDispatcher.dispatch({
         actionType: DispatcherConst.RECIPES,
