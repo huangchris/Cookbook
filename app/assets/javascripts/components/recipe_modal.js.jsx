@@ -79,6 +79,7 @@
 
     handleSubmit: function(e) {
       // so, we need a family...
+      debugger;
       e.preventDefault();
       if (FamilyStore.family().id !== undefined) {
         this.props.recipe.id ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
@@ -150,15 +151,11 @@
          </div>
          <div className="form-group">
            <label htmlFor="Ingredients">Ingredients</label>
-           <textarea id="Ingredients"
-             valueLink={this.linkState("ingredients")}>
-           </textarea>
+           <Ingredients parent={this}/>
          </div>
          <div className="form-group">
            <label htmlFor="Instructions">Instructions</label>
-           <textarea type="text" id="Instructions"
-             valueLink={this.linkState("instructions")}>
-           </textarea>
+           <Instructions parent={this}/>
          </div>
          <div className="form-group">
            {pic}

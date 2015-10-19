@@ -1,20 +1,6 @@
 (function(root) {
   'use strict';
   root.APIUtil = {
-    getFamilies: function() {
-      // grab a list of families
-      $.ajax({
-        url: "api/groups",
-        success: APIAction.updateFamilies,
-        error: function(response){
-          if(response.status === 400){
-            console.log("This error is probably because an unnecessary" +
-              " request was canceled by the server")
-          } else { console.log(response)}
-        }
-      })
-    },
-
     updateProfilePic: function(urlstring) {
       //I could check it's a valid URL by $.ajax it first, and do the rest on
       // success.  Could read the API to check that it returns an img, too
@@ -56,10 +42,23 @@
       })
     },
 
+    getFamilies: function() {
+      // grab a list of families
+      $.ajax({
+        url: "api/groups",
+        success: APIAction.updateFamilies,
+        error: function(response){
+          if(response.status === 500){
+            console.log("This error is probably because an unnecessary" +
+              " request was canceled by the server")
+          } else { console.log(response)}
+        }
+      })
+    },
+
     fetchFamily: function(successCallback, failCallback) {
-      console.log("fetch called")
       if(typeof successCallback !== "function") {
-        successCallback = APIAction.setfamily
+        successCallback = APIAction.setFamily;
       }
       if(typeof failCallback !== "function") {
         failCallback = function (response) {
@@ -149,4 +148,3 @@
     }
   }
 }(this));
-// this.props.recipe ? APIUtil.newRecipe(this.state) : APIUtil.editRecipe(this.state)

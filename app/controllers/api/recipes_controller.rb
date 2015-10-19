@@ -1,3 +1,4 @@
+# EUTM!!!
 class Api::RecipesController < ApplicationController
 
   def index
@@ -31,6 +32,7 @@ class Api::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+
     if @recipe && @recipe.update(recipe_params)
       @recipes = ( @recipe.personal ?
         Recipe.find_by_user(current_user.id) :

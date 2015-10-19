@@ -8,7 +8,7 @@ $(function(root) {
     },
 
     componentDidMount: function() {
-      APIUtil.fetchFamily(null, function(){
+      APIUtil.fetchFamily(null, function(response){
         APIUtil.getFamilies();
         this.history.pushState(null,"/family")
       }.bind(this))

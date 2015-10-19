@@ -12,9 +12,9 @@ class Api::GroupsController < ApplicationController
   end
 
   def index
-    if !current_user.groups.empty?
+    if !(current_user.groups.empty?)
       # this may change in the future to allow multiple groups.
-      render nothing: true, status: 400
+      render json:"This should be because you have a group", status: 400
     else
       @groups = Group.all
       render :index
