@@ -42,6 +42,22 @@ class Api::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
 
     if @recipe && @recipe.update(recipe_params)
+      params[:recipe][:ingredients].each do |idx, ing|
+        next if ing[:ing] == ""
+        if ing[:id]
+          Ingredient.find(ing[:id]).update(ing: ing[:ing])
+        else
+          Ingredient.create(ing: ing[:ing], recipe_id: @recipe.id, ord: (idx.to_i + 1))
+        end
+      end
+      params[:recipe][:instructions].each do |idx, inst|
+        inst[:inst]
+        if inst[:id]
+          Instruction.find(inst[:id]).update(inst: inst[:inst])
+        else
+          Instruction.create(inst: inst[:inst], recipe_id: @recipe.id, ord: (idx.to_i + 1))
+        end
+      end
       @recipes = ( @recipe.personal ?
         Recipe.find_by_user(current_user.id) :
         Recipe.find_by_current_family(current_user) )

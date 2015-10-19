@@ -58,7 +58,6 @@
 
   root.RecipeShow = React.createClass({
     render: function () {
-      debugger;
         return (
           <div>
             <h2>{this.props.recipe.title}</h2>
@@ -86,12 +85,11 @@
     mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
     getInitialState: function() {
-      return $.extend({},this.props.recipe);
+      return $.extend(true, {}, this.props.recipe);
     },
 
     handleSubmit: function(e) {
       // so, we need a family...
-      debugger;
       e.preventDefault();
       if (FamilyStore.family().id !== undefined) {
         this.props.recipe.id ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
@@ -103,7 +101,7 @@
     },
 
     componentWillReceiveProps: function(newprops) {
-      this.setState($.extend({},newprops.recipe))
+      this.setState($.extend(true, {},newprops.recipe))
     },
 
     handlePic: function (e) {
@@ -136,7 +134,6 @@
       }else{
         pic = <button onClick={this.handlePic}>Upload a Pic</button>
       }
-      // Ingredients, Instructions, Personality.
 
       return (
        <form onSubmit={this.handleSubmit}>
