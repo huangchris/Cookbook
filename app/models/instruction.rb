@@ -3,7 +3,7 @@
 # Table name: instructions
 #
 #  id         :integer          not null, primary key
-#  inst       :string           not null
+#  data       :string           not null
 #  ord        :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

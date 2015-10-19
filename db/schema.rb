@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20151019184033) do
 
   create_table "ingredients", force: :cascade do |t|
     t.integer  "recipe_id",  null: false
-    t.string   "ing",        null: false
+    t.string   "data",       null: false
     t.integer  "ord",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20151019184033) do
   add_index "ingredients", ["recipe_id"], name: "index_ingredients_on_recipe_id", using: :btree
 
   create_table "instructions", force: :cascade do |t|
-    t.string   "inst",       null: false
+    t.string   "data",       null: false
     t.integer  "ord",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

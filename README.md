@@ -53,7 +53,7 @@ Phase 3 features: Create, read, edit recipes
 
 [Details][phase-three]
 
-### Phase 4: Comments, Tags (2 days)
+### Phase 4: Comments, Tags (3 days)
 
 Add comment trees and tags to recipes.
 

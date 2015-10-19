@@ -67,13 +67,13 @@
             <h4>Ingredients</h4>
             <ul className="ingredients-list">
               {this.props.recipe.ingredients.map(function(ing){
-                return <li key={ing.ord}>{ing.ing}</li>
+                return <li key={ing.ord}>{ing.data}</li>
               })}
             </ul>
             <h4>Instructions</h4>
             <ul className="instructions-list">
               {this.props.recipe.instructions.map(function(inst){
-                return <li key={inst.ord}>{inst.inst}</li>
+                return <li key={inst.ord}>{inst.data}</li>
               })}
             </ul>
           </div>
@@ -159,12 +159,15 @@
            </input>
          </div>
          <div className="form-group">
-           <label htmlFor="Ingredients">Ingredients</label>
-           <Ingredients parent={this}/>
+           <label>Ingredients</label>
+           <FormList object={this.state.ingredients}
+                     buttonName="Add an ingredient"/>
+
          </div>
          <div className="form-group">
-           <label htmlFor="Instructions">Instructions</label>
-           <Instructions parent={this}/>
+           <label>Instructions</label>
+           <FormList object={this.state.instructions}
+                     buttonName="Add an instruction"/>
          </div>
          <div className="form-group">
            {pic}

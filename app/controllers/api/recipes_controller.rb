@@ -22,11 +22,16 @@ class Api::RecipesController < ApplicationController
 
     @recipe = Recipe.new(data)
     if @recipe.save
-        params[:recipe][:ingredients].each_with_index do |ing, idx|
-          Ingredient.create(ing: ing, recipe_id: @recipe.id, ord: (idx + 1))
+        p params[:recipe][:ingredients]
+        params[:recipe][:ingredients].each do |idx, ing|
+          p ing
+          p ing.class
+          p idx
+          p idx.class
+          Ingredient.create(data: ing[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end
-        params[:recipe][:instructions].each_with_index do |inst, idx|
-          Instruction.create(inst: inst, recipe_id: @recipe.id, ord: (idx + 1))
+        params[:recipe][:instructions].each do |idx, inst|
+          Instruction.create(data: inst[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end
 
       @recipes = ( @recipe.personal ?
@@ -45,17 +50,17 @@ class Api::RecipesController < ApplicationController
       params[:recipe][:ingredients].each do |idx, ing|
         next if ing[:ing] == ""
         if ing[:id]
-          Ingredient.find(ing[:id]).update(ing: ing[:ing])
+          Ingredient.find(ing[:id]).update(data: ing[:data])
         else
-          Ingredient.create(ing: ing[:ing], recipe_id: @recipe.id, ord: (idx.to_i + 1))
+          Ingredient.create(data: ing[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end
       end
       params[:recipe][:instructions].each do |idx, inst|
         inst[:inst]
         if inst[:id]
-          Instruction.find(inst[:id]).update(inst: inst[:inst])
+          Instruction.find(inst[:id]).update(data: inst[:data])
         else
-          Instruction.create(inst: inst[:inst], recipe_id: @recipe.id, ord: (idx.to_i + 1))
+          Instruction.create(data: inst[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end
       end
       @recipes = ( @recipe.personal ?

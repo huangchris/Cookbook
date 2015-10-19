@@ -2,7 +2,7 @@ class CreateInstructions < ActiveRecord::Migration
   def change
     create_table :instructions do |t|
       t.integer :recipe_id, null: false
-      t.string :inst, null: false
+      t.string :data, null: false
       t.integer :ord, null: false
       t.timestamps null: false
     end
