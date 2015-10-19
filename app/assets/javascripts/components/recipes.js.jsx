@@ -49,6 +49,11 @@
 
     closeModal: function () { this.setState({showModal: false})},
 
+    tabClick: function(e) {
+      $(e.currentTarget).children().removeClass("active")
+      $(e.target).parent().addClass("active")
+    },
+
     render: function () {
       var modal;
       if (this.state.showModal) {
@@ -62,7 +67,11 @@
       return (
         <div className="col-xs-8">
           <h2>Recipes</h2>
-          <h4>will be tabbed by category</h4>
+          <ul className="nav nav-tabs" onClick={this.tabClick}>
+            <li className="active"><a>All Recipes</a></li>
+            <li><a>Another tab</a></li>
+            <li><a>A linky tab</a></li>
+          </ul>
           <ul className="list-group" onClick={this.openRecipe}>
             {this.state.recipes.map(function(recipe){
               return <li key={recipe.id}
