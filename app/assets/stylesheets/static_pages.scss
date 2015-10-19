@@ -14,6 +14,14 @@
   float: left;
 }
 
+.ingredients-list {
+  list-style: none;
+}
+
+.instructions-list {
+  list-style: decimal;
+}
+
 // for some reason this collapses the li height.
 // so I have bullets or unreadable.
 // li {

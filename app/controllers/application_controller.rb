@@ -26,6 +26,6 @@ class ApplicationController < ActionController::Base
   end
 
   def validate_user
-    redirect_to new_session_url if !current_user
+    redirect_to new_session_url unless current_user
   end
 end

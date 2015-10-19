@@ -38,6 +38,12 @@
     isAdmin: function (id) {
       return (_adminsList.indexOf(id) !== -1)
     },
+    find: function(id) {
+      if (id === window.USER_ID) {return _currentUser.name}
+      return _users.filter(function(user){
+        return user.id === id;
+      })[0].name;
+    },
     pendingUsers: function () {return _pendingUsers.slice()}
   });
 }(this));

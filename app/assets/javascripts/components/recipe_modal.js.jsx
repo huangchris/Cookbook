@@ -40,7 +40,8 @@
       if (this.state.editting) {
         return (
           <div id="recipe-form">
-            <RecipeForm recipe={this.props.recipe}/>
+            <RecipeForm recipe={this.props.recipe}
+                        hideModal={this.props.hideModal}/>
             <button onClick={this.unEditRecipe}>Cancel</button>
           </div>
         )
@@ -56,15 +57,26 @@
   })
 
   root.RecipeShow = React.createClass({
-
     render: function () {
+      debugger;
         return (
           <div>
             <h2>{this.props.recipe.title}</h2>
+            <p>by {UserStore.find(this.props.recipe.user_id)}</p>
             <img src={this.props.recipe.photo}></img>
             <h4>{this.props.recipe.description}</h4>
-            <p>{this.props.recipe.ingredients}</p>
-            <p>{this.props.recipe.instructions}</p>
+            <h4>Ingredients</h4>
+            <ul className="ingredients-list">
+              {this.props.recipe.ingredients.map(function(ing){
+                return <li key={ing.ord}>{ing.ing}</li>
+              })}
+            </ul>
+            <h4>Instructions</h4>
+            <ul className="instructions-list">
+              {this.props.recipe.instructions.map(function(inst){
+                return <li key={inst.ord}>{inst.inst}</li>
+              })}
+            </ul>
           </div>
         )
     }
@@ -83,7 +95,7 @@
       e.preventDefault();
       if (FamilyStore.family().id !== undefined) {
         this.props.recipe.id ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
-        $("#modal").removeClass("active-modal").addClass("hidden-modal")
+        this.props.hideModal()
       } else {
         alert("You can't add recipes if you're not part of a family. I know, it sucks.")
         this.history.pushState(null, "/family")
@@ -136,11 +148,11 @@
          </div>
          <div className="form-group">
            <label htmlFor="Personal">Personal </label>
-           <input type="radio" selected={this.state.personal} name="personal"
+           <input type="radio" checked={this.state.personal} name="personal"
              value="true" id="Personal" onChange={this.changePersonal}></input>
            <br/>
            <label htmlFor="Shared"> Shared </label>
-           <input type="radio" selected={!this.state.personal} name="personal"
+           <input type="radio" checked={!this.state.personal} name="personal"
              value="false" id="Shared" onChange={this.changePersonal}></input>
          </div>
          <div className="form-group">
