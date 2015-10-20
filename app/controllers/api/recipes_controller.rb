@@ -72,8 +72,8 @@ class Api::RecipesController < ApplicationController
         unless @tag
           @tag = SearchTag.create(data: tag[:data])
         end
-        @tagging = RecipeSearchTag.find(recipe_id: @recipe.id, search_tag_id: @tag.id)
-        unless @tagging
+        @tagging = RecipeSearchTag.where(recipe_id: @recipe.id, search_tag_id: @tag.id)
+        if @tagging.empty?
           RecipeSearchTag.create({recipe_id: @recipe.id, search_tag_id: @tag.id})
         end
       end
