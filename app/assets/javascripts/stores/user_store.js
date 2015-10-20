@@ -35,11 +35,9 @@
     currentUser: function () {return _currentUser },
     family: function() {return $.extend({},_family) },
     admin: function() {return _admin},
-    isAdmin: function (id) {
-      return (_adminsList.indexOf(id) !== -1)
-    },
+    isAdmin: function (id) { return (_adminsList.indexOf(id) !== -1) },
     isPending: function () {
-      return _pendingUser.some(function(user){
+      return _pendingUsers.some(function(user){
         return user.id === _currentUser.id
       })
     },

@@ -3,8 +3,17 @@
 (function(root) {
   'use strict';
   root.RecipeModal = React.createClass({
+    mixins: [ReactRouter.History],
+
     getInitialState: function () {
       return {editting: this.props.editting}
+    },
+
+    componentWillMount: function () {
+      if(UserStore.isPending()) {
+        alert("You can't view or add Recipes until you are an approved member of a family");
+        this.history.pushState(null, "/family");
+      }
     },
 
     // Probably don't need this:
