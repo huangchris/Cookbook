@@ -1,3 +1,4 @@
+  // EUTM
 (function(root) {
   'use strict';
   var _blankRecipe = {
@@ -18,7 +19,9 @@
     },
 
     componentDidMount: function() {
+      // this seems bad.
       APIUtil.getRecipeIndex(this.props.routes[1], this.props.routeParams.id);
+      APIUtil.getTabTags(this.props.routes[1], this.props.routeParams.id);
       RecipeStore.on(StoreConst.RECIPE_INDEX, this.storeListener)
     },
 
@@ -37,9 +40,6 @@
       }
       this.setState({activeRecipe: recipe, editting: edit,
         showModal: true})
-      //not sure I need this now.
-        // $("#modal").addClass("active-modal")
-        // $("#modal").removeClass("hidden-modal")
     },
 
     hideModal: function (e) {
@@ -51,8 +51,11 @@
     closeModal: function () { this.setState({showModal: false})},
 
     tabClick: function(e) {
+      if(e.target === e.currentTarget) {return;}
       $(e.currentTarget).children().removeClass("active")
       $(e.target).parent().addClass("active")
+      var tabID = $(e.target).parent().data().id
+      this.setState({recipes: RecipeStore.filterByTag(tabID)})
     },
 
     render: function () {
@@ -69,9 +72,10 @@
         <div className="col-xs-8">
           <h2>Recipes</h2>
           <ul className="nav nav-tabs" onClick={this.tabClick}>
-            <li className="active"><a>All Recipes</a></li>
-            <li><a>Another tab</a></li>
-            <li><a>A linky tab</a></li>
+            <li data-id="All" className="active"><a>All Recipes</a></li>
+            {TagStore.all().map(function(tag){
+              return <li data-id={tag.id}><a>{tag.data}</a></li>
+            })}
           </ul>
           <ul className="list-group" onClick={this.openRecipe}>
             {this.state.recipes.map(function(recipe){

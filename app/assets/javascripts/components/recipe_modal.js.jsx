@@ -154,7 +154,7 @@
       }
 
       return (
-       <form onSubmit={this.handleSubmit}>
+       <form className="form-horizontal" onSubmit={this.handleSubmit}>
          <div className="form-group">
            <label htmlFor="Title">Title</label>
            <input type="text" id="Title"
