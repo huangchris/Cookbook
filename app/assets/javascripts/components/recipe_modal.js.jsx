@@ -136,6 +136,11 @@
       );
     },
 
+    changeTabTag:function(e) {
+      debugger;
+      this.setState({tab_tags: TagStore.find(e.target.value)})
+    },
+
     changePersonal: function(e) {
       this.setState({personal: e.target.value})
     },
@@ -156,47 +161,73 @@
       return (
        <form className="form-horizontal" onSubmit={this.handleSubmit}>
          <div className="form-group">
-           <label htmlFor="Title">Title</label>
-           <input type="text" id="Title"
+           <label className="col-xs-2" htmlFor="Title">Title</label>
+           <input className="col-xs-8" type="text" id="Title"
                   valueLink={this.linkState("title")}>
            </input>
          </div>
          <div className="form-group">
-           <label htmlFor="Personal">Personal </label>
-           <input type="radio" checked={this.state.personal} name="personal"
-             value="true" id="Personal" onChange={this.changePersonal}></input>
-           <br/>
-           <label htmlFor="Shared"> Shared </label>
-           <input type="radio" checked={!this.state.personal} name="personal"
-             value="false" id="Shared" onChange={this.changePersonal}></input>
+             <label className="col-xs-2" htmlFor="Personal">Personal </label>
+             <input className="col-xs-1" type="radio" checked={this.state.personal} name="personal"
+               value="true" id="Personal" onChange={this.changePersonal}></input>
+             <label className="col-xs-2" htmlFor="Shared"> Shared </label>
+             <input className="col-xs-1" type="radio" checked={!this.state.personal} name="personal"
+               value="false" id="Shared" onChange={this.changePersonal}></input>
          </div>
          <div className="form-group">
-           <label htmlFor="Description">Description</label>
-           <input type="text" id="Description"
+           <label className="col-xs-2"  htmlFor="Description">Description</label>
+           <input className="col-xs-8" type="text" id="Description"
              valueLink={this.linkState("description")}>
            </input>
          </div>
          <div className="form-group">
-           <label>Ingredients</label>
-           <FormList object={this.state.ingredients}
-                     buttonName="Add an ingredient"/>
+           <label className="col-xs-2" >Ingredients</label>
+         </div>
+         <div className="form-group">
+           <div  className="col-xs-10">
+             <FormList
+                       object={this.state.ingredients}
+                       buttonName="Add an ingredient"/>
+           </div>
 
          </div>
          <div className="form-group">
-           <label>Instructions</label>
-           <FormList object={this.state.instructions}
+           <label className="col-xs-2" >Instructions</label>
+         </div>
+         <div className="form-group">
+           <div  className="col-xs-10">
+             <FormList object={this.state.instructions}
+                     className="col-xs-10"
                      buttonName="Add an instruction"/>
+           </div>
          </div>
          <div className="form-group">
-           {pic}
+           <div  className="col-xs-10">
+             {pic}
+           </div>
          </div>
          <div className="form-group">
-           <label>Tags</label>
-           <FormList object={this.state.search_tags}
+           <label className="col-xs-2" htmlFor="tab-tag">Category </label>
+           <select className="col-xs-4" id="tab-tag"
+                  value={this.state.tab_tag}
+                  onChange={this.changeTabTag}>
+             {TagStore.all().map(function(tag){
+               return <option value={tag.data}>{tag.data}</option>
+             })}
+           </select>
+         </div>
+         <div className="form-group">
+           <label className="col-xs-2" >Tags</label>
+         </div>
+         <div className="form-group">
+           <div  className="col-xs-10">
+             <FormList object={this.state.search_tags}
                      buttonName="Add a Tag"/>
+           </div>
          </div>
          <div className="form-group">
-           <input type="submit"></input>
+           <div className="col-xs-2" ></div>
+           <input className="col-xs-2" type="submit"></input>
          </div>
       </form>
       )

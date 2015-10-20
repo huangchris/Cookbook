@@ -15,6 +15,12 @@
 
     all: function () {
       return _tabTags;
+    },
+
+    find: function(id) {
+      return _tabTags.filter(function(tag){
+        return tag.id === parseInt(id);
+      })
     }
   })
 }(this));

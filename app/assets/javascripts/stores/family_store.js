@@ -9,6 +9,8 @@
     switch (action.actionType) {
       case DispatcherConst.CURRENT_FAMILY:
         // what is this?  Do I render a successful nothing?
+        // I did, then I made it a status: 400, and put a message on it.
+        // Wait, that was families.  Shit so much stuff.
         if (action.data !== null) {
           _family = action.data.family;
           FamilyStore.emit(StoreConst.CURRENT_FAMILY);

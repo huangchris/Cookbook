@@ -5,7 +5,7 @@
     id: null, user_id: null, group_id: null,
     personal: false, title: "", photo: "",
     description: "", ingredients: [{}], instructions: [{}],
-    search_tags: [{}]
+    search_tags: [{}], tab_tag: null
   }
 
   root.Recipes = React.createClass({
