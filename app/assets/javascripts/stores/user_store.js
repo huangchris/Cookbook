@@ -38,6 +38,11 @@
     isAdmin: function (id) {
       return (_adminsList.indexOf(id) !== -1)
     },
+    isPending: function () {
+      return _pendingUser.some(function(user){
+        return user.id === _currentUser.id
+      })
+    },
     find: function(id) {
       if (id === window.USER_ID) {return _currentUser.name}
       return _users.filter(function(user){

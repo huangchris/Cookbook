@@ -27,7 +27,9 @@
     },
 
     sharedBook: function() {
-      this.history.pushState({index:"shared"},"/family/recipes")
+      if(!UserStore.isPending()){
+        this.history.pushState({index:"shared"},"/family/recipes")
+      }else { alert("You can't view that until your join request is approved")}
     },
 
     render: function () {
