@@ -141,6 +141,15 @@
       })
     },
 
+    getTabTags: function(stuff) {
+      $.ajax({
+        url:"/api/tab_tags",
+        type: "get",
+        success: APIAction.updateTags,
+        error: this.logError
+      })
+    },
+
     logError: function(response) {
       console.log(response)
     }

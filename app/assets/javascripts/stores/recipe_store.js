@@ -18,6 +18,14 @@
       })
     },
 
+    filterByTag: function(tagID) {
+      return _recipes.filter(function(recipe){
+        return recipe.tab_tags.some(function(tag){
+          return tag.id === tagID
+        })
+      })
+    },
+
     find: function(id) {
       return _recipes.filter(function(recipe){
         return recipe.id === parseInt(id);

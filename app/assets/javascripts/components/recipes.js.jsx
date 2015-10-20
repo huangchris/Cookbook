@@ -11,11 +11,15 @@
   root.Recipes = React.createClass({
     getInitialState: function(){
       return({recipes: [], activeRecipe: _blankRecipe, editting: false,
-        showModal: false})
+        showModal: false, tabs: TagStore.all()})
     },
 
     storeListener: function(){
       this.setState({recipes: RecipeStore.all()})
+    },
+
+    tagListener: function() {
+      this.setState({tabs: TagStore.all()})
     },
 
     componentDidMount: function() {
@@ -23,10 +27,12 @@
       APIUtil.getRecipeIndex(this.props.routes[1], this.props.routeParams.id);
       APIUtil.getTabTags(this.props.routes[1], this.props.routeParams.id);
       RecipeStore.on(StoreConst.RECIPE_INDEX, this.storeListener)
+      TagStore.on(StoreConst.TAB_TAGS, this.tagListener)
     },
 
     componentWillUnmount: function() {
       RecipeStore.removeListener(StoreConst.RECIPE_INDEX, this.storeListener)
+      TagStore.removeListener(StoreConst.TAB_TAGS, this.tagListener)
     },
 
     openRecipe: function(e) {
@@ -55,7 +61,11 @@
       $(e.currentTarget).children().removeClass("active")
       $(e.target).parent().addClass("active")
       var tabID = $(e.target).parent().data().id
-      this.setState({recipes: RecipeStore.filterByTag(tabID)})
+      if (tabID === "All") {
+        this.setState({recipes: RecipeStore.all()})
+      }else {
+        this.setState({recipes: RecipeStore.filterByTag(tabID)})
+      }
     },
 
     render: function () {
@@ -73,7 +83,7 @@
           <h2>Recipes</h2>
           <ul className="nav nav-tabs" onClick={this.tabClick}>
             <li data-id="All" className="active"><a>All Recipes</a></li>
-            {TagStore.all().map(function(tag){
+            {this.state.tabs.map(function(tag){
               return <li data-id={tag.id}><a>{tag.data}</a></li>
             })}
           </ul>

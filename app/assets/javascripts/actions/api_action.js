@@ -32,6 +32,13 @@
         actionType: DispatcherConst.RECIPES,
         data: response
       })
+    },
+
+    updateTags: function(response) {
+      AppDispatcher.dispatch({
+        actionType: DispatcherConst.TAGS,
+        data:response
+      })
     }
   }
 }(this));

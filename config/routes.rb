@@ -24,6 +24,7 @@
 #                 PATCH  /api/recipes/:id(.:format)     api/recipes#update {:format=>:json}
 #                 PUT    /api/recipes/:id(.:format)     api/recipes#update {:format=>:json}
 #                 DELETE /api/recipes/:id(.:format)     api/recipes#destroy {:format=>:json}
+#    api_tab_tags GET    /api/tab_tags(.:format)        api/tab_tags#index {:format=>:json}
 #
 
 Rails.application.routes.draw do
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
     get "groups", to: "groups#index"
     resources :user_groups, only: [:create, :update, :destroy]
     resources :recipes, only: [:create, :index, :update, :destroy, :show]
+    resources :tab_tags, only: [:index]
   end
 
 end
