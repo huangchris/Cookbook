@@ -7,7 +7,7 @@
       return {family: UserStore.family(), users: UserStore.all(), editting: false}
     },
 
-    storeListener:  function () {
+    storeListener: function () {
       this.setState({family: UserStore.family(), users: UserStore.all()})
     },
 

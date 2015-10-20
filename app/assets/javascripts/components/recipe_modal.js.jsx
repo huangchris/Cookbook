@@ -46,6 +46,10 @@
     },
 
     render: function() {
+      var editButton
+      if(this.props.recipe.user_id === window.USER_ID) {
+        editButton = <button onClick={this.editRecipe}>Edit Recipe</button>
+      }
       if (this.state.editting) {
         return (
           <div id="recipe-form">
@@ -58,7 +62,7 @@
         return (
           <div id="recipe-detail">
             <RecipeShow recipe={this.props.recipe}/>
-            <button onClick={this.editRecipe}>Edit Recipe</button>
+            {editButton}
           </div>
         )
       }

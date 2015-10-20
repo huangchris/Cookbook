@@ -94,4 +94,5 @@ class Api::RecipesController < ApplicationController
     params.require(:recipe).permit(:id, :title, :description,
       :user_id, :group_id, :personal, :photo)
   end
+
 end
