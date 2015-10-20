@@ -32,6 +32,8 @@ class Recipe < ActiveRecord::Base
   belongs_to :group
   has_many :ingredients
   has_many :instructions
+  has_many :recipe_search_tags
+  has_many :search_tags, through: :recipe_search_tags
 
   def self.find_by_user(id)
     User.find(id).recipes

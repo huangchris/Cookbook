@@ -76,6 +76,11 @@
                 return <li key={inst.ord}>{inst.data}</li>
               })}
             </ul>
+            <ul className="tag-list">
+              {this.props.recipe.search_tags.map(function(tag){
+                return <li key={tag.id}>{tag.data}</li>
+              })}
+            </ul>
           </div>
         )
     }
@@ -171,6 +176,11 @@
          </div>
          <div className="form-group">
            {pic}
+         </div>
+         <div className="form-group">
+           <label>Tags</label>
+           <FormList object={this.state.search_tags}
+                     buttonName="Add a Tag"/>
          </div>
          <div className="form-group">
            <input type="submit"></input>

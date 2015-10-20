@@ -60,6 +60,16 @@
   display: none;
 }
 
+.tag-list {
+  list-style: none;
+  color: red;
+  overflow: auto;
+}
+
+.tag-list li {
+  float: left
+}
+
 // .container-fluid {
 //   background-color: darkred;
 // }

@@ -1,4 +1,4 @@
-# EUTM!!!
+# This need a lot of refactoring.
 class Api::RecipesController < ApplicationController
   before_action :validate_user
 
@@ -22,16 +22,18 @@ class Api::RecipesController < ApplicationController
 
     @recipe = Recipe.new(data)
     if @recipe.save
-        p params[:recipe][:ingredients]
         params[:recipe][:ingredients].each do |idx, ing|
-          p ing
-          p ing.class
-          p idx
-          p idx.class
           Ingredient.create(data: ing[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end
         params[:recipe][:instructions].each do |idx, inst|
           Instruction.create(data: inst[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
+        end
+        params[:recipe][:search_tags].each do |idx, tag|
+          @tag = SearchTag.find_by_data(tag[:data])
+          unless @tag
+            @tag = SearchTag.create(data: tag[:data])
+          end
+          RecipeSearchTag.create({recipe_id: @recipe.id, search_tag_id: @tag.id})
         end
 
       @recipes = ( @recipe.personal ?
@@ -63,6 +65,18 @@ class Api::RecipesController < ApplicationController
           Instruction.create(data: inst[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end
       end
+
+      params[:recipe][:search_tags].each do |idx, tag|
+        @tag = SearchTag.find_by_data(tag[:data])
+        unless @tag
+          @tag = SearchTag.create(data: tag[:data])
+        end
+        @tagging = RecipeSearchTag.find(recipe_id: @recipe.id, search_tag_id: @tag.id)
+        unless @tagging
+          RecipeSearchTag.create({recipe_id: @recipe.id, search_tag_id: @tag.id})
+        end
+      end
+
       @recipes = ( @recipe.personal ?
         Recipe.find_by_user(current_user.id) :
         Recipe.find_by_current_family(current_user) )

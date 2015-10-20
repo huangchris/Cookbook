@@ -3,7 +3,8 @@
   var _blankRecipe = {
     id: null, user_id: null, group_id: null,
     personal: false, title: "", photo: "",
-    description: "", ingredients: [{}], instructions: [{}]
+    description: "", ingredients: [{}], instructions: [{}],
+    search_tags: [{}]
   }
 
   root.Recipes = React.createClass({
