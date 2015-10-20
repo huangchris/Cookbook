@@ -24,6 +24,7 @@
 
     componentDidMount: function() {
       // this seems bad.
+      this.tabID = "All";
       APIUtil.getRecipeIndex(this.props.routes[1], this.props.routeParams.id);
       APIUtil.getTabTags(this.props.routes[1], this.props.routeParams.id);
       RecipeStore.on(StoreConst.RECIPE_INDEX, this.storeListener)
@@ -60,12 +61,25 @@
       if(e.target === e.currentTarget) {return;}
       $(e.currentTarget).children().removeClass("active")
       $(e.target).parent().addClass("active")
-      var tabID = $(e.target).parent().data().id
-      if (tabID === "All") {
+      this.tabID = $(e.target).parent().data().id
+      if (this.tabID === "All") {
         this.setState({recipes: RecipeStore.all()})
       }else {
-        this.setState({recipes: RecipeStore.filterByTag(tabID)})
+        this.setState({recipes: RecipeStore.filterByTag(this.tabID)})
       }
+    },
+
+    searchRecipes: function(e) {
+      var recipes = (this.tabID === "All" ? RecipeStore.all() :
+          RecipeStore.filterByTag(this.tabID))
+      this.setState({recipes: recipes.filter(function(recipe){
+          return (recipe.title.toLowerCase().startsWith(e.target
+                                            .value.toLowerCase()) ||
+                recipe.search_tags.some(function(tag){
+                  return tag.data.toLowerCase().startsWith(e.target
+                                              .value.toLowerCase())
+                }))
+        })})
     },
 
     render: function () {
@@ -81,6 +95,7 @@
       return (
         <div className="col-xs-8">
           <h2>Recipes</h2>
+          <input className= "" type="text" onChange={this.searchRecipes}></input>
           <ul className="nav nav-tabs" onClick={this.tabClick}>
             <li data-id="All" className="active"><a>All Recipes</a></li>
             {this.state.tabs.map(function(tag){

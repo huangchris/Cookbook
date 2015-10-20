@@ -137,7 +137,6 @@
     },
 
     changeTabTag:function(e) {
-      debugger;
       this.setState({tab_tags: TagStore.find(e.target.value)})
     },
 
