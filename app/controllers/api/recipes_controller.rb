@@ -1,6 +1,7 @@
 # This need a lot of refactoring.
 class Api::RecipesController < ApplicationController
   before_action :validate_user
+  before_action :validate_sub_data, only: [:create, :update]
 
   def index
     if params[:id]
@@ -92,7 +93,13 @@ class Api::RecipesController < ApplicationController
   private
   def recipe_params
     params.require(:recipe).permit(:id, :title, :description,
-      :user_id, :group_id, :personal, :photo)
+      :user_id, :group_id, :personal, :photo, :tab_tag_id)
   end
 
+  def validate_sub_data
+    if params[:recipe][:ingredients].any?{|_, ing| ing[:data].nil? || ing[:data] == ""} ||
+       params[:recipe][:instructions].any?{|_, inst| inst[:data].nil? || inst[:data] == ""}
+      render json: "Insufficient Data", status: 400
+    end
+  end
 end

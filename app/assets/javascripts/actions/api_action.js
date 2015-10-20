@@ -13,7 +13,8 @@
     },
 
     setFamily: function(family) {
-      console.log(family)
+      // console.log(family)
+      // oh that's where that was...
       AppDispatcher.dispatch({
         actionType: DispatcherConst.CURRENT_FAMILY,
         data: family

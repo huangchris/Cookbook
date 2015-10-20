@@ -67,7 +67,9 @@
 }
 
 .tag-list li {
-  float: left
+  float: left;
+  padding: 2px;
+  border: 1px solid lightgrey;
 }
 
 // .container-fluid {

@@ -15,7 +15,7 @@ OurCookbook is a site for family members to share traditional recipes or new fav
 - [X] Create / Join a family group
 - [X] Create, read, edit recipes
 - [ ] Comment on recipes
-- [ ] Tag recipes with multiple tags and search by tag or by name
+- [X] Tag recipes with multiple tags and search by tag or by name
 - [ ] Make requests for other members to create recipes
 
 ## Design Docs

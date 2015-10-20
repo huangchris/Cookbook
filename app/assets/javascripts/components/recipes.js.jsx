@@ -5,7 +5,7 @@
     id: null, user_id: null, group_id: null,
     personal: false, title: "", photo: "",
     description: "", ingredients: [{}], instructions: [{}],
-    search_tags: [{}], tab_tag: null
+    search_tags: [{}], tab_tag_id: null
   }
 
   root.Recipes = React.createClass({
@@ -70,6 +70,8 @@
     },
 
     searchRecipes: function(e) {
+      // This is ugly as balls:
+
       var recipes = (this.tabID === "All" ? RecipeStore.all() :
           RecipeStore.filterByTag(this.tabID))
       this.setState({recipes: recipes.filter(function(recipe){
@@ -97,9 +99,9 @@
           <h2>Recipes</h2>
           <input className= "" type="text" onChange={this.searchRecipes}></input>
           <ul className="nav nav-tabs" onClick={this.tabClick}>
-            <li data-id="All" className="active"><a>All Recipes</a></li>
+            <li key="tabAll" data-id="All" className="active"><a>All Recipes</a></li>
             {this.state.tabs.map(function(tag){
-              return <li data-id={tag.id}><a>{tag.data}</a></li>
+              return <li key={"tab" + tag.id} data-id={tag.id}><a>{tag.data}</a></li>
             })}
           </ul>
           <ul className="list-group" onClick={this.openRecipe}>

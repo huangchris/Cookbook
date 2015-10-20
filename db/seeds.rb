@@ -7,3 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = User.create([{ name: "Lauren Ipsum", email: "example@cookbook.com",
   password: "password"}])
+
+tabs = TabTag.create([{data: 1}, {data: 2}, {data: 3}, {data: 4}])

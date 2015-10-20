@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020171637) do
+ActiveRecord::Schema.define(version: 20151020212837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,17 +53,6 @@ ActiveRecord::Schema.define(version: 20151020171637) do
   add_index "recipe_search_tags", ["recipe_id"], name: "index_recipe_search_tags_on_recipe_id", using: :btree
   add_index "recipe_search_tags", ["search_tag_id"], name: "index_recipe_search_tags_on_search_tag_id", using: :btree
 
-  create_table "recipe_tab_tags", force: :cascade do |t|
-    t.integer  "recipe_id",  null: false
-    t.integer  "tab_tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "recipe_tab_tags", ["recipe_id", "tab_tag_id"], name: "index_recipe_tab_tags_on_recipe_id_and_tab_tag_id", unique: true, using: :btree
-  add_index "recipe_tab_tags", ["recipe_id"], name: "index_recipe_tab_tags_on_recipe_id", using: :btree
-  add_index "recipe_tab_tags", ["tab_tag_id"], name: "index_recipe_tab_tags_on_tab_tag_id", using: :btree
-
   create_table "recipes", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.integer  "group_id",    null: false
@@ -73,9 +62,11 @@ ActiveRecord::Schema.define(version: 20151020171637) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "tab_tag_id",  null: false
   end
 
   add_index "recipes", ["group_id"], name: "index_recipes_on_group_id", using: :btree
+  add_index "recipes", ["tab_tag_id"], name: "index_recipes_on_tab_tag_id", using: :btree
   add_index "recipes", ["title"], name: "index_recipes_on_title", using: :btree
   add_index "recipes", ["user_id"], name: "index_recipes_on_user_id", using: :btree
 
@@ -124,9 +115,8 @@ ActiveRecord::Schema.define(version: 20151020171637) do
   add_foreign_key "instructions", "recipes"
   add_foreign_key "recipe_search_tags", "recipes"
   add_foreign_key "recipe_search_tags", "search_tags"
-  add_foreign_key "recipe_tab_tags", "recipes"
-  add_foreign_key "recipe_tab_tags", "tab_tags"
   add_foreign_key "recipes", "groups"
+  add_foreign_key "recipes", "tab_tags"
   add_foreign_key "recipes", "users"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"

@@ -137,7 +137,7 @@
     },
 
     changeTabTag:function(e) {
-      this.setState({tab_tags: TagStore.find(e.target.value)})
+      this.setState({tab_tag_id: e.target.value})
     },
 
     changePersonal: function(e) {
@@ -156,7 +156,6 @@
       }else{
         pic = <button onClick={this.handlePic}>Upload a Pic</button>
       }
-
       return (
        <form className="form-horizontal" onSubmit={this.handleSubmit}>
          <div className="form-group">
@@ -208,11 +207,11 @@
          <div className="form-group">
            <label className="col-xs-2" htmlFor="tab-tag">Category </label>
            <select className="col-xs-4" id="tab-tag"
-                  value={this.state.tab_tag}
                   onChange={this.changeTabTag}>
              {TagStore.all().map(function(tag){
-               return <option value={tag.data}>{tag.data}</option>
-             })}
+               return <option selected={this.state.tab_tag_id===tag.id}
+                   value={tag.id}>{tag.data}</option>
+               }.bind(this))}
            </select>
          </div>
          <div className="form-group">

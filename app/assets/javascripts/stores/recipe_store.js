@@ -22,9 +22,7 @@
 
     filterByTag: function(tagID) {
       return _recipes.filter(function(recipe){
-        return recipe.tab_tags.some(function(tag){
-          return tag.id === tagID
-        })
+        return recipe.tab_tag_id === parseInt(tagID)
       })
     },
 

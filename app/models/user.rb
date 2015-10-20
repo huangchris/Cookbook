@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def find_family
-    # does nothing until we have families
+    # does nothing until we have families ... and then is the .groups.first association
   end
 
 end
