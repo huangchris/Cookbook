@@ -25,7 +25,7 @@ class Group < ActiveRecord::Base
   end
 
   def admins
-    User.joins(:user_groups).where(user_groups: {group_id: 1})
+    User.joins(:user_groups).where(user_groups: {group_id: self.id})
       .where(user_groups: {status: "admin"})
 
   end

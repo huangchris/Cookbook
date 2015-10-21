@@ -15,6 +15,8 @@ end
 
 if @admins.include?(current_user)
   json.admin true
+else
+  json.admin false
 end
 
 json.admin_ids do
