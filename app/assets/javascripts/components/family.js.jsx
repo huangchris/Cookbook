@@ -33,13 +33,13 @@
     render: function () {
       if (this.state.family.id) {
         var editOptions;
-        if( UserStore.admin() && !this.state.editting) {
+        if( UserStore.isAdmin() && !this.state.editting) {
           editOptions = <li onClick={this.editGroup}>Edit Group</li>
         } else if (this.state.editting) {
           editOptions = <li onClick={this.editGroup}>Done</li>
         }
         var pendingUsers;
-        if (UserStore.admin() ) {
+        if (UserStore.isAdmin()) {
           pendingUsers = (
             <ul>
               <h4>Pending Users</h4>

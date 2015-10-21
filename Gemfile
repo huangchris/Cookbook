@@ -21,6 +21,7 @@ gem 'flux-rails-assets'
 gem 'bcrypt'
 gem 'figaro'
 gem 'bootstrap-sass'
+gem 'seed_dump'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'÷
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
