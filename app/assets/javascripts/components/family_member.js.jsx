@@ -20,7 +20,8 @@ root.FamilyMember = React.createClass ({
   render: function () {
     var kick;
     var promote;
-    if (this.props.editting && UserStore.isAdmin(this.props.user.id)) {
+    debugger;
+    if (this.props.editting && UserStore.admins().indexOf(this.props.user.id) === -1) {
       promote = <div data-id={this.props.user.id} onClick={this.adminize}>Make Admin</div>
       kick = <div data-id={this.props.user.id} onClick={this.kickMember}>Remove</div>
     }
