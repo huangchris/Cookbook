@@ -5,7 +5,7 @@
     id: null, user_id: null, group_id: null,
     personal: false, title: "", photo: "",
     description: "", ingredients: [{}], instructions: [{}],
-    search_tags: [{}], tab_tag_id: null
+    search_tags: [{}], tab_tag_id: 1
   }
 
   root.Recipes = React.createClass({
@@ -97,7 +97,14 @@
       return (
         <div className="col-xs-8">
           <h2>Recipes</h2>
-          <input className= "" type="text" onChange={this.searchRecipes}></input>
+
+          <div className="row">
+            <label className="col-xs-2">Search</label>
+            <input className="col-xs-8" type="text"
+                onChange={this.searchRecipes}></input>
+            <div className="col-xs-2"></div>
+          </div>
+
           <ul className="nav nav-tabs" onClick={this.tabClick}>
             <li key="tabAll" data-id="All" className="active"><a>All Recipes</a></li>
             {this.state.tabs.map(function(tag){

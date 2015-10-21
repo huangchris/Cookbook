@@ -19,14 +19,7 @@
   <% end %>
 </head>
 <body>
-  <!-- stick this in a partial -->
-  <% if flash[:errors] %>
-    <% flash[:errors].each do |error| %>
-      <%= error %>
-      <br>
-    <% end %>
-  <% end %>
-  <!-- a -->
+
   <div class="container">
 <%= yield %>
 </div>

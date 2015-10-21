@@ -33,9 +33,9 @@ class Recipe < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :group
-  has_many :ingredients
-  has_many :instructions
-  has_many :recipe_search_tags
+  has_many :ingredients, dependent: :destroy
+  has_many :instructions, dependent: :destroy
+  has_many :recipe_search_tags, dependent: :destroy
   has_many :search_tags, through: :recipe_search_tags
   belongs_to :tab_tag
 

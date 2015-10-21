@@ -17,7 +17,6 @@
       this.setState({listCount: this.state.listCount + 1})
     },
 
-                    // {this.props.object[i].data}
     render: function () {
       var list = []
       for (var i = 0; i < this.state.listCount; i++) {

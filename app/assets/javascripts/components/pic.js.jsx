@@ -29,7 +29,6 @@
           <a onClick={this.handleClick}>
             <img className="profile-pic"
               src={this.props.user.image} />
-            <div>Change Picture</div>
           </a>
         )
       }

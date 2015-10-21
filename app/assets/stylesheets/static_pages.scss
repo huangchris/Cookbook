@@ -1,7 +1,29 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+// body {
+//   background-image:url("/assets/wood-slat-background.jpg");
+// }
+// // body {
+// //   background-color: #F4CF89;
+// // }
+// div {
+//   background-color: #F4CF89;
+// }
+html, body, section, article,
+h1, h2, p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+  list-style: none;
+}
 .profile-pic {
   max-height: 50px;
   max-width: 50px;
@@ -97,6 +119,7 @@
   background-color: white;
   opacity: 1;
   margin: 50px;
+  padding: 10px;
   bottom: 50px;
 }
 #recipe-form {

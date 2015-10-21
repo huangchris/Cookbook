@@ -6,12 +6,25 @@
 </div>
 
 <div class="row">
+  <div class="col-xs-4"></div>
+  <div class="col-xs-4">
+    <% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error|%>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-xs-2"></div>
   <div class="col-xs-8">
     <form class="form-horizontal" action= "<%= session_url %>" method="post">
       <input type="hidden" name="authenticity_token" value="<%=auth_token%>">
       <div class="form-group">
-        <div class: "col-xs-12">Already a Member?
+        <div class: "col-xs-12">Not a Member yet?
           <%= link_to "Sign Up", new_user_url%>
         </div>
       </div>
