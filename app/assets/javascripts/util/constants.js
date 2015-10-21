@@ -1,18 +1,18 @@
 (function(root) {
   'use strict';
   root.DispatcherConst = {
-    CURRENT_USER: "My code runs on random sentences I write here.",
-    CURRENT_FAMILY: "Seriously, this is random wlkrjehg",
-    FAMILIES: "It would be sort of cool to put a SecureRandom.urlsafe_base64",
-    RECIPES: "Attacking each day with ENTHUSIASM UNKNOWN TO MANKIND",
-    TAGS: "Superior it's said never gives up her dead, when the gales of November come early."
+    CURRENT_USER: "current_user",
+    CURRENT_FAMILY: "current_family",
+    FAMILIES: "family list for joining",
+    RECIPES: "set of recipes depending on site state",
+    TAGS: "List of tab tags common to all recipes/users"
   }
 
   root.StoreConst = {
-    CURRENT_USER: "The backbone of my code is where I write junk",
-    CURRENT_FAMILY: "I wonder if I'm not taking this seriously enough sometimes",
-    FAMILIES: "Then this nonsense could be more practical while still meaningless",
-    RECIPE_INDEX: "Then, everything changed when the Fire Nation attacked.",
-    TAB_TAGS: "The searchers all say she'd have made Whitefish Bay if she'd put 15 more miles behind her."
+    CURRENT_USER: "current_user",
+    CURRENT_FAMILY: "current_family",
+    FAMILIES: "family list",
+    RECIPE_INDEX: "recipe list",
+    TAB_TAGS: "tabs"
   }
 }(this));

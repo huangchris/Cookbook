@@ -116,7 +116,8 @@
               return <li key={recipe.id}
                         className="list-group-item"
                         data-id={recipe.id}>
-                        {recipe.title}
+                        <img className="thumbnail" src={recipe.photo}></img>
+                        <div>{recipe.title}</div>
                      </li>
             })}
             <li key="new"><button>Add a new Recipe</button></li>

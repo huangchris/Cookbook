@@ -75,7 +75,7 @@
           <div>
             <h2>{this.props.recipe.title}</h2>
             <p>by {UserStore.find(this.props.recipe.user_id)}</p>
-            <img src={this.props.recipe.photo}></img>
+            <img className="recipe-pic" src={this.props.recipe.photo}></img>
             <h4>{this.props.recipe.description}</h4>
             <h4>Ingredients</h4>
             <ul className="ingredients-list">
