@@ -41,7 +41,7 @@
         var pendingUsers;
         if (UserStore.isAdmin()) {
           pendingUsers = (
-            <ul>
+            <ul className="list-group">
               <h4>Pending Users</h4>
               {UserStore.pendingUsers().map(function(user) {
                 return <li key={user.id} >

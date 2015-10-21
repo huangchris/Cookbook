@@ -87,7 +87,7 @@
             <h4>Instructions</h4>
             <ul className="instructions-list">
               {this.props.recipe.instructions.map(function(inst){
-                return <li key={inst.ord}>{inst.data}</li>
+                return <li className="inst-list-item" key={inst.ord}>{inst.data}</li>
               })}
             </ul>
             <ul className="tag-list">

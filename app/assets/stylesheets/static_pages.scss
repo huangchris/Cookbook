@@ -40,17 +40,20 @@ h1, h2, p, strong, em, a {
   list-style: none;
 }
 
-.instructions-list {
+ul.instructions-list {
+  list-style: decimal;
+}
+
+li.inst-list-item {
   list-style: decimal;
 }
 
 
-
 // for some reason this collapses the li height.
 // so I have bullets or unreadable.
-// li {
-//   list-style:none;
-// }
+li {
+  list-style:none;
+}
 
 .thumbnail {
   max-height: 50px;
@@ -71,6 +74,15 @@ h1, h2, p, strong, em, a {
 .family-index-item {
   position: relative;
   // float:left
+}
+.list-group-item:hover {
+  cursor:pointer;
+}
+.list-group-item *:hover {
+  cursor:pointer;
+}
+.nav-tabs > li.active > a{
+  background-color: #999999;
 }
 
 .family-index-item::after {

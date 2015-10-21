@@ -193,9 +193,9 @@ TabTag.create!([
 User.create!([
   {id: 3, email: "kristin.franke311@gmail.com", password_digest: "$2a$10$sTQRLxI5lN0jl5dZfTH5y.EJsZC5w5BdFaGwncko8L5KQbeUTHaEK", session_token: "dS4SaQc3FNugC8tcRx9Ovw", name: "Kristin", image: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445426926/quzts2x0qaxa4o6l36fc.jpg", created_at: "2015-10-17 23:39:06", updated_at: "2015-10-21 13:46:39"},
   {id: 2, email: "cchuang90@gmail.com", password_digest: "$2a$10$CxH5IoEy9UjEPnEIcZIgcuBRL2rwjErxvqumRFPSGyzb7v3m7YEJ.", session_token: nil, name: "Chris Huang", image: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445379692/fjoxqmhjwzbehbpia5ym.jpg", created_at: "2015-10-17 03:25:41", updated_at: "2015-10-21 16:06:43"},
-  {id: 5, email: "email1", password_digest: "$2a$10$swrFdg6IOGV.5AU/2eM9BuYx32ZJgr0tsxwJGt.cwjfRgnlhLFo3i", session_token: nil, name: "Macey Renner", image: nil, created_at: "2015-10-21 16:18:24", updated_at: "2015-10-21 16:18:24"},
+  {id: 5, email: "email1", password_digest: "$2a$10$swrFdg6IOGV.5AU/2eM9BuYx32ZJgr0tsxwJGt.cwjfRgnlhLFo3i", session_token: nil, name: "Macey Mann", image: nil, created_at: "2015-10-21 16:18:24", updated_at: "2015-10-21 16:18:24"},
   {id: 6, email: "email2", password_digest: "$2a$10$0MhtyAq.uYkyasPWszxKTO3H.wmkVQehdLmx.PzTUybGRaLjqxbqe", session_token: nil, name: "Paxton Pfannerstill", image: nil, created_at: "2015-10-21 16:19:10", updated_at: "2015-10-21 16:19:10"},
-  {id: 7, email: "email3", password_digest: "$2a$10$FDkqfWpMHJzS.q9zPYnLgO4xP92CMAZ36tS./gCez2pRoOdQEKffq", session_token: nil, name: "Rowland Hermann", image: nil, created_at: "2015-10-21 16:20:05", updated_at: "2015-10-21 16:20:05"},
+  {id: 7, email: "email3", password_digest: "$2a$10$FDkqfWpMHJzS.q9zPYnLgO4xP92CMAZ36tS./gCez2pRoOdQEKffq", session_token: nil, name: "Rowland Ratke", image: nil, created_at: "2015-10-21 16:20:05", updated_at: "2015-10-21 16:20:05"},
   {id: 1, email: "example@cookbook.com", password_digest: "$2a$10$WzXjGAQkYIuRXlNWdjV4eOxBFZ/z1AnGgrBU6VGKN87WmGN0UOM26", session_token: "o6aBxsOuEGyrgKbK_3hcdA", name: "Lauren Ipsum", image: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445388889/fzg39hwaoaqtdhjzxuic.jpg", created_at: "2015-10-16 15:50:35", updated_at: "2015-10-21 17:07:48"}
 ])
 UserGroup.create!([
