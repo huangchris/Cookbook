@@ -14,7 +14,7 @@
     dispatcherId: AppDispatcher.register(_dispatcher),
     all: function() {
       return _recipes.map(function(recipe){
-        return { id: recipe.id, user_id: recipe.user_id,
+        return { id: recipe.id, user_id: recipe.user_id, photo: recipe.photo,
            title: recipe.title, search_tags: recipe.search_tags
         };
       })

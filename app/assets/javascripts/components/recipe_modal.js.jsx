@@ -46,13 +46,13 @@
     },
 
     render: function() {
-      var editButton
+      var editButton;
       if(this.props.recipe.user_id === window.USER_ID) {
         editButton = <button onClick={this.editRecipe}>Edit Recipe</button>
       }
       if (this.state.editting) {
         return (
-          <div id="recipe-form">
+          <div id="recipe-form" className= "modal-show">
             <RecipeForm recipe={this.props.recipe}
                         hideModal={this.props.hideModal}/>
             <button onClick={this.unEditRecipe}>Cancel</button>
@@ -60,7 +60,8 @@
         )
       } else {
         return (
-          <div id="recipe-detail">
+          <div className= "modal-show"
+            id="recipe-detail">
             <RecipeShow recipe={this.props.recipe}/>
             {editButton}
           </div>
