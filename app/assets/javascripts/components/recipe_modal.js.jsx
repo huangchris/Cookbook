@@ -183,9 +183,8 @@
            <label className="col-xs-2" >Ingredients</label>
          </div>
          <div className="form-group">
-           <div  className="col-xs-10">
-             <FormList
-                       object={this.state.ingredients}
+           <div  className="col-xs-12">
+             <FormList object={this.state.ingredients}
                        buttonName="Add an ingredient"/>
            </div>
 
@@ -194,9 +193,8 @@
            <label className="col-xs-2" >Instructions</label>
          </div>
          <div className="form-group">
-           <div  className="col-xs-10">
+           <div  className="col-xs-12">
              <FormList object={this.state.instructions}
-                     className="col-xs-10"
                      buttonName="Add an instruction"/>
            </div>
          </div>
@@ -219,7 +217,7 @@
            <label className="col-xs-2" >Tags</label>
          </div>
          <div className="form-group">
-           <div  className="col-xs-10">
+           <div  className="col-xs-4">
              <FormList object={this.state.search_tags}
                      buttonName="Add a Tag"/>
            </div>

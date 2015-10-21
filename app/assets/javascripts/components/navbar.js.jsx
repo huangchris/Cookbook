@@ -53,7 +53,6 @@
 
               <li className=""><a href="#/family/recipes">Family Book</a></li>
 
-              <li className=""><a href="#/family">My Family</a></li>
             </ul>
 
             <ul className="nav navbar-nav navbar-right">

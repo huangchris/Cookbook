@@ -52,6 +52,7 @@ $(function(root) {
   React.render(
     <Router>
       <Route path="/" component={root.App}>
+        <IndexRoute component={Welcome}/>
         <Route path="family" component={Family}>
           <Route path="recipes" component={Recipes}/>
         </Route>
