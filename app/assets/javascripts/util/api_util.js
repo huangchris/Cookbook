@@ -131,7 +131,6 @@
     },
 
     deleteRecipe: function(id) {
-      debugger;
       $.ajax({
         url:"/api/recipes/" + id,
         type: "delete",

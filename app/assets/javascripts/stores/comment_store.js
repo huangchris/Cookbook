@@ -5,7 +5,7 @@
   var _dispatches = function(action) {
     if (action.actionType === DispatcherConst.COMMENTS) {
       _comments = action.data.comments;
-      CommentStore.emit(StoreConst.COMMENTS)
+      CommentStore.emit(StoreConst.COMMENTS);
     }
   }
   root.CommentStore = $.extend({},EventEmitter.prototype, {

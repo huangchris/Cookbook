@@ -6,7 +6,7 @@
     mixins: [ReactRouter.History],
 
     getInitialState: function () {
-      return {editting: this.props.editting}
+      return {editting: this.props.editting};
     },
 
     componentWillMount: function () {
@@ -18,7 +18,7 @@
 
     // Probably don't need this:
     componentWillReceiveProps: function(newProps) {
-      this.setState({editting: newProps.editting})
+      this.setState({editting: newProps.editting});
     },
 
     componentDidMount: function(){
@@ -34,14 +34,14 @@
     editRecipe: function (e) {
       //maybe make the form and this visible/invisible, and put this back into the main?
       //or just put the button on the main?  that would be weird, but would work.
-      this.setState({editting: true})
+      this.setState({editting: true});
     },
 
     unEditRecipe: function(e) {
       if (this.props.recipe.id) {
-        this.setState({editting: false})
+        this.setState({editting: false});
       } else {
-        this.props.hideModal()
+        this.props.hideModal();
       }
     },
 
@@ -114,15 +114,15 @@
       e.preventDefault();
       if (FamilyStore.family().id !== undefined) {
         this.props.recipe.id ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
-        this.props.hideModal()
+        this.props.hideModal();
       } else {
-        alert("You can't add recipes if you're not part of a family. I know, it sucks.")
-        this.history.pushState(null, "/family")
+        alert("You can't add recipes if you're not part of a family. I know, it sucks.");
+        this.history.pushState(null, "/family");
       }
     },
 
     componentWillReceiveProps: function(newprops) {
-      this.setState($.extend(true, {},newprops.recipe))
+      this.setState($.extend(true, {},newprops.recipe));
     },
 
     handlePic: function (e) {
@@ -135,7 +135,7 @@
           //maybe add an errors store? or maybe just do nothing?
           //most of the time this pops up because I canceled the widget.
           else{
-            this.setState({photo: response[0].url})
+            this.setState({photo: response[0].url});
           }
           this.open = false;
         }.bind(this)
@@ -143,15 +143,14 @@
     },
 
     changeTabTag:function(e) {
-      this.setState({tab_tag_id: e.target.value})
+      this.setState({tab_tag_id: e.target.value});
     },
 
     changePersonal: function(e) {
-      this.setState({personal: e.target.value})
+      this.setState({personal: e.target.value});
     },
 
     deleteRecipe: function(e) {
-      debugger;
       e.preventDefault();
       if (confirm("Are you sure you want to delete this recipe?")) {
         APIUtil.deleteRecipe(this.state.id)
