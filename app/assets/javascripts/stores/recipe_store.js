@@ -1,6 +1,8 @@
 (function(root) {
   'use strict';
   var _recipes = [];
+  var _bookCache= [];
+  var _tabCache= [];
   var _dispatcher = function(action) {
     switch (action.actionType) {
       case DispatcherConst.RECIPES:
@@ -21,20 +23,38 @@
     },
 
     allFamily: function() {
-      return _recipes.filter(function(recipe){
+      _bookCache = _recipes.filter(function(recipe){
         return (!recipe.personal)
       })
+      _tabCache = _bookCache
+      return _bookCache;
     },
 
     allByUser: function(id) {
-      return _recipes.filter(function(recipe){
+      _bookCache = _recipes.filter(function(recipe){
         return (parseInt(recipe.user_id) === parseInt(id))
-      })
+      });
+      _tabCache = _bookCache
+      return _bookCache;
     },
 
     filterByTag: function(tagID) {
-      return _recipes.filter(function(recipe){
-        return recipe.tab_tag_id === parseInt(tagID)
+      if (tagID === "All" ){
+        _tabCache = _bookCache;
+      } else {
+        _tabCache = _bookCache.filter(function(recipe){
+          return recipe.tab_tag_id === parseInt(tagID)
+        })
+      }
+      return _tabCache;
+    },
+
+    search: function(string) {
+      return _tabCache.filter(function(recipe) {
+        return (recipe.title.toLowerCase().startsWith(string.toLowerCase()) ||
+                recipe.search_tags.some(function(tag){
+                  return tag.data.toLowerCase().startsWith(string.toLowerCase())
+                }))
       })
     },
 

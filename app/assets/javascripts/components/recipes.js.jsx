@@ -24,7 +24,6 @@
       } else {
         this.setState({recipes: RecipeStore.allByUser(window.USER_ID)})
       }
-      // this.setState({recipes: RecipeStore.all()})
     },
 
     tagListener: function() {
@@ -71,26 +70,24 @@
       $(e.currentTarget).children().removeClass("active")
       $(e.target).parent().addClass("active")
       this.tabID = $(e.target).parent().data().id
-      if (this.tabID === "All") {
-        this.setState({recipes: RecipeStore.all()})
-      }else {
-        this.setState({recipes: RecipeStore.filterByTag(this.tabID)})
-      }
+      this.setState({recipes: RecipeStore.filterByTag(this.tabID)})
     },
 
     searchRecipes: function(e) {
       // This is ugly as balls:
+      this.setState({recipes: RecipeStore.search(e.target.value)})
 
-      var recipes = (this.tabID === "All" ? RecipeStore.all() :
-          RecipeStore.filterByTag(this.tabID))
-      this.setState({recipes: recipes.filter(function(recipe){
-          return (recipe.title.toLowerCase().startsWith(e.target
-                                            .value.toLowerCase()) ||
-                recipe.search_tags.some(function(tag){
-                  return tag.data.toLowerCase().startsWith(e.target
-                                              .value.toLowerCase())
-                }))
-        })})
+      // Moved into store.
+      // var recipes = (this.tabID === "All" ? RecipeStore.all() :
+      //     RecipeStore.filterByTag(this.tabID))
+      // this.setState({recipes: recipes.filter(function(recipe){
+      //     return (recipe.title.toLowerCase().startsWith(e.target
+      //                                       .value.toLowerCase()) ||
+      //           recipe.search_tags.some(function(tag){
+      //             return tag.data.toLowerCase().startsWith(e.target
+      //                                         .value.toLowerCase())
+      //           }))
+      //   })})
     },
 
     render: function () {
