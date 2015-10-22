@@ -31,6 +31,7 @@
     createComment: function(e) {
       e.preventDefault();
       APIUtil.createComment(this.state.comment, this.props.recipeID);
+      this.setState({comment: ""})
     },
 
     render: function () {

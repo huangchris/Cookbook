@@ -10,7 +10,10 @@
   }
   root.CommentStore = $.extend({},EventEmitter.prototype, {
     show: function(num) {
-      return _comments.slice(0, num);
+      if (num > _comments.length) {
+        return _comments.slice()
+      }
+      return _comments.slice(_comments.length - num, _comments.length);
     },
 
     DispatcherId: AppDispatcher.register(_dispatches)
