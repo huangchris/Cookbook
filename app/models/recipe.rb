@@ -38,6 +38,7 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_search_tags, dependent: :destroy
   has_many :search_tags, through: :recipe_search_tags
   belongs_to :tab_tag
+  has_many :comments, dependent: :destroy
 
   def self.find_by_user(id)
     User.find(id).recipes

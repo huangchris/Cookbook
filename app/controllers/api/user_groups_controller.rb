@@ -26,9 +26,10 @@ class Api::UserGroupsController < ApplicationController
   end
 
   def destroy
-    @user_group = UserGroup.find_by_user_id(params[:id])
+    @user_group = UserGroup.includes(:user).find_by_user_id(params[:id])
     @group = @user_group.group
     @user_group.user.recipes.destroy_all
+    @user_group.user.comments.destroy_all
     if @user_group.destroy && @group
       @users = @group.valid_users
       @new_users = @group.pending_users

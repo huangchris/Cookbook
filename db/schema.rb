@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020212837) do
+ActiveRecord::Schema.define(version: 20151022211439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "recipe_id",  null: false
+    t.string   "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["recipe_id"], name: "index_comments_on_recipe_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",       null: false
@@ -33,11 +44,11 @@ ActiveRecord::Schema.define(version: 20151020212837) do
   add_index "ingredients", ["recipe_id"], name: "index_ingredients_on_recipe_id", using: :btree
 
   create_table "instructions", force: :cascade do |t|
+    t.integer  "recipe_id",  null: false
     t.string   "data",       null: false
     t.integer  "ord",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "recipe_id",  null: false
   end
 
   add_index "instructions", ["recipe_id"], name: "index_instructions_on_recipe_id", using: :btree
@@ -111,6 +122,8 @@ ActiveRecord::Schema.define(version: 20151020212837) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", using: :btree
 
+  add_foreign_key "comments", "recipes"
+  add_foreign_key "comments", "users"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "instructions", "recipes"
   add_foreign_key "recipe_search_tags", "recipes"

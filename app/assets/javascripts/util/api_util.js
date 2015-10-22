@@ -149,6 +149,25 @@
       })
     },
 
+    getComments: function(id) {
+      $.ajax({
+        url:"/api/comments",
+        type:"get",
+        data:{id: id},
+        success: APIAction.updateComments,
+        error: this.logError
+      })
+    },
+    createComment: function(body, id) {
+      $.ajax({
+        url: "/api/comments",
+        type: "post",
+        data: {comment:{body: body, recipe_id: id}},
+        success:APIAction.updateComments,
+        error:this.logError
+      })
+    },
+
     logError: function(response) {
       console.log(response)
     }

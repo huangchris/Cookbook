@@ -42,10 +42,10 @@
       })
     },
     find: function(id) {
-      if (id === window.USER_ID) {return _currentUser.name}
+      if (id === window.USER_ID) {return _currentUser}
       return _users.filter(function(user){
         return user.id === id;
-      })[0].name;
+      })[0];
     },
     pendingUsers: function () {return _pendingUsers.slice()}
   });

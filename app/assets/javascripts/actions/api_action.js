@@ -40,6 +40,12 @@
         actionType: DispatcherConst.TAGS,
         data:response
       })
+    },
+    updateComments: function(response) {
+      AppDispatcher.dispatch({
+        actionType: DispatcherConst.COMMENTS,
+        data: response
+      })
     }
   }
 }(this));

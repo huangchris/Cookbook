@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :user_groups, only: [:create, :update, :destroy]
     resources :recipes, only: [:create, :index, :update, :destroy, :show]
     resources :tab_tags, only: [:index]
+    resources :comments, only: [:index, :create]
   end
 
 end

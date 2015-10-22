@@ -5,7 +5,8 @@
     CURRENT_FAMILY: "current_family",
     FAMILIES: "family list for joining",
     RECIPES: "set of recipes depending on site state",
-    TAGS: "List of tab tags common to all recipes/users"
+    TAGS: "List of tab tags common to all recipes/users",
+    COMMENTS: "comments"
   }
 
   root.StoreConst = {
@@ -13,6 +14,7 @@
     CURRENT_FAMILY: "current_family",
     FAMILIES: "family list",
     RECIPE_INDEX: "recipe list",
-    TAB_TAGS: "tabs"
+    TAB_TAGS: "tabs",
+    COMMENTS: "comments"
   }
 }(this));

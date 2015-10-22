@@ -75,7 +75,7 @@
         return (
           <div>
             <h2>{this.props.recipe.title}</h2>
-            <p>by {UserStore.find(this.props.recipe.user_id)}</p>
+            <p>by {UserStore.find(this.props.recipe.user_id).name}</p>
             <img className="recipe-pic" src={this.props.recipe.photo}></img>
             <h4>{this.props.recipe.description}</h4>
             <h4>Ingredients</h4>
@@ -95,6 +95,8 @@
                 return <li key={tag.id}>{tag.data}</li>
               })}
             </ul>
+            <div>Comments</div>
+            <Comments recipeID={this.props.recipe.id}/>
           </div>
         )
     }
