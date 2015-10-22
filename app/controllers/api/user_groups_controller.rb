@@ -1,6 +1,6 @@
 class Api::UserGroupsController < ApplicationController
   before_action :validate_user
-  
+
 
   def update
     @user_group = UserGroup.find_by_user_id(params[:id])
@@ -28,6 +28,7 @@ class Api::UserGroupsController < ApplicationController
   def destroy
     @user_group = UserGroup.find_by_user_id(params[:id])
     @group = @user_group.group
+    @user_group.user.recipes.destroy_all
     if @user_group.destroy && @group
       @users = @group.valid_users
       @new_users = @group.pending_users

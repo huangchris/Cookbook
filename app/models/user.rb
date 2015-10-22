@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   attr_reader :password
   has_many :user_groups, dependent: :destroy
   has_many :groups, through: :user_groups
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
 
 
   def assign_session_token

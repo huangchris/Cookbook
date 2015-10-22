@@ -124,7 +124,9 @@
     },
 
     handlePic: function (e) {
-      e.preventDefault()
+      e.preventDefault();
+      if(this.open){return;}
+      this.open = true;
       cloudinary.openUploadWidget(window.CLOUDINARY_OPTIONS,
         function (error, response) {
           if(error) {}//{alert("picture failed to upload")}
@@ -133,6 +135,7 @@
           else{
             this.setState({photo: response[0].url})
           }
+          this.open = false;
         }.bind(this)
       );
     },
