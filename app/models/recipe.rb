@@ -45,7 +45,7 @@ class Recipe < ActiveRecord::Base
   end
 
   def self.find_by_current_family(current_user)
-    Recipe.where(group_id: current_user.groups[0]).where(personal: false)
+    Recipe.where(group_id: current_user.groups[0])
   end
 
 

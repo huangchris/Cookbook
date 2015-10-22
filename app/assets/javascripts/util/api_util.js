@@ -101,24 +101,13 @@
       })
     },
 
-    getRecipeIndex: function(route, id) {
-      var data;
-      if(route.path === "family") {
-          data = {indexType:"family"};
-      } else if ( route.path === "recipes") {
-          data = {};
-      } else {
-          data = {indexType: "user", id: id};
-      }
-
+    getRecipeIndex: function() {
       $.ajax({
         url: "api/recipes",
         type: "get",
-        data: data,
         success: APIAction.updateRecipes,
         error: this.logError
       })
-
     },
 
     newRecipe: function(data) {
@@ -138,6 +127,16 @@
         data: {recipe: data},
         success: APIAction.updateRecipes,
         error:this.logError
+      })
+    },
+
+    deleteRecipe: function(id) {
+      debugger;
+      $.ajax({
+        url:"/api/recipes/" + id,
+        type: "delete",
+        success: APIUtil.getRecipeIndex,
+        error: this.logError
       })
     },
 

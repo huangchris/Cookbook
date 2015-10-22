@@ -5,8 +5,8 @@ root.FamilyMember = React.createClass ({
 
   handleClick: function() {
     var path = "/member/"+this.props.user.id+"/recipes";
-    this.history.pushState(null, path);
-    APIUtil.getRecipeIndex({path: "/member/:id/recipes"},this.props.user.id)
+    this.history.pushState({id: this.props.user.id}, path);
+    APIUtil.getRecipeIndex()
   },
 
   kickMember: function (e) {

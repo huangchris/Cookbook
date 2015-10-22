@@ -24,6 +24,10 @@ h1, h2, p, strong, em, a {
   background: transparent;
   list-style: none;
 }
+
+.dropdown img {
+  padding: 0;
+}
 .profile-pic {
   max-height: 50px;
   max-width: 50px;
@@ -61,9 +65,11 @@ li {
   width:auto;
   height: auto;
 }
+
 .list-group-item {
   min-height: 82px;
 }
+
 .recipe-pic {
   max-height: 250px;
   max-width: 250px;
@@ -75,12 +81,15 @@ li {
   position: relative;
   // float:left
 }
+
 .list-group-item:hover {
   cursor:pointer;
 }
+
 .list-group-item *:hover {
   cursor:pointer;
 }
+
 .nav-tabs > li.active > a{
   background-color: #999999;
 }

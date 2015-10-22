@@ -20,6 +20,18 @@
       })
     },
 
+    allFamily: function() {
+      return _recipes.filter(function(recipe){
+        return (!recipe.personal)
+      })
+    },
+
+    allByUser: function(id) {
+      return _recipes.filter(function(recipe){
+        return (parseInt(recipe.user_id) === parseInt(id))
+      })
+    },
+
     filterByTag: function(tagID) {
       return _recipes.filter(function(recipe){
         return recipe.tab_tag_id === parseInt(tagID)

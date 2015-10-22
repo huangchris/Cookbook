@@ -148,8 +148,18 @@
       this.setState({personal: e.target.value})
     },
 
+    deleteRecipe: function(e) {
+      debugger;
+      e.preventDefault();
+      if (confirm("Are you sure you want to delete this recipe?")) {
+        APIUtil.deleteRecipe(this.state.id)
+        this.props.hideModal()
+      }
+    },
+
     render: function() {
       var pic;
+      var remove;
       if (this.state.photo) {
         pic = (
           <div>
@@ -159,6 +169,11 @@
         )
       }else{
         pic = <button onClick={this.handlePic}>Upload a Pic</button>
+      }
+      if (this.state.id) {
+        remove = <input type="submit"
+                        className="col-xs-2"
+                        onClick={this.deleteRecipe} value="Delete Recipe"></input>
       }
       return (
        <form className="form-horizontal" onSubmit={this.handleSubmit}>
@@ -224,6 +239,10 @@
              <FormList object={this.state.search_tags}
                      buttonName="Add a Tag"/>
            </div>
+         </div>
+         <div className="form-group">
+           <div className="col-xs-2" ></div>
+           {remove}
          </div>
          <div className="form-group">
            <div className="col-xs-2" ></div>

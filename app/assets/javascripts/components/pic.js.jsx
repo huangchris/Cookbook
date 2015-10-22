@@ -21,20 +21,10 @@
     },
 
     render: function () {
-      if(!this.props.user.image) {
         return (
-          <a className="UploadPic"
-            onClick={this.handleClick}>
-            Upload a Profile Picture</a>
-        )}
-      else {
-        return (
-          <a onClick={this.handleClick}>
-            <img className="profile-pic"
-              src={this.props.user.image} />
-          </a>
+          <a href="#" onClick={this.handleClick}>
+            Change Profile Picture</a>
         )
-      }
     }
   })
 }(this));

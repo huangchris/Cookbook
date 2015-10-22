@@ -4,13 +4,7 @@ class Api::RecipesController < ApplicationController
   before_action :validate_sub_data, only: [:create, :update]
 
   def index
-    if params[:id]
-      @recipes = Recipe.find_by_user(params[:id])
-    elsif params[:indexType] == "family"
-      @recipes = Recipe.find_by_current_family(current_user)
-    else
-      @recipes = Recipe.find_by_user(current_user.id)
-    end
+    @recipes = Recipe.find_by_current_family(current_user)
   end
 
   def show
@@ -37,9 +31,7 @@ class Api::RecipesController < ApplicationController
           RecipeSearchTag.create({recipe_id: @recipe.id, search_tag_id: @tag.id})
         end
 
-      @recipes = ( @recipe.personal ?
-        Recipe.find_by_user(current_user.id) :
-        Recipe.find_by_current_family(current_user) )
+      @recipes = Recipe.find_by_current_family(current_user)
       render :index
     else
       render json: @recipe.errors.full_messages, status: 400
@@ -78,9 +70,7 @@ class Api::RecipesController < ApplicationController
         end
       end
 
-      @recipes = ( @recipe.personal ?
-        Recipe.find_by_user(current_user.id) :
-        Recipe.find_by_current_family(current_user) )
+      @recipes = Recipe.find_by_current_family(current_user)
       render :index
     else
       render json: @recipe.errors.full_messages, status: 400
@@ -88,6 +78,13 @@ class Api::RecipesController < ApplicationController
   end
 
   def destroy
+    @recipe = Recipe.find(params[:id])
+    if @recipe && @recipe.user_id == current_user.id
+      @recipe.destroy
+      render json: @recipe
+    else
+      render json: "invalid request", status: 400
+    end
   end
 
   private

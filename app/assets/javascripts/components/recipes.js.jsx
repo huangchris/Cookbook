@@ -9,13 +9,22 @@
   }
 
   root.Recipes = React.createClass({
+    mixins: [ReactRouter.History],
+
     getInitialState: function(){
       return({recipes: [], activeRecipe: _blankRecipe, editting: false,
         showModal: false, tabs: TagStore.all()})
     },
 
     storeListener: function(){
-      this.setState({recipes: RecipeStore.all()})
+      if(window.location.hash.startsWith("#/member")) {
+        this.setState({recipes: RecipeStore.allByUser(window.location.hash[9])})
+      } else if (window.location.hash.startsWith("#/family")) {
+        this.setState({recipes: RecipeStore.allFamily()})
+      } else {
+        this.setState({recipes: RecipeStore.allByUser(window.USER_ID)})
+      }
+      // this.setState({recipes: RecipeStore.all()})
     },
 
     tagListener: function() {

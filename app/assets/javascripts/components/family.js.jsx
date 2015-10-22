@@ -27,7 +27,7 @@
     },
 
     sharedBook: function() {
-      this.history.pushState({index:"shared"},"/family/recipes")
+      this.history.pushState({id: 0},"/family/recipes")
     },
 
     render: function () {
