@@ -2,7 +2,7 @@
 
 [Heroku link][heroku] **NB:** This should be a link to your production site
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://www.cookbooks.herokuapp.com
 
 ## Minimum Viable Product
 
@@ -14,7 +14,7 @@ OurCookbook is a site for family members to share traditional recipes or new fav
 - [X] Log in / Log out
 - [X] Create / Join a family group
 - [X] Create, read, edit recipes
-- [ ] Comment on recipes
+- [X] Comment on recipes
 - [X] Tag recipes with multiple tags and search by tag or by name
 - [ ] Make requests for other members to create recipes
 
@@ -73,12 +73,12 @@ Phase 5 features: Make requests for other members to create recipes
 
 ### Phase 6: Styling Cleanup and Seeding (1 day)
 
-### Bonus Features (TBD
+<!-- ### Bonus Features (TBD
 - [ ] Photo gallery per recipe
 - [ ] Propose edits for Recipes, to merge/ replace.
 - [ ] Changelogs for Recipes
 - [ ] Email notifications
-- [ ] Multiple sessions
+- [ ] Multiple sessions -->
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
