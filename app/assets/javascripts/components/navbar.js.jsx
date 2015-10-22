@@ -80,7 +80,7 @@
                       aria-expanded="true"
                       src={this.state.user.image}>
                 </img>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <ul className="dropdown-menu mine" aria-labelledby="dropdownMenu1">
                    <li><Pic/></li>
                    <li><a href="#" onClick={this.unGroup}>Leave Group</a></li>
                    <li><a href="#" onClick={this.logout}>Logout</a></li>

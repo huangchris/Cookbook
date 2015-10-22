@@ -11,6 +11,8 @@
         a term you think should apply to it, try adding a tag to the recipe.<br/>
         If you aren't in a family and want to join one, that list of
         families is clickable.<br/>
+      If someone wants to join your family, but you don't like them, for now
+      you have to add them to the group before you kick them out.
       </div>
     }
   })

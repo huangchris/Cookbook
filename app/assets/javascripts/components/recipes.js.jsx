@@ -124,7 +124,7 @@
                         data-id={recipe.id}>
                         <img src={recipe.photo}
                           data-id={recipe.id}
-                          className="thumbnail" ></img>
+                          className="thumbnail mine" ></img>
                         <div data-id={recipe.id}>{recipe.title}</div>
                      </li>
             })}

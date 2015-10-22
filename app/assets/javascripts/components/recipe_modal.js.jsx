@@ -163,7 +163,7 @@
       if (this.state.photo) {
         pic = (
           <div>
-            <img className="thumbnail" src={this.state.photo}></img>
+            <img className="thumbnail mine" src={this.state.photo}></img>
             <button onClick={this.handlePic}>Upload a Pic</button>
           </div>
         )

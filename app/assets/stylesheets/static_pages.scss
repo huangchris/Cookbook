@@ -51,6 +51,9 @@ ul.instructions-list {
 li.inst-list-item {
   list-style: decimal;
 }
+.dropdown-menu.mine {
+  top: 50px;
+}
 
 
 // for some reason this collapses the li height.
@@ -59,7 +62,7 @@ li {
   list-style:none;
 }
 
-.thumbnail {
+.thumbnail.mine {
   max-height: 50px;
   max-width: 250px;
   width:auto;
