@@ -42,18 +42,24 @@ class Api::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
 
     if @recipe && @recipe.update(recipe_params)
+      @recipe.ingredients.select{|ing| params[:recipe][:ingredients]
+          .values.include?(ing)}.each{|ing| ing.destroy}
       params[:recipe][:ingredients].each do |idx, ing|
-        next if ing[:ing] == ""
+        next if ing[:ing] == "" && ing[:id].nil
         if ing[:id]
-          Ingredient.find(ing[:id]).update(data: ing[:data])
+          ingredient = Ingredient.find(ing[:id])
+          ing[:data] == "" ? ingredient.destroy : ingredient.update(data: ing[:data])
         else
           Ingredient.create(data: ing[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end
       end
+      @recipe.instructions.select{|inst| params[:recipe][:instructions]
+          .values.include?(inst)}.each{|ing| ing.destroy}
       params[:recipe][:instructions].each do |idx, inst|
-        inst[:inst]
+        next if inst[:inst] == "" && inst[:id].nil
         if inst[:id]
-          Instruction.find(inst[:id]).update(data: inst[:data])
+          instruction = Instruction.find(inst[:id])
+          inst[:data] == "" ? instruction.destroy : instruction.update(data: inst[:data])
         else
           Instruction.create(data: inst[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end
@@ -94,8 +100,9 @@ class Api::RecipesController < ApplicationController
   end
 
   def validate_sub_data
-    if params[:recipe][:ingredients].any?{|_, ing| ing[:data].nil? || ing[:data] == ""} ||
-       params[:recipe][:instructions].any?{|_, inst| inst[:data].nil? || inst[:data] == ""}
+    # ... This doesn't quite work the way I wanted
+    if (params[:recipe][:ingredients].select{|_, ing| !ing[:data].nil? && ing[:data] != ""}.empty? ||
+       params[:recipe][:instructions].select{|_, inst| !inst[:data].nil? && inst[:data] != ""}.empty? )
       render json: "Insufficient Data", status: 400
     end
   end
