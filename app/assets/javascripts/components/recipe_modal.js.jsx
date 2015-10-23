@@ -14,6 +14,7 @@
         alert("You can't view or add Recipes until you are an approved member of a family");
         this.history.pushState(null, "/family");
       }
+      $(document.body).on("keydown", this.escape)
     },
 
     // Probably don't need this:
@@ -30,6 +31,9 @@
     //     this.setState({editting: false})
     //   }
     // },
+    componentWillUnmount: function () {
+      $(document.body).off("keydown", this.escape);
+    },
 
     editRecipe: function (e) {
       //maybe make the form and this visible/invisible, and put this back into the main?
@@ -41,6 +45,13 @@
       if (this.props.recipe.id) {
         this.setState({editting: false});
       } else {
+        this.props.hideModal();
+      }
+    },
+
+    escape: function (e) {
+      if(e.keyCode === 27) {
+        e.preventDefault();
         this.props.hideModal();
       }
     },
@@ -61,9 +72,9 @@
         )
       } else {
         return (
-          <div className= "modal-show"
-            id="recipe-detail">
-            <RecipeShow recipe={this.props.recipe}/>
+          <div className= "modal-show" id="recipe-detail">
+            <RecipeShow recipe={this.props.recipe}
+                hideModal={this.props.hideModal}/>
             {editButton}
           </div>
         )
@@ -75,6 +86,7 @@
     render: function () {
         return (
           <div>
+            <div onClick={this.props.hideModal}>X</div>
             <h2>{this.props.recipe.title}</h2>
             <p>by {UserStore.find(this.props.recipe.user_id).name}</p>
             <img className="recipe-pic" src={this.props.recipe.photo}></img>
@@ -185,6 +197,7 @@
 
       return (
        <form className="form-horizontal" onSubmit={this.handleSubmit}>
+         <div onClick={this.props.hideModal}>X</div>
          <div className="form-group">
            <label className="col-xs-2" htmlFor="Title">Title</label>
            <input className="col-xs-8" type="text" id="Title"

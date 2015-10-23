@@ -7,6 +7,7 @@
       PictureStore.emit(StoreConst.PICTURES)
     }
   }
+  
   root.PictureStore = $.extend({}, EventEmitter.prototype, {
     DispatcherId: AppDispatcher.register(_dispatches),
     all: function () {

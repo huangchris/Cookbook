@@ -89,11 +89,12 @@
       //           }))
       //   })})
     },
-
+    
     render: function () {
       var modal;
       if (this.state.showModal) {
-        modal = ( <section id="modal" onClick={this.hideModal}>
+        modal = ( <section id="modal" onClick={this.hideModal}
+                      onKeyDown={this.escape}>
                     <RecipeModal editting={this.state.editting}
                                   hideModal={this.closeModal}
                                   recipe={this.state.activeRecipe}
