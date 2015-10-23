@@ -17,6 +17,10 @@ class Api::RecipesController < ApplicationController
 
     @recipe = Recipe.new(data)
     if @recipe.save
+      if params[:request_id]
+        Request.find(params[:request_id]).destroy
+      end
+
         params[:recipe][:ingredients].each do |idx, ing|
           Ingredient.create(data: ing[:data], recipe_id: @recipe.id, ord: (idx.to_i + 1))
         end

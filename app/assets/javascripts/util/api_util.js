@@ -110,7 +110,8 @@
       })
     },
 
-    newRecipe: function(data) {
+    newRecipe: function(data, id) {
+      debugger;
       $.ajax({
         url:"/api/recipes",
         type: "post",

@@ -49,10 +49,12 @@
     render: function () {
       var modal;
       if (this.state.showModal) {
+        debugger;
         modal = ( <section id="modal" onClick={Recipes.hideModal}>
                     <RecipeModal editting={true}
                                   hideModal={Recipes.closeModal}
                                   recipe={_newRecipe(this.state.answerable)}
+                                  requestId={this.state.answerable.id}
                                   />
                   </section>)
       }

@@ -14,6 +14,7 @@
     },
     find: function (id) {
       return _requests.filter(function(request){
+        debugger;
         return request.id === id;
       })[0];
     },

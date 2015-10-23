@@ -113,7 +113,12 @@
       // so, we need a family...
       e.preventDefault();
       if (FamilyStore.family().id !== undefined) {
-        this.props.recipe.id ? APIUtil.editRecipe(this.state) : APIUtil.newRecipe(this.state)
+        if(this.props.recipe.id){
+          APIUtil.editRecipe(this.state)
+        } else{
+          debugger;
+          APIUtil.newRecipe(this.state, this.props.requestId)
+        }
         this.props.hideModal();
       } else {
         alert("You can't add recipes if you're not part of a family. I know, it sucks.");
@@ -159,6 +164,7 @@
     },
 
     render: function() {
+      debugger;
       var pic;
       var remove;
       if (this.state.photo) {
