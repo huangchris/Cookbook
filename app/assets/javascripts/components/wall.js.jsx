@@ -6,7 +6,7 @@
     },
 
     componentDidMount: function () {
-      FamilyStore.on(FamilyStore.CURRENT_FAMILY, this.storeListener)
+      FamilyStore.on(StoreConst.CURRENT_FAMILY, this.storeListener)
     },
 
     storeListener: function () {
@@ -14,7 +14,7 @@
     },
 
     componentWillUnmount: function () {
-      FamilyStore.removeListener(FamilyStore.CURRENT_FAMILY, this.storeListener)
+      FamilyStore.removeListener(StoreConst.CURRENT_FAMILY, this.storeListener)
     },
 
     render: function () {
