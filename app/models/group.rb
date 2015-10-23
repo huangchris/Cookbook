@@ -14,6 +14,7 @@ class Group < ActiveRecord::Base
   has_many :user_groups
   has_many :users, through: :user_groups
   has_many :recipes
+  has_many :comments, as: :commentable
 
   def valid_users
     self.users.joins(:user_groups)

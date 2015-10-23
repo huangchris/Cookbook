@@ -1,3 +1,3 @@
 json.comments @comments do |comment|
-  json.extract! comment, :id, :body, :user_id, :recipe_id
+  json.extract! comment, :id, :body, :user_id, :commentable_id, :commentable_type
 end

@@ -69,6 +69,7 @@
             <ul className="nav navbar-nav navbar-left">
               <li><a href="#">{this.state.user.name}</a></li>
               <li><a href="#" onClick={this.myBook}>My Book</a></li>
+              <li><a href="#/family">Family</a></li>
               <li><a href="#/family/recipes">Family Book</a></li>
             </ul>
 

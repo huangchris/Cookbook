@@ -148,20 +148,21 @@
       })
     },
 
-    getComments: function(id) {
+    getComments: function(id, parent) {
       $.ajax({
         url:"/api/comments",
         type:"get",
-        data:{id: id},
+        data:{id: id, parent: parent},
         success: APIAction.updateComments,
         error: this.logError
       })
     },
-    createComment: function(body, id) {
+    createComment: function(body, id, parent) {
       $.ajax({
         url: "/api/comments",
         type: "post",
-        data: {comment:{body: body, recipe_id: id}},
+        data: {comment:{body: body, commentable_id: id,
+          commentable_type: parent}},
         success:APIAction.updateComments,
         error:this.logError
       })

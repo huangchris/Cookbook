@@ -96,7 +96,7 @@
               })}
             </ul>
             <div>Comments</div>
-            <Comments recipeID={this.props.recipe.id}/>
+            <Comments parentType="Recipe" ID={this.props.recipe.id}/>
           </div>
         )
     }

@@ -8,7 +8,7 @@
     },
 
     componentWillMount: function () {
-      APIUtil.getComments(this.props.recipeID);
+      APIUtil.getComments(this.props.ID, this.props.parentType);
     },
 
     storeListener: function () {
@@ -24,14 +24,14 @@
 
     addComments: function(e) {
       e.preventDefault();
-      APIUtil.getComments(this.props.recipeID);
+      APIUtil.getComments(this.props.ID, this.props.parentType);
       this.setState({commentCount: this.state.commentCount + 5});
     },
 
     createComment: function(e) {
       e.preventDefault();
-      APIUtil.createComment(this.state.comment, this.props.recipeID);
-      this.setState({comment: ""});
+      APIUtil.createComment(this.state.comment, this.props.ID, this.props.parentType);
+      this.setState({comment: "", commentCount: 5});
     },
 
     render: function () {
@@ -40,7 +40,7 @@
           {CommentStore.show(this.state.commentCount).map(function(comment) {
             var user = UserStore.find(comment.user_id);
             return (
-              <li>
+              <li key={"comment" + comment.id}>
                 <img className="profile-pic"
                       src={user.image}>
                 </img>
@@ -49,11 +49,11 @@
               </li>
             );
           })}
-          <li><form onSubmit={this.createComment}>
+          <li key="CommentAdd"><form onSubmit={this.createComment}>
             <input type="text" valueLink={this.linkState("comment")}></input>
             <input type="submit" value="Add a comment"></input>
             </form></li>
-          <li><a href="#" onClick={this.addComments}>Show More Comments</a></li>
+          <li key="CommentShow"><a href="#" onClick={this.addComments}>Show More Comments</a></li>
         </ul>
       );
     }

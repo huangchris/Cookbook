@@ -54,6 +54,7 @@ $(function(root) {
       <Route path="/" component={root.App}>
         <IndexRoute component={Welcome}/>
         <Route path="family" component={Family}>
+          <IndexRoute component={Wall}/>
           <Route path="recipes" component={Recipes}/>
         </Route>
         <Route path="/member/:id/recipes" components={{comp1: Family, comp2: Recipes}}/>
