@@ -2,7 +2,6 @@
   'use strict';
   var _pictures = [];
   var _dispatches = function(action) {
-    debugger;
     if (action.actionType === DispatcherConst.PICTURES) {
       _pictures = action.data;
       PictureStore.emit(StoreConst.PICTURES)
