@@ -19,7 +19,6 @@
 
     render: function () {
       var list = []
-                    // className="col-xs-12"
       for (var i = 0; i < this.state.listCount; i++) {
         list.push(<input type="text"
                     className="row col-xs-12"

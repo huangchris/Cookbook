@@ -30,6 +30,7 @@ class Api::UserGroupsController < ApplicationController
     @group = @user_group.group
     @user_group.user.recipes.destroy_all
     @user_group.user.comments.destroy_all
+    @user_group.user.requests.destroy_all
     if @user_group.destroy && @group
       @users = @group.valid_users
       @new_users = @group.pending_users

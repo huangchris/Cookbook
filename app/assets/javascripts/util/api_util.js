@@ -168,6 +168,27 @@
       })
     },
 
+    createRequest: function(data) {
+      debugger;
+      var request = {request: {title: data.title, description: data.description}}
+      $.ajax({
+        url:"/api/requests",
+        type: "post",
+        data: request,
+        success: APIAction.updateRequests,
+        error:this.logError
+      })
+    },
+
+    getRequests: function () {
+      $.ajax({
+        url:"/api/requests",
+        type:"get",
+        success:APIAction.updateRequests,
+        error: this.logError
+      })
+    },
+
     logError: function(response) {
       console.log(response)
     }

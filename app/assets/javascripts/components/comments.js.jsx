@@ -36,7 +36,7 @@
 
     render: function () {
       return (
-        <ul>
+        <ul className="col-xs-12">
           {CommentStore.show(this.state.commentCount).map(function(comment) {
             var user = UserStore.find(comment.user_id);
             return (

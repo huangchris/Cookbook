@@ -25,6 +25,10 @@
 #                 PUT    /api/recipes/:id(.:format)     api/recipes#update {:format=>:json}
 #                 DELETE /api/recipes/:id(.:format)     api/recipes#destroy {:format=>:json}
 #    api_tab_tags GET    /api/tab_tags(.:format)        api/tab_tags#index {:format=>:json}
+#    api_comments GET    /api/comments(.:format)        api/comments#index {:format=>:json}
+#                 POST   /api/comments(.:format)        api/comments#create {:format=>:json}
+#    api_requests GET    /api/requests(.:format)        api/requests#index {:format=>:json}
+#                 POST   /api/requests(.:format)        api/requests#create {:format=>:json}
 #
 
 Rails.application.routes.draw do
@@ -41,6 +45,7 @@ Rails.application.routes.draw do
     resources :recipes, only: [:create, :index, :update, :destroy, :show]
     resources :tab_tags, only: [:index]
     resources :comments, only: [:index, :create]
+    resources :requests, only: [:index, :create]
   end
 
 end

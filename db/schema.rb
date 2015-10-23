@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022235321) do
+ActiveRecord::Schema.define(version: 20151023161609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,18 @@ ActiveRecord::Schema.define(version: 20151022235321) do
   add_index "recipes", ["title"], name: "index_recipes_on_title", using: :btree
   add_index "recipes", ["user_id"], name: "index_recipes_on_user_id", using: :btree
 
+  create_table "requests", force: :cascade do |t|
+    t.string   "title",       null: false
+    t.string   "description"
+    t.integer  "group_id",    null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "requests", ["group_id"], name: "index_requests_on_group_id", using: :btree
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
+
   create_table "search_tags", force: :cascade do |t|
     t.string   "data",       null: false
     t.datetime "created_at", null: false
@@ -130,6 +142,8 @@ ActiveRecord::Schema.define(version: 20151022235321) do
   add_foreign_key "recipes", "groups"
   add_foreign_key "recipes", "tab_tags"
   add_foreign_key "recipes", "users"
+  add_foreign_key "requests", "groups"
+  add_foreign_key "requests", "users"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"
 end

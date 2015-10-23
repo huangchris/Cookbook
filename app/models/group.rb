@@ -15,6 +15,7 @@ class Group < ActiveRecord::Base
   has_many :users, through: :user_groups
   has_many :recipes
   has_many :comments, as: :commentable
+  has_many :requests, dependent: :destroy
 
   def valid_users
     self.users.joins(:user_groups)

@@ -6,7 +6,8 @@
     FAMILIES: "family list for joining",
     RECIPES: "set of recipes depending on site state",
     TAGS: "List of tab tags common to all recipes/users",
-    COMMENTS: "comments"
+    COMMENTS: "comments",
+    REQUESTS: "requests"
   }
 
   root.StoreConst = {
@@ -15,6 +16,7 @@
     FAMILIES: "family list",
     RECIPE_INDEX: "recipe list",
     TAB_TAGS: "tabs",
-    COMMENTS: "comments"
+    COMMENTS: "comments",
+    REQUESTS: "requests"
   }
 }(this));

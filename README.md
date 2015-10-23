@@ -1,12 +1,12 @@
 # CookBook
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+[Heroku link][heroku]
 
 [heroku]: http://www.cookbooks.herokuapp.com
 
 ## Minimum Viable Product
 
-OurCookbook is a site for family members to share traditional recipes or new favorites.
+Cookbooks is a site for family members to share traditional recipes or new favorites.
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 

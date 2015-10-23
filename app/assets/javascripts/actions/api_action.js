@@ -46,6 +46,13 @@
         actionType: DispatcherConst.COMMENTS,
         data: response
       })
+    },
+    updateRequests: function(response) {
+      debugger;
+      AppDispatcher.dispatch({
+        actionType: DispatcherConst.REQUESTS,
+        data:response
+      })
     }
   }
 }(this));
