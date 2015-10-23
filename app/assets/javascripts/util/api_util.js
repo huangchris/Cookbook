@@ -8,8 +8,7 @@
         url: "api/users/" + UserStore.currentUser().id,
         type: "patch",
         data: {user: {image: urlstring} },
-        success: APIAction.setCurrentUser,
-        error: APIUtil.logError
+        success: APIAction.setCurrentUser
       })
     },
 
@@ -17,8 +16,7 @@
       $.ajax({
         url: "api/user_groups/" + id,
         type: "delete",
-        success: APIAction.setFamily,
-        error: APIUtil.logError
+        success: APIAction.setFamily
       })
     },
 
@@ -37,8 +35,7 @@
         url: "api/user_groups/" + id,
         type: "patch",
         data: data,
-        success: APIAction.setFamily,
-        error: APIUtil.logError
+        success: APIAction.setFamily
       })
     },
 
@@ -80,8 +77,7 @@
         url: "api/group",
         type: "post",
         data: data,
-        success: APIAction.setFamily,
-        error: APIUtil.logError
+        success: APIAction.setFamily
 
       })
     },
@@ -96,8 +92,7 @@
         url: "api/user_groups",
         type: "post",
         data: data,
-        success: APIAction.setFamily,
-        error: APIUtil.logError
+        success: APIAction.setFamily
       })
     },
 
@@ -105,8 +100,7 @@
       $.ajax({
         url: "api/recipes",
         type: "get",
-        success: APIAction.updateRecipes,
-        error: this.logError
+        success: APIAction.updateRecipes
       })
     },
 
@@ -115,8 +109,7 @@
         url:"/api/recipes",
         type: "post",
         data: {recipe: data, request_id: id},
-        success: APIAction.updateRecipes,
-        error:this.logError
+        success: APIAction.updateRecipes
       })
     },
 
@@ -125,8 +118,7 @@
         url:"/api/recipes/" + data.id,
         type: "patch",
         data: {recipe: data},
-        success: APIAction.updateRecipes,
-        error:this.logError
+        success: APIAction.updateRecipes
       })
     },
 
@@ -134,8 +126,7 @@
       $.ajax({
         url:"/api/recipes/" + id,
         type: "delete",
-        success: APIUtil.getRecipeIndex,
-        error: this.logError
+        success: APIUtil.getRecipeIndex
       })
     },
 
@@ -143,8 +134,7 @@
       $.ajax({
         url:"/api/tab_tags",
         type: "get",
-        success: APIAction.updateTags,
-        error: this.logError
+        success: APIAction.updateTags
       })
     },
 
@@ -163,8 +153,7 @@
         type: "post",
         data: {comment:{body: body, commentable_id: id,
           commentable_type: parent}},
-        success:APIAction.updateComments,
-        error:this.logError
+        success:APIAction.updateComments
       })
     },
 
@@ -174,8 +163,7 @@
         url:"/api/requests",
         type: "post",
         data: request,
-        success: APIAction.updateRequests,
-        error:this.logError
+        success: APIAction.updateRequests
       })
     },
 
@@ -183,8 +171,7 @@
       $.ajax({
         url:"/api/requests",
         type:"get",
-        success:APIAction.updateRequests,
-        error: this.logError
+        success:APIAction.updateRequests
       })
     },
 
@@ -192,13 +179,8 @@
       $.ajax({
         url: "/pictures",
         type: "get",
-        success: APIAction.updatePictures,
-        error: this.logError
+        success: APIAction.updatePictures
       })
-    },
-
-    logError: function(response) {
-      console.log(response)
     }
   }
 }(this));
