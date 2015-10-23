@@ -4,7 +4,8 @@ class Api::RecipesController < ApplicationController
   before_action :validate_sub_data, only: [:create, :update]
 
   def index
-    @recipes = Recipe.find_by_current_family(current_user)
+    @recipes = Recipe.includes(:search_tags, :ingredients, :instructions)
+      .find_by_current_family(current_user)
   end
 
   def show
@@ -18,7 +19,7 @@ class Api::RecipesController < ApplicationController
     @recipe = Recipe.new(data)
     if @recipe.save
       if params[:request_id]
-        Request.find(params[:request_id]).destroy
+        Request.destroy(params[:request_id])
       end
 
         params[:recipe][:ingredients].each do |idx, ing|
@@ -35,7 +36,8 @@ class Api::RecipesController < ApplicationController
           RecipeSearchTag.create({recipe_id: @recipe.id, search_tag_id: @tag.id})
         end
 
-      @recipes = Recipe.find_by_current_family(current_user)
+      @recipes = Recipe.includes(:ingredients).includes(:instructions)
+        .find_by_current_family(current_user)
       render :index
     else
       render json: @recipe.errors.full_messages, status: 400
@@ -95,6 +97,11 @@ class Api::RecipesController < ApplicationController
     else
       render json: "invalid request", status: 400
     end
+  end
+
+  def pictures
+    @pics = Recipe.where.not(photo: "").select(:photo).sample(10)
+    render json: @pics.map{|pic| pic.photo}
   end
 
   private

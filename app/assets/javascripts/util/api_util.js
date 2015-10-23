@@ -114,7 +114,7 @@
       $.ajax({
         url:"/api/recipes",
         type: "post",
-        data: {recipe: data},
+        data: {recipe: data, request_id: id},
         success: APIAction.updateRecipes,
         error:this.logError
       })
@@ -184,6 +184,15 @@
         url:"/api/requests",
         type:"get",
         success:APIAction.updateRequests,
+        error: this.logError
+      })
+    },
+
+    samplePictures: function () {
+      $.ajax({
+        url: "/pictures",
+        type: "get",
+        success: APIAction.updatePictures,
         error: this.logError
       })
     },

@@ -7,6 +7,7 @@
 #         session POST   /session(.:format)             sessions#create
 #     new_session GET    /session/new(.:format)         sessions#new
 #                 DELETE /session(.:format)             sessions#destroy
+#        pictures GET    /pictures(.:format)            api/recipes#pictures
 #       api_users GET    /api/users(.:format)           api/users#index {:format=>:json}
 #        api_user GET    /api/users/:id(.:format)       api/users#show {:format=>:json}
 #                 PATCH  /api/users/:id(.:format)       api/users#update {:format=>:json}
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]
-
+  get "pictures", to: "api/recipes#pictures"
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:show, :index, :update]
     resource :group, only: [:show, :create]

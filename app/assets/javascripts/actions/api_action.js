@@ -52,6 +52,12 @@
         actionType: DispatcherConst.REQUESTS,
         data:response
       })
+    },
+    updatePictures: function(response) {
+      AppDispatcher.dispatch({
+        actionType: DispatcherConst.PICTURES,
+        data: response
+      })
     }
   }
 }(this));

@@ -7,7 +7,8 @@
     RECIPES: "set of recipes depending on site state",
     TAGS: "List of tab tags common to all recipes/users",
     COMMENTS: "comments",
-    REQUESTS: "requests"
+    REQUESTS: "requests",
+    PICTURES: "pictures"
   }
 
   root.StoreConst = {
@@ -17,6 +18,7 @@
     RECIPE_INDEX: "recipe list",
     TAB_TAGS: "tabs",
     COMMENTS: "comments",
-    REQUESTS: "requests"
+    REQUESTS: "requests",
+    PICTURES: "pictures"
   }
 }(this));

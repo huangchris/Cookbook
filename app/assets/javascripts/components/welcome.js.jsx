@@ -1,6 +1,23 @@
 (function(root) {
   'use strict';
   root.Welcome = React.createClass({
+    getInitialState: function (){
+      return {photos: []};
+    },
+
+    componentDidMount: function () {
+      APIUtil.samplePictures();
+      PictureStore.on(StoreConst.PICTURES, this.storeListener);
+    },
+
+    componentWillUnmount: function () {
+      PictureStore.removeListener(StoreConst.PICTURES, this.storeListener);
+    },
+
+    storeListener: function () {
+      this.setState({photos: PictureStore.all()})
+    },
+
     render: function () {
       return <div>This is my Splash page.  It tells you that this is a
         cookbook.  It also has links to <a href="#/family/recipes">
@@ -13,6 +30,9 @@
         families is clickable.<br/>
       If someone wants to join your family, but you don't like them, for now
       you have to add them to the group before you kick them out.
+      {this.state.photos.map(function(photo){
+        return <img src={photo} className="recipe-pic"></img>
+      })}
       </div>
     }
   })
