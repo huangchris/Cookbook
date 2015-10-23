@@ -36,15 +36,17 @@
 
     render: function () {
       return (
-        <ul className="col-xs-12">
+        <ul className="col-xs-12 list-group">
+          <li key="CommentShow"><a href="#" onClick={this.addComments}>Show Older Comments</a></li>
           {CommentStore.show(this.state.commentCount).map(function(comment) {
             var user = UserStore.find(comment.user_id);
             return (
-              <li key={"comment" + comment.id}>
+              <li className="list-group-item"
+                key={"comment" + comment.id}>
                 <img className="profile-pic"
-                      src={user.image}>
+                      src={user.image || "/assets/user_icon.png"}>
                 </img>
-                <div>{user.name}</div>
+                <strong>{user.name}</strong>
                 <div>{comment.body}</div>
               </li>
             );
@@ -53,7 +55,6 @@
             <input type="text" valueLink={this.linkState("comment")}></input>
             <input type="submit" value="Add a comment"></input>
             </form></li>
-          <li key="CommentShow"><a href="#" onClick={this.addComments}>Show More Comments</a></li>
         </ul>
       );
     }

@@ -27,17 +27,19 @@
 
     render: function () {
       return(
-        <ul>
+        <ul className="list-group">
           {this.state.familyList.map(function(family){
             var selected = (parseInt(this.state.selected) === family.id ?
               "selected-family" : "")
             return <li key={family.id}
-                    className={selected}
+                    className={selected + "list-group-item"}
                     data-id={family.id}
                     onClick={this.selectFamily}>
                     {family.name}</li>
           }.bind(this))}
-          <li onClick={this.joinFamily}>Request to Join!</li>
+          <li className="list-group-item"
+              onClick={this.joinFamily}>Request to Join!
+          </li>
         </ul>
       )
     }

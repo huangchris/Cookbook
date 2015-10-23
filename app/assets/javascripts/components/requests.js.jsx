@@ -45,7 +45,7 @@
       var request = RequestStore.find(e.target.dataset.id)
       this.setState({showModal: true, answerable: request})
     },
-    
+
     hideModal: function (e) {
       if (e.target === e.currentTarget) {
         this.setState({showModal: false})
@@ -70,12 +70,14 @@
       return (
         <div className="col-xs-12">
           <h2>Requested Recipes:</h2>
-          <ul>
+          <ul className="list-group">
             {this.state.requests.map(function(request){
               return (
-                <li key={"request"+request.id} >
-                  {request.title}
+                <li className="list-group-item"
+                    key={"request"+request.id} >
+                  <strong>{request.title}</strong>
                   <div className="click-hide">{request.description}</div>
+                  <div>requested by {UserStore.find(request.user_id).name}</div>
                   <a data-id={request.id}
                     href="#" onClick={this.answerRequest}>Give the recipe!</a>
                 </li>
