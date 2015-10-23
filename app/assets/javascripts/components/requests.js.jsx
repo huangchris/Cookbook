@@ -11,7 +11,7 @@
   };
 
   root.Requests = React.createClass({
-    mixins: [React.addons.LinkedStateMixin],
+    mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
     getInitialState: function () {
       return({requests: [], title: "", description: "",
@@ -45,16 +45,25 @@
       var request = RequestStore.find(e.target.dataset.id)
       this.setState({showModal: true, answerable: request})
     },
+    
+    hideModal: function (e) {
+      if (e.target === e.currentTarget) {
+        this.setState({showModal: false})
+      }
+    },
+
+    closeModal: function () {
+      this.history.pushState(null, "/family/recipes")
+    },
 
     render: function () {
       var modal;
       if (this.state.showModal) {
-        debugger;
-        modal = ( <section id="modal" onClick={Recipes.hideModal}>
+        modal = ( <section id="modal" onClick={this.hideModal}>
                     <RecipeModal editting={true}
-                                  hideModal={Recipes.closeModal}
+                                  hideModal={this.closeModal}
                                   recipe={_newRecipe(this.state.answerable)}
-                                  requestId={this.state.answerable.id}
+                                  request={this.state.answerable.id}
                                   />
                   </section>)
       }
@@ -64,10 +73,11 @@
           <ul>
             {this.state.requests.map(function(request){
               return (
-                <li key={"request"+request.id} data-id={request.id}>
+                <li key={"request"+request.id} >
                   {request.title}
                   <div className="click-hide">{request.description}</div>
-                  <a href="#" onClick={this.answerRequest}>Give the recipe!</a>
+                  <a data-id={request.id}
+                    href="#" onClick={this.answerRequest}>Give the recipe!</a>
                 </li>
               )
             }.bind(this))}

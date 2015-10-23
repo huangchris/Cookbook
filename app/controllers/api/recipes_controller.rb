@@ -105,7 +105,8 @@ class Api::RecipesController < ApplicationController
 
   def validate_sub_data
     # ... This doesn't quite work the way I wanted
-    if (params[:recipe][:ingredients].select{|_, ing| !ing[:data].nil? && ing[:data] != ""}.empty? ||
+    if (params[:recipe][:ingredients].nil? || params[:recipe][:instructions].nil? ||
+      params[:recipe][:ingredients].select{|_, ing| !ing[:data].nil? && ing[:data] != ""}.empty? ||
        params[:recipe][:instructions].select{|_, inst| !inst[:data].nil? && inst[:data] != ""}.empty? )
       render json: "Insufficient Data", status: 400
     end

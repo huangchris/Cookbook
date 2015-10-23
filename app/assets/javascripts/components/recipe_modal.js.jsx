@@ -54,7 +54,8 @@
         return (
           <div id="recipe-form" className= "modal-show">
             <RecipeForm recipe={this.props.recipe}
-                        hideModal={this.props.hideModal}/>
+                        hideModal={this.props.hideModal}
+                        request={this.props.request}/>
             <button onClick={this.unEditRecipe}>Cancel</button>
           </div>
         )
@@ -110,14 +111,12 @@
     },
 
     handleSubmit: function(e) {
-      // so, we need a family...
       e.preventDefault();
       if (FamilyStore.family().id !== undefined) {
         if(this.props.recipe.id){
           APIUtil.editRecipe(this.state)
         } else{
-          debugger;
-          APIUtil.newRecipe(this.state, this.props.requestId)
+          APIUtil.newRecipe(this.state, this.props.request)
         }
         this.props.hideModal();
       } else {
@@ -164,9 +163,9 @@
     },
 
     render: function() {
-      debugger;
       var pic;
       var remove;
+
       if (this.state.photo) {
         pic = (
           <div>
@@ -177,11 +176,13 @@
       }else{
         pic = <button onClick={this.handlePic}>Upload a Pic</button>
       }
+
       if (this.state.id) {
         remove = <input type="submit"
                         className="col-xs-2"
                         onClick={this.deleteRecipe} value="Delete Recipe"></input>
       }
+
       return (
        <form className="form-horizontal" onSubmit={this.handleSubmit}>
          <div className="form-group">
@@ -253,7 +254,8 @@
          </div>
          <div className="form-group">
            <div className="col-xs-2" ></div>
-           <input className="col-xs-2" type="submit"></input>
+           <input className="col-xs-2"
+             type="submit"></input>
          </div>
       </form>
       )

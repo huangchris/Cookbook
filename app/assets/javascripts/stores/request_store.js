@@ -14,8 +14,7 @@
     },
     find: function (id) {
       return _requests.filter(function(request){
-        debugger;
-        return request.id === id;
+        return request.id === parseInt(id);
       })[0];
     },
     dispatcherId: AppDispatcher.register(_dispatches)
