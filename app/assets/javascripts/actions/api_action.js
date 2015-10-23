@@ -48,7 +48,6 @@
       })
     },
     updateRequests: function(response) {
-      debugger;
       AppDispatcher.dispatch({
         actionType: DispatcherConst.REQUESTS,
         data:response

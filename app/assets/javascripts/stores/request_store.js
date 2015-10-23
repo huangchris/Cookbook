@@ -12,6 +12,11 @@
     all: function () {
       return _requests.slice();
     },
+    find: function (id) {
+      return _requests.filter(function(request){
+        return request.id === id;
+      })[0];
+    },
     dispatcherId: AppDispatcher.register(_dispatches)
   })
 }(this));

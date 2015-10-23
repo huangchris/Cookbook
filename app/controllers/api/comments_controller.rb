@@ -21,7 +21,7 @@ class Api::CommentsController < ApplicationController
       end
       render :index
     else
-      render json: @comment.errors.full_messages
+      render json: @comment.errors.full_messages, status: 400
     end
   end
 

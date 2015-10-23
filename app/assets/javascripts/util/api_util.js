@@ -169,7 +169,6 @@
     },
 
     createRequest: function(data) {
-      debugger;
       var request = {request: {title: data.title, description: data.description}}
       $.ajax({
         url:"/api/requests",
