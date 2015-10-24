@@ -30,7 +30,7 @@ class Api::CommentsController < ApplicationController
     data = params.require(:comment).permit(:commentable_id, :body, :commentable_type)
     data[:user_id] = current_user.id
     if data[:commentable_id] == "" && data[:commentable_type] == "Group"
-      data[:commentable_id] == current_user.groups[0].id
+      data[:commentable_id] = current_user.groups[0].id
     end
     data
   end
