@@ -19,8 +19,9 @@
       UserStore.removeListener(StoreConst.CURRENT_FAMILY, this.storeListener)
     },
 
-    editGroup: function() {
-      this.setState({editting: !this.state.editting})
+    editGroup: function(e) {
+      e.preventDefault();
+      this.setState({editting: !this.state.editting});
     },
     addUser: function(e) {
       APIUtil.approveUser(e.target.dataset.id)
@@ -34,9 +35,9 @@
       if (this.state.family.id) {
         var editOptions;
         if( UserStore.isAdmin() && !this.state.editting) {
-          editOptions = <li onClick={this.editGroup}>Edit Group</li>
+          editOptions = <a href="#" onClick={this.editGroup}>Edit Group</a>
         } else if (this.state.editting) {
-          editOptions = <li onClick={this.editGroup}>Done</li>
+          editOptions = <a href="#" onClick={this.editGroup}>Done</a>
         }
         var pendingUsers;
         if (UserStore.isAdmin() && UserStore.pendingUsers().length > 0) {
@@ -61,10 +62,8 @@
                   onClick={this.sharedBook}>
                 <div className="family-index-item list-group-item">{this.state.family.name} Recipes</div></li>
               {this.state.users.map(function(user){
-                return <li key={user.id}>
-                    <FamilyMember editting={this.state.editting}
+                return <FamilyMember editting={this.state.editting}
                                   user={user} />
-                </li>
               }.bind(this))}
               {pendingUsers}
               {editOptions}

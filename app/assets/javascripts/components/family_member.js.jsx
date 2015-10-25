@@ -20,18 +20,33 @@ root.FamilyMember = React.createClass ({
   render: function () {
     var kick;
     var promote;
-    if (this.props.editting && UserStore.admins().indexOf(this.props.user.id) === -1) {
-      promote = <div data-id={this.props.user.id} onClick={this.adminize}>Make Admin</div>
-      kick = <div data-id={this.props.user.id} onClick={this.kickMember}>Remove</div>
+    var admin;
+    var img;
+    if (this.props.editting){
+      if(UserStore.admins().indexOf(this.props.user.id) === -1) {
+        promote = <div data-id={this.props.user.id}
+                       className="adminize col-xs-3"
+                       onClick={this.adminize}>Make Admin</div>
+        kick = <span className="glyphicon glyphicon-remove-circle col-xs-3"
+                     data-id={this.props.user.id}
+                     onClick={this.kickMember}></span>
+      } else {
+        kick=<div className="col-xs-3"></div>
+        admin = <div className="admin col-xs-3">Admin</div>
+      }
+    }else{
+      img = <img className="profile-pic"
+           src={this.props.user.image || "/assets/user_icon.png"}></img>
     }
     //  || "/assets/user_icon" in img src
     return (
-      <div className="family-index-item list-group-item" onClick={this.handleClick}>
+      <li className="family-index-item list-group-item" onClick={this.handleClick}>
         {kick}
-        <img className="profile-pic"  src={this.props.user.image || "/assets/user_icon.png"}></img>
-        <div>{this.props.user.name}</div>
+        {img}
+        <div className="col-xs-6">{this.props.user.name}</div>
         {promote}
-      </div>
+        {admin}
+      </li>
     )
   }
 })

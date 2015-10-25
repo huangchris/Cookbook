@@ -121,7 +121,7 @@
           <ul className="list-group" onClick={this.openRecipe}>
             {this.state.recipes.map(function(recipe){
               return <li key={recipe.id}
-                        className="list-group-item"
+                        className="list-group-item recipe-item"
                         data-id={recipe.id}>
                         <img src={recipe.photo}
                           data-id={recipe.id}

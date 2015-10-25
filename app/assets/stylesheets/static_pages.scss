@@ -1,15 +1,7 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-// body {
-//   background-image:url("/assets/wood-slat-background.jpg");
-// }
-// // body {
-// //   background-color: #F4CF89;
-// // }
-// div {
-//   background-color: #F4CF89;
-// }
+
 html, body, section, article,
 h1, h2, p, strong, em, a {
   margin: 0;
@@ -55,8 +47,6 @@ body.background {
   background-color: lightgrey;
 }
 
-
-
 .dropdown img {
   padding: 0;
 }
@@ -87,9 +77,6 @@ li.inst-list-item {
   top: 50px;
 }
 
-
-// for some reason this collapses the li height.
-// so I have bullets or unreadable.
 li {
   list-style:none;
 }
@@ -113,12 +100,13 @@ li {
   height: auto;
 }
 
-.family-index-item {
+.list-group-item.family-index-item {
   position: relative;
-  // float:left
+  padding:0;
 }
 
-.list-group-item:hover {
+.list-group-item.family-index-item:hover,
+.list-group-item.recipe-item:hover {
   cursor:pointer;
   background-color: gray;
 }
@@ -132,10 +120,33 @@ li {
 .glyphicon.glyphicon-remove:hover {
   cursor:pointer;
 }
+.glyphicon.glyphicon-remove-circle {
+  float:left;
+  height:82px;;
+  background-color: red;
+  top:0;
+}
+
+.col-xs-3.admin {
+  float:right;
+  height:82px;
+  background-color: cornflowerblue;
+  padding:0;
+  top:0;
+}
+
+.col-xs-3.adminize {
+  float:right;
+  height:82px;
+  background-color: green;
+  padding:0;
+  top:0;
+}
+
 .navbar-default.mine {
   background-color: #501515;
 }
-.list-group-item *:hover {
+.recipe-item *:hover, .family-index-item *:hover {
   cursor:pointer;
 }
 
@@ -173,10 +184,6 @@ li {
   border: 1px solid lightgrey;
 }
 
-// .container-fluid {
-//   background-color: darkred;
-// }
-
 #modal {
   display: block;
   position: fixed;
@@ -197,7 +204,6 @@ li {
   bottom: 0;
   left: 0;
   right: 0;
-  // max-height: 500px;
   overflow-y: auto;
   display: block;
   background-color: white;
@@ -205,13 +211,10 @@ li {
   margin: 50px;
   padding: 10px;
 }
+
 #recipe-form {
   max-height: 600px;
   overflow-y: auto;
   padding: 10px;
   bottom: 50px
 }
-
-// :hover {
-//   background-color: grey
-// }
