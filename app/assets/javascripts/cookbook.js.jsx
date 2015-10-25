@@ -1,3 +1,4 @@
+// EUTM!
 $(function(root) {
   'use strict';
   root.App = React.createClass({
@@ -10,7 +11,6 @@ $(function(root) {
     componentDidMount: function() {
       APIUtil.fetchFamily(null, function(response){
         APIUtil.getFamilies();
-        this.history.pushState(null,"/family")
       }.bind(this))
       UserStore.on(StoreConst.CURRENT_USER, function() {
         this.setState({user: UserStore.currentUser()})
@@ -28,7 +28,7 @@ $(function(root) {
       return (
         <div onClick={this.clickBack} className="App">
           <Navbar/>
-          <div id="body" className="row">
+          <div id="body" className="row body">
             {this.props.children}
           </div>
 

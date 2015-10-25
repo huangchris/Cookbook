@@ -89,7 +89,7 @@
       //           }))
       //   })})
     },
-    
+
     render: function () {
       var modal;
       if (this.state.showModal) {
@@ -102,7 +102,7 @@
                   </section>)
       }
       return (
-        <div className="col-xs-8">
+        <div className="col-xs-8 sub-container">
           <h2>Recipes</h2>
 
           <div className="row">

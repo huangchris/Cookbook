@@ -39,7 +39,7 @@
           editOptions = <li onClick={this.editGroup}>Done</li>
         }
         var pendingUsers;
-        if (UserStore.isAdmin()) {
+        if (UserStore.isAdmin() && UserStore.pendingUsers().length > 0) {
           pendingUsers = (
             <ul className="list-group">
               <h4>Pending Users</h4>
@@ -54,12 +54,12 @@
         }
         return (
           <div>
-          <div className="col-xs-4">
+          <div className="col-xs-4 sub-container">
             <h2>{this.state.family.name}</h2>
             <ul className= "list-group">
               <li key={"shared"}
                   onClick={this.sharedBook}>
-                <div className="family-index-item list-group-item">Shared Recipes</div></li>
+                <div className="family-index-item list-group-item">{this.state.family.name} Recipes</div></li>
               {this.state.users.map(function(user){
                 return <li key={user.id}>
                     <FamilyMember editting={this.state.editting}
@@ -74,9 +74,7 @@
         </div>
         )
       } else {
-        return <div className="col-xs-4">You don't have a family yet. Make or Join one!
-          <FamilyFinder/>
-        </div>
+        return <FamilyFinder/>
       }
     }
   })

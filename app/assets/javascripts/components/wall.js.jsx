@@ -19,10 +19,10 @@
 
     render: function () {
       return (
-        <div className="col-xs-8">
+        <div className="col-xs-8 sub-container">
+            <Requests/>
             <h2>Comments</h2>
             <Comments parentType="Group" ID={this.state.id}/>
-            <Requests/>
         </div>
       )
     }

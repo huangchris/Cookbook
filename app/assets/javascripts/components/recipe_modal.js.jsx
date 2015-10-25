@@ -86,8 +86,10 @@
     render: function () {
         return (
           <div>
-            <div onClick={this.props.hideModal}>X</div>
-            <h2>{this.props.recipe.title}</h2>
+             <span onClick={this.props.hideModal}
+               className="glyphicon glyphicon-remove"
+               aria-hidden="true"></span>
+             <h1>{this.props.recipe.title}</h1>
             <p>by {UserStore.find(this.props.recipe.user_id).name}</p>
             <img className="recipe-pic" src={this.props.recipe.photo}></img>
             <h4>{this.props.recipe.description}</h4>
@@ -197,7 +199,9 @@
 
       return (
        <form className="form-horizontal" onSubmit={this.handleSubmit}>
-         <div onClick={this.props.hideModal}>X</div>
+         <span onClick={this.props.hideModal}
+           className="glyphicon glyphicon-remove"
+           aria-hidden="true"></span>
          <div className="form-group">
            <label className="col-xs-2" htmlFor="Title">Title</label>
            <input className="col-xs-8" type="text" id="Title"
@@ -268,7 +272,7 @@
          <div className="form-group">
            <div className="col-xs-2" ></div>
            <input className="col-xs-2"
-             type="submit"></input>
+             type="submit" value="Save"></input>
          </div>
       </form>
       )

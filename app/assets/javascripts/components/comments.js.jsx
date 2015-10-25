@@ -35,9 +35,14 @@
     },
 
     render: function () {
+      var addMore;
+      if(this.state.commentCount < CommentStore.count()) {
+        addMore = <li key="CommentShow"><a href="#"
+            onClick={this.addComments}>Show Older Comments</a></li>
+      }
       return (
         <ul className="col-xs-12 list-group">
-          <li key="CommentShow"><a href="#" onClick={this.addComments}>Show Older Comments</a></li>
+          {addMore}
           {CommentStore.show(this.state.commentCount).map(function(comment) {
             var user = UserStore.find(comment.user_id);
             return (
@@ -52,9 +57,13 @@
             );
           })}
           <li key="CommentAdd"><form onSubmit={this.createComment}>
-            <input type="text" valueLink={this.linkState("comment")}></input>
-            <input type="submit" value="Add a comment"></input>
-            </form></li>
+            <div className="form-group">
+              <textarea className="col-xs-10 col-xs-offset-1" type="text" valueLink={this.linkState("comment")}></textarea>
+            </div>
+            <div className="form-group">
+              <input className="col-xs-4 col-xs-offset-7" type="submit" value="Add a comment"></input>
+            </div>
+          </form></li>
         </ul>
       );
     }

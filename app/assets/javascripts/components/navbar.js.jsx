@@ -39,7 +39,7 @@
 
     unGroup: function(e) {
       if(confirm("Are you sure you want to leave? All of your data will be lost.")) {
-        APIUtil.kickMember(this.state.user.id)
+        APIUtil.kickMember(this.state.user.id, APIUtil.fetchFamily)
       }
       // this.history.pushState(null, "/")
       // don't need that because that's the default behaviour.
@@ -60,7 +60,7 @@
     render: function () {
                   //  <li><a href="#" onClick={this.passwordChange}>Change Password</a></li>
       return (
-        <nav className="navbar-default">
+        <nav className="navbar-default mine">
           <div className="container-fluid" onClick={this.clickBack}>
             <img className="navbar-brand"
                   onClick={this.clickBack}
@@ -69,8 +69,8 @@
             <ul className="nav navbar-nav navbar-left">
               <li><a href="#">{this.state.user.name}</a></li>
               <li><a href="#" onClick={this.myBook}>My Book</a></li>
-              <li><a href="#/family">Family</a></li>
-              <li><a href="#/family/recipes">Family Book</a></li>
+              <li><a href="#/family">Wall</a></li>
+              <li><a href="#/family/recipes">Family CookBook</a></li>
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
@@ -79,11 +79,11 @@
                       type="button" id="dropdownMenu1"
                       data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="true"
-                      src={this.state.user.image}>
+                      src={this.state.user.image || "/assets/user_icon.png"}>
                 </img>
                 <ul className="dropdown-menu mine" aria-labelledby="dropdownMenu1">
                    <li><Pic/></li>
-                   <li><a href="#" onClick={this.unGroup}>Leave Group</a></li>
+                   <li><a href="#" onClick={this.unGroup}>Leave Family</a></li>
                    <li><a href="#" onClick={this.logout}>Logout</a></li>
                  </ul>
               </div></li>

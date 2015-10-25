@@ -16,6 +16,10 @@
       return _comments.slice(_comments.length - num, _comments.length);
     },
 
+    count: function() {
+      return _comments.length
+    },
+
     DispatcherId: AppDispatcher.register(_dispatches)
   })
 }(this));

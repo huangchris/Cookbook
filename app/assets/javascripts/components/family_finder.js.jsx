@@ -13,13 +13,13 @@
     },
 
     render: function() {
-      return <div>
-        You're not a member of a family yet.  Create a new one:
+      return <div className="col-xs-8 sub-container">
+        You're not a member of a family yet.  <strong>Create a new one:</strong>
         <form onSubmit={this.makeFamily}>
           Name:<input type="text" valueLink={this.linkState("name")}></input>
           <input type="submit"></input>
         </form>
-        Or join an existing one:
+        <strong>Or join an existing one:</strong>
         <FamilyList/>
       </div>
     }

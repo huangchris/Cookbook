@@ -32,7 +32,7 @@
             var selected = (parseInt(this.state.selected) === family.id ?
               "selected-family" : "")
             return <li key={family.id}
-                    className={selected + "list-group-item"}
+                    className={selected + " list-group-item"}
                     data-id={family.id}
                     onClick={this.selectFamily}>
                     {family.name}</li>

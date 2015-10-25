@@ -25,6 +25,38 @@ h1, h2, p, strong, em, a {
   list-style: none;
 }
 
+.row.body {
+  padding: 25px;
+}
+.container.mine {
+  padding: 0;
+  background-color: #FFF;
+  padding-bottom: 5%;
+}
+
+.col-xs-8.sub-container, .col-xs-4.sub-container {
+  padding: 0;
+}
+
+img {
+  margin: 4px;
+}
+
+ul.errors {
+  float:none;
+  margin: 0 auto;
+}
+
+li.errors{
+  color: red;
+}
+
+body.background {
+  background-color: lightgrey;
+}
+
+
+
 .dropdown img {
   padding: 0;
 }
@@ -88,8 +120,21 @@ li {
 
 .list-group-item:hover {
   cursor:pointer;
+  background-color: gray;
 }
 
+.glyphicon.glyphicon-remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.glyphicon.glyphicon-remove:hover {
+  cursor:pointer;
+}
+.navbar-default.mine {
+  background-color: #501515;
+}
 .list-group-item *:hover {
   cursor:pointer;
 }
@@ -108,7 +153,7 @@ li {
   height: 100%;
 }
 
-.selected-family {
+.selected-family.list-group-item {
   background-color: grey;
 }
 

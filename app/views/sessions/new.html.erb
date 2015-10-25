@@ -1,3 +1,9 @@
+<nav className="navbar-default mine">
+  <div className="container-fluid" onClick={this.clickBack}>
+    <img className="navbar-brand" src="/assets/CookBooks-logo.png"></img>
+  </div>
+</nav>
+
 <div class="row">
   <div class="col-xs-4"></div>
   <div class="col-xs-8">
@@ -6,16 +12,13 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-4"></div>
-  <div class="col-xs-4">
+  <ul class="col-xs-4 col-xs-offset-4">
     <% if flash[:errors] %>
-    <ul>
       <% flash[:errors].each do |error|%>
-        <li><%= error %></li>
+        <li class="errors"><%= error %></li>
       <% end %>
-    </ul>
     <% end %>
-  </div>
+  </ul>
 </div>
 
 <div class="row">
