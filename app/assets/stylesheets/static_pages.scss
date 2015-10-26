@@ -20,6 +20,25 @@ h1, h2, p, strong, em, a {
 .row.body {
   padding: 25px;
 }
+.nav.nav-tabs:hover, .nav.nav-tabs *:hover {
+  cursor:pointer;
+}
+
+.nav.navbar-nav.navbar-left a {
+  color: #FFFFFF;
+}
+
+.nav.navbar-nav.navbar-left a:hover {
+  color: #CCC;
+}
+
+img.navbar-brand {
+  padding:0;
+  margin:0;
+  width:auto;
+  max-height:inherit;
+}
+
 .container.mine {
   padding: 0;
   background-color: #FFF;
@@ -106,15 +125,16 @@ li {
 }
 
 .list-group-item.family-index-item:hover,
-.list-group-item.recipe-item:hover {
+.list-group-item.recipe-item:hover,
+.list-group-item.requests:hover {
   cursor:pointer;
   background-color: gray;
 }
 
 .glyphicon.glyphicon-remove {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
 }
 
 .glyphicon.glyphicon-remove:hover {
@@ -126,7 +146,17 @@ li {
   background-color: red;
   top:0;
 }
+.row.pictures {
+  padding:5px;
+}
 
+.col-xs-4.pictures {
+  padding:0;
+  overflow: hidden;
+}
+.col-xs-4.pictures img {
+  max-width: none;
+}
 .col-xs-3.admin {
   float:right;
   height:82px;
@@ -146,7 +176,8 @@ li {
 .navbar-default.mine {
   background-color: #501515;
 }
-.recipe-item *:hover, .family-index-item *:hover {
+
+.recipe-item *:hover, .family-index-item *:hover, .requests *:hover {
   cursor:pointer;
 }
 

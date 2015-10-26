@@ -77,7 +77,7 @@
           <ul className="list-group">
             {this.state.requests.map(function(request){
               return (
-                <li className="list-group-item"
+                <li className="list-group-item requests"
                     data-id={request.id}
                     key={"request"+request.id}
                     onClick={this.answerRequest}>
