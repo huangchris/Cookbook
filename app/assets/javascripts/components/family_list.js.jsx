@@ -20,7 +20,11 @@
     },
 
     selectFamily: function(e) {
-      this.setState({selected: e.target.dataset.id})
+      if(this.state.selected === e.target.dataset.id) {
+        this.setState({selected: null})
+      } else {
+        this.setState({selected: e.target.dataset.id})
+      }
     },
 
     joinFamily: function(e) {
@@ -35,12 +39,12 @@
             var selected = (parseInt(this.state.selected) === family.id ?
               "selected-family" : "")
             return <li key={family.id}
-                    className={selected + " list-group-item"}
+                    className={selected + " list-group-item family"}
                     data-id={family.id}
                     onClick={this.selectFamily}>
                     {family.name}</li>
           }.bind(this))}
-          <li className="list-group-item"
+          <li className="list-group-item family"
               onClick={this.joinFamily}>Request to Join!
           </li>
         </ul>

@@ -8,9 +8,6 @@
   var _dispatches = function(action) {
     switch (action.actionType) {
       case DispatcherConst.CURRENT_FAMILY:
-        debugger;
-        // what is this?  Do I render a successful nothing?
-        // I did, then I made it a status: 400, and put a message on it. Didn't I?
         if (action.data !== null) {
           _family = action.data.family;
           FamilyStore.emit(StoreConst.CURRENT_FAMILY);

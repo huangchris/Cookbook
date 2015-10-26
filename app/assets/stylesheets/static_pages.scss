@@ -126,7 +126,8 @@ li {
 
 .list-group-item.family-index-item:hover,
 .list-group-item.recipe-item:hover,
-.list-group-item.requests:hover {
+.list-group-item.requests:hover,
+.list-group-item.family:hover {
   cursor:pointer;
   background-color: gray;
 }
