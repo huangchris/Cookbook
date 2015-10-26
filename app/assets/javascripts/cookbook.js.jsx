@@ -57,6 +57,7 @@ $(function(root) {
           <IndexRoute component={Wall}/>
           <Route path="recipes" component={Recipes}/>
         </Route>
+        <Route path="pending" component={Pending}/>
         <Route path="/member/:id/recipes" components={{comp1: Family, comp2: Recipes}}/>
         <Route path="recipes" component={Recipes}/>
       </Route>

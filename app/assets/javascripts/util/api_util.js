@@ -16,7 +16,7 @@
       $.ajax({
         url: "api/user_groups/" + id,
         type: "delete",
-        success: APIAction.setFamily
+        success: APIUtil.fetchFamily
       })
     },
 

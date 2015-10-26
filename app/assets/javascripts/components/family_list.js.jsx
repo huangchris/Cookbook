@@ -1,6 +1,8 @@
 (function(root) {
   'use strict';
   root.FamilyList = React.createClass({
+    mixins: [ReactRouter.History],
+
     getInitialState: function () {
       return {familyList: [], selected: null};
     },
@@ -22,7 +24,8 @@
     },
 
     joinFamily: function(e) {
-      APIUtil.joinFamily(this.state.selected)
+      APIUtil.joinFamily(this.state.selected);
+      this.history.pushState(null,"/pending")
     },
 
     render: function () {

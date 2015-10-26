@@ -1,5 +1,3 @@
-//EUTM
-
 //Oh I can DRY this, can't I, have all of them call a method with diff. args
 
 (function(root) {
@@ -13,8 +11,7 @@
     },
 
     setFamily: function(family) {
-      // console.log(family)
-      // oh that's where that was...
+      debugger;
       AppDispatcher.dispatch({
         actionType: DispatcherConst.CURRENT_FAMILY,
         data: family

@@ -16,6 +16,7 @@
         UserStore.emit(StoreConst.CURRENT_USER);
         break;
       case DispatcherConst.CURRENT_FAMILY:
+        debugger;
         if (action.data !== null) {
           _users = action.data.users
           _family = action.data.family

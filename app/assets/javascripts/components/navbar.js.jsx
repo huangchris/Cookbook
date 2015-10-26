@@ -39,10 +39,11 @@
 
     unGroup: function(e) {
       if(confirm("Are you sure you want to leave? All of your data will be lost.")) {
-        APIUtil.kickMember(this.state.user.id, APIUtil.fetchFamily)
+        APIUtil.kickMember(this.state.user.id);
+        APIAction.setFamily({
+          family: {}, users: [], new_users: [], admin_ids: []
+        });
       }
-      // this.history.pushState(null, "/")
-      // don't need that because that's the default behaviour.
     },
 
     passwordChange: function(e) {

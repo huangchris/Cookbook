@@ -10,7 +10,7 @@ root.FamilyMember = React.createClass ({
   },
 
   kickMember: function (e) {
-    APIUtil.kickMember(e.target.dataset.id, APIAction.updateFamilies)
+    APIUtil.kickMember(e.target.dataset.id)
   },
 
   adminize: function (e) {
