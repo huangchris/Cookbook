@@ -43,7 +43,7 @@ root.FamilyMember = React.createClass ({
       <li className="family-index-item list-group-item" onClick={this.handleClick}>
         {kick}
         {img}
-        <div className="col-xs-6">{this.props.user.name}</div>
+        <div className="col-xs-6"><h5>{this.props.user.name}</h5></div>
         {promote}
         {admin}
       </li>

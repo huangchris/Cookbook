@@ -126,7 +126,7 @@
                         <img src={recipe.photo}
                           data-id={recipe.id}
                           className="thumbnail mine" ></img>
-                        <div data-id={recipe.id}>{recipe.title}</div>
+                        <div data-id={recipe.id}><h4>{recipe.title}</h4></div>
                      </li>
             })}
             <li key="new"><button>Add a new Recipe</button></li>
