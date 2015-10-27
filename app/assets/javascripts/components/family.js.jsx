@@ -12,6 +12,7 @@
     },
 
     componentDidMount: function () {
+      APIUtil.fetchFamily();
       UserStore.on(StoreConst.CURRENT_FAMILY, this.storeListener)
     },
 
@@ -23,6 +24,7 @@
       e.preventDefault();
       this.setState({editting: !this.state.editting});
     },
+
     addUser: function(e) {
       APIUtil.approveUser(e.target.dataset.id)
     },

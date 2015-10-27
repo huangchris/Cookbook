@@ -100,7 +100,7 @@ class Api::RecipesController < ApplicationController
   end
 
   def pictures
-    @pics = Recipe.where.not(photo: "").select(:photo).sample(10)
+    @pics = Recipe.where.not(photo: "").select(:photo).sample(9)
     render json: @pics.map{|pic| pic.photo}
   end
 
