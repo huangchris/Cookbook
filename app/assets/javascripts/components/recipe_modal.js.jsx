@@ -188,39 +188,41 @@
           </div>
         )
       }else{
-        pic = <button onClick={this.handlePic}>Upload a Pic</button>
+        pic = <button className="form-control" onClick={this.handlePic}>Upload a Pic</button>
       }
 
       if (this.state.id) {
         remove = <input type="submit"
-                        className="col-xs-2"
+                        className="form-control"
                         onClick={this.deleteRecipe} value="Delete Recipe"></input>
       }
 
       return (
-       <form className="form-horizontal" onSubmit={this.handleSubmit}>
+       <form className="form-horizontal mine" onSubmit={this.handleSubmit}>
          <span onClick={this.props.hideModal}
            className="glyphicon glyphicon-remove"
            aria-hidden="true"></span>
          <div className="form-group">
-           <label className="col-xs-2" htmlFor="Title">Title</label>
-           <input className="col-xs-8" type="text" id="Title"
+           <label htmlFor="Title">Title</label>
+           <input className="form-control" type="text" id="Title"
                   valueLink={this.linkState("title")}>
            </input>
          </div>
          <div className="form-group">
-             <label className="col-xs-2" htmlFor="Personal">Personal </label>
-             <input className="col-xs-1" type="radio" checked={this.state.personal} name="personal"
+             <label htmlFor="Personal">Personal </label>
+             <span> </span>
+             <input type="radio" checked={this.state.personal} name="personal"
                value="true" id="Personal" onChange={this.changePersonal}></input>
-             <label className="col-xs-2" htmlFor="Shared"> Shared </label>
-             <input className="col-xs-1" type="radio" checked={!this.state.personal} name="personal"
+             <br/>
+             <label htmlFor="Shared"> Shared </label>
+             <span> </span>
+             <input type="radio" checked={!this.state.personal} name="personal"
                value="false" id="Shared" onChange={this.changePersonal}></input>
          </div>
          <div className="form-group">
-           <label className="col-xs-2"  htmlFor="Description">Description</label>
-           <input className="col-xs-8" type="text" id="Description"
-             valueLink={this.linkState("description")}>
-           </input>
+           <label htmlFor="Description">Description</label>
+           <input className="col-xs-12 form-control" type="text" id="Description"
+             valueLink={this.linkState("description")}></input>
          </div>
          <div className="form-group">
            <label className="col-xs-2" >Ingredients</label>
@@ -271,7 +273,7 @@
          </div>
          <div className="form-group">
            <div className="col-xs-2" ></div>
-           <input className="col-xs-2"
+           <input className="col-xs-2 form-control"
              type="submit" value="Save"></input>
          </div>
       </form>

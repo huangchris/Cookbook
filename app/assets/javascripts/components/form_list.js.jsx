@@ -21,18 +21,18 @@
       var list = []
       for (var i = 0; i < this.state.listCount; i++) {
         list.push(<input type="text"
-                    className="row col-xs-12"
+                    className="form-control"
                     key={i}
                     onChange={this.handleChange}
                     data-id={i}
                     value={this.props.object[i].data}>
                   </input>)
-        list.push(<br/>)
       }
       return (
         <div>
           {list}
-          <button onClick={this.addListItem}>{this.props.buttonName}</button>
+          <button className="form-control"
+            onClick={this.addListItem}>{this.props.buttonName}</button>
         </div>
       )
     }

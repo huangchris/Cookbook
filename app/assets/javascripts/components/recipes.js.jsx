@@ -59,11 +59,11 @@
 
     hideModal: function (e) {
       if (e.target === e.currentTarget) {
-        this.setState({showModal: false})
+        this.setState({showModal: false, editting:false})
       }
     },
 
-    closeModal: function () { this.setState({showModal: false})},
+    closeModal: function () { this.setState({showModal: false, editting:false})},
 
     tabClick: function(e) {
       if(e.target === e.currentTarget) {return;}
@@ -92,6 +92,11 @@
 
     render: function () {
       var modal;
+      var newRecipeButton;
+      if (!window.location.hash.startsWith("#/member")) {
+        newRecipeButton = <li key="new"><button
+          className="form-control">Add a new Recipe</button></li>
+      }
       if (this.state.showModal) {
         modal = ( <section id="modal" onClick={this.hideModal}
                       onKeyDown={this.escape}>
@@ -126,10 +131,10 @@
                         <img src={recipe.photo}
                           data-id={recipe.id}
                           className="thumbnail mine" ></img>
-                        <div data-id={recipe.id}><h4>{recipe.title}</h4></div>
+                        <div data-id={recipe.id}><h4 data-id={recipe.id}>{recipe.title}</h4></div>
                      </li>
             })}
-            <li key="new"><button>Add a new Recipe</button></li>
+            {newRecipeButton}
           </ul>
           {modal}
         </div>
