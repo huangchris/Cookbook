@@ -9,7 +9,7 @@
             permissions. If you are trying to create your own recipes,
             you can leave the family you requested to join and create your
             own. Or, if you are looking for an example, you can view a guest
-            account <a>here</a></h5>
+            account <a onclick={demoLogin}>here</a></h5>
         </div>
       )
     }
