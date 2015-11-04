@@ -1,170 +1,140 @@
-Group.create!([
-  {name: "Ipsum Family"},
-  {name: "Huang Family"}
+if User.find_by_name("Lauren Ipsum")
+  user = User.find_by_name("Lauren Ipsum")
+else
+  user = User.create!(
+    {email: "example@cookbook.com",
+      password_digest: "$2a$10$WzXjGAQkYIuRXlNWdjV4eOxBFZ/z1AnGgrBU6VGKN87WmGN0UOM26",
+      session_token: nil, name: "Lauren Ipsum",
+      image: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445388889/fzg39hwaoaqtdhjzxuic.jpg"}
+  )
+end
+
+UserGroup.create({user_id: user, group_id: 1, status: "admin"})
+
+recipe = Recipe.create!(
+  user_id: user.id, group_id: 1, personal: false,
+  title: "Pumpkin Gingerbread",
+  description: "Wonderfully flavorful and fragrant bread for the holidays.",
+  photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1446664642/xkhjchy5wq4bfwstkeqv.jpg"
+  tab_tag_id: 5
+)
+recipe.ingredients.create!([
+  {data: "3 cups sugar", ord: 1},
+  {data: "1 cup vegetable oil ", ord: 2},
+  {data: "4 eggs 2/3 cup water ", ord: 3},
+  {data: "1 (15 ounce) can pumpkin puree ", ord: 4},
+  {data: "2 teaspoons ground ginger ", ord: 5},
+  {data: "1 teaspoon ground allspice ", ord: 6},
+  {data: "1 teaspoon ground cinnamon ", ord: 7},
+  {data: "1 teaspoon ground cloves ", ord: 8},
+  {data: "3 1/2 cups all-purpose flour ", ord: 9},
+  {data: "2 teaspoons baking soda ", ord: 10},
+  {data: "1 1/2 teaspoons salt", ord: 11}
 ])
-Ingredient.create!([
-  {recipe_id: 2, data: "2 cans (15 oz) black beans", ord: 1},
-  {recipe_id: 2, data: "1 package Johnsonville brats, coin-sliced", ord: 2},
-  {recipe_id: 2, data: "1 can (14.5 oz) tomatoes, diced", ord: 3},
-  {recipe_id: 2, data: "3 cloves garlic, minced", ord: 4},
-  {recipe_id: 2, data: "2 teaspoons lime juice", ord: 5},
-  {recipe_id: 2, data: "1/4 teaspoon red pepper flakes", ord: 6},
-  {recipe_id: 2, data: "1/2 cup frozen corn", ord: 7},
-  {recipe_id: 2, data: "grated cheese", ord: 8},
-  {recipe_id: 2, data: "sour cream", ord: 9},
-  {recipe_id: 3, data: "6 tbsps unsalted butter", ord: 1},
-  {recipe_id: 3, data: "1 medium onion, finely diced", ord: 2},
-  {recipe_id: 3, data: "6 tbsps all-purpose floud", ord: 3},
-  {recipe_id: 3, data: "1 tbsp Dijon mustard", ord: 4},
-  {recipe_id: 3, data: "1 qt. whole milk, heated", ord: 5},
-  {recipe_id: 3, data: "1 sprig fresh thyme", ord: 6},
-  {recipe_id: 3, data: "1 tsp chopped thyme leaves", ord: 7},
-  {recipe_id: 3, data: "1 bay leaf", ord: 8},
-  {recipe_id: 3, data: "8 oz grated extra sharp white cheddar cheese", ord: 9},
-  {recipe_id: 3, data: "4 oz grated monterey jack cheese", ord: 10},
-  {recipe_id: 3, data: "1/2 tsp Worcestershire sauce", ord: 11},
-  {recipe_id: 3, data: "1/2 tsp Tabasco sauce", ord: 12},
-  {recipe_id: 3, data: "ground black pepper", ord: 13},
-  {recipe_id: 3, data: "1 lb elbow macaroni", ord: 14},
-  {recipe_id: 3, data: "2 tbsps extra virgin olive oil", ord: 15},
-  {recipe_id: 3, data: "2 cups fresh bread crumbs", ord: 16},
-  {recipe_id: 3, data: "1 1/2 oz fresh grated parmesan cheese", ord: 17},
-  {recipe_id: 4, data: "3 pounds pork spareribs, cut into serving size pieces", ord: 1},
-  {recipe_id: 4, data: "1 cup pure maple syrup", ord: 2},
-  {recipe_id: 4, data: "3 tablespoons frozen orange juice concentrate", ord: 3},
-  {recipe_id: 4, data: "3 tablespoons ketchup", ord: 4},
-  {recipe_id: 4, data: "2 tablespoons soy sauce", ord: 5},
-  {recipe_id: 4, data: "1 tablespoon Dijon mustard", ord: 6},
-  {recipe_id: 4, data: "1 tablespoon Worcestershire sauce", ord: 7},
-  {recipe_id: 4, data: "1 teaspoon curry powder", ord: 8},
-  {recipe_id: 4, data: "1 clove garlic, minced", ord: 9},
-  {recipe_id: 4, data: "2 green onions, minced", ord: 10},
-  {recipe_id: 4, data: "1 tablespoon toasted sesame seeds", ord: 11},
-  {recipe_id: 5, data: "2 tablespoons olive oil", ord: 1},
-  {recipe_id: 5, data: "2 cloves garlic, crushed and finely chopped", ord: 2},
-  {recipe_id: 5, data: "1/4 teaspoon crushed red pepper flakes", ord: 3},
-  {recipe_id: 5, data: "6 skinless, boneless chicken breast halves", ord: 4},
-  {recipe_id: 5, data: "2 cups prepared marinara sauce", ord: 5},
-  {recipe_id: 5, data: "1/4 cup chopped fresh basil", ord: 6},
-  {recipe_id: 5, data: "1 (8 oz) package shredded mozzarella cheese", ord: 7},
-  {recipe_id: 5, data: "1/2 cup grated Parmesan cheese", ord: 8},
-  {recipe_id: 5, data: "1 (5 oz) package garlic croutons", ord: 9},
-  {recipe_id: 6, data: "1 cup shortening", ord: 1},
-  {recipe_id: 6, data: "1 cup white sugar", ord: 2},
-  {recipe_id: 6, data: "1/2 cup light brown sugar", ord: 3},
-  {recipe_id: 6, data: "3/4 cup pumpkin puree", ord: 4},
-  {recipe_id: 6, data: "1 large egg", ord: 5},
-  {recipe_id: 6, data: "2 tsp. vanilla extract", ord: 6},
-  {recipe_id: 6, data: "3 3/4 cups all-purpose flour", ord: 7},
-  {recipe_id: 6, data: "1 1/2 tsp. baking powder", ord: 8},
-  {recipe_id: 6, data: "1 1/2 tsp. ground cinnamon", ord: 9},
-  {recipe_id: 6, data: "1 tsp. cream of tartar", ord: 10},
-  {recipe_id: 6, data: "1 tsp. salt", ord: 11},
-  {recipe_id: 6, data: "1/4 tsp. ground nutmeg", ord: 12},
-  {recipe_id: 6, data: "1/2 cup white sugar", ord: 13},
-  {recipe_id: 6, data: "1 tsp. ground cinnamon", ord: 14},
-  {recipe_id: 6, data: "1/4 tsp. allspice", ord: 15},
-  {recipe_id: 7, data: "2 large onions, cut into 1/2-in. rounds", ord: 1},
-  {recipe_id: 7, data: "2 quarts peanut oil", ord: 2},
-  {recipe_id: 7, data: "1 cup all-purpose flour", ord: 3},
-  {recipe_id: 7, data: "1/2 cup cornstarch", ord: 4},
-  {recipe_id: 7, data: "1 tsp. baking powder", ord: 5},
-  {recipe_id: 7, data: "1/4 tsp. baking soda", ord: 6},
-  {recipe_id: 7, data: "1/2 tsp. paprika", ord: 7},
-  {recipe_id: 7, data: "3/4 cup light-flavored beer", ord: 8},
-  {recipe_id: 7, data: "1/4 cup 80-proof vodka", ord: 9},
-  {recipe_id: 7, data: "Kosher Salt", ord: 10},
-  {recipe_id: 8, data: "10 ounces (about 2 cups) self-rising flour", ord: 1},
-  {recipe_id: 8, data: "2 tablespoons sugar (if making sweet shortcake-style biscuits)", ord: 2},
-  {recipe_id: 8, data: "10 ounces (about 1 1/4 cups) heavy cream, plus more for brushing", ord: 3},
-  {recipe_id: 9, data: "1 1/2 lb ground raw turkey breast", ord: 1},
-  {recipe_id: 9, data: "1 jalapeno pepper, seeded and finely chopped", ord: 2},
-  {recipe_id: 9, data: "1 1-oz. envelope reduced-sodium taco seasoning mix", ord: 3},
-  {recipe_id: 9, data: "2 8-oz packages reduced-fat cream cheese", ord: 4},
-  {recipe_id: 9, data: "2 16-oz cans fat-free refried beans", ord: 5},
-  {recipe_id: 9, data: "2 Tblsp. lemon juice", ord: 6},
-  {recipe_id: 9, data: "3 avocados, halved, seeded, peeled, and mashed", ord: 7},
-  {recipe_id: 9, data: "1/2 cup light sour cream", ord: 8},
-  {recipe_id: 9, data: "1/2 cup light mayonnaise", ord: 9},
-  {recipe_id: 9, data: "2 cups reduced-fat shredded cheddar cheese", ord: 10},
-  {recipe_id: 9, data: "1/2 cup chopped green onion", ord: 11},
-  {recipe_id: 9, data: "1/2 cup halved grape or cherry tomatoes", ord: 12},
-  {recipe_id: 9, data: "1/2 cup sliced mini red, yellow, and orange peppers", ord: 13},
-  {recipe_id: 9, data: "baked tortilla chips", ord: 14}
+recipe.instructions.create!([
+  {data: "Preheat oven to 350 degrees F (175 degrees C). Lightly grease two 9x5 inch loaf pans.", ord: 1},
+  {data: "In a large mixing, combine sugar, oil and eggs; beat until smooth.
+     Add water and beat until well blended. Stir in pumpkin, ginger, allspice cinnamon, and clove.", ord: 2},
+  {data: "In medium bowl, combine flour, soda, salt, and baking powder.
+    Add dry ingredients to pumpkin mixture and blend just until all ingredients are mixed.
+    Divide batter between prepared pans.", ord: 3},
+  {data: "Bake in preheated oven until toothpick comes out clean, about 1 hour.", ord: 4}
 ])
-Instruction.create!([
-  {recipe_id: 2, data: "In large saucepan, combine black beans, brats, tomatoes, garlic, lime juice and red pepper flakes.", ord: 1},
-  {recipe_id: 2, data: "Bring to a boil, lower heat and simmer 10 to 15 minutes.", ord: 2},
-  {recipe_id: 2, data: "If desired, serve topped with cheese, sour cream, and/or jalapenos", ord: 3},
-  {recipe_id: 3, data: "Heat oven to 400F and put on pot of water to boil", ord: 1},
-  {recipe_id: 3, data: "In a 5-6 qt Dutch oven or heavy duty pot, melt butter over medium. Add onion and cook until softened, 4-5 minutes. Add flour and cook, stirring, 1-2 min. Stir in mustard.", ord: 2},
-  {recipe_id: 3, data: "Use whisk and gradually add milk, whisking constantly. Go slowly at first, whisking til smooth before adding more milk. ", ord: 3},
-  {recipe_id: 3, data: "When all the milk is in, stir in thyme sprig and bay leaf. Let come to bare simmer and cook, stirring frequently for 15 minutes to meld flavors.", ord: 4},
-  {recipe_id: 3, data: "Discard thyme sprig and bay leaf. Add cheeses, stirring until melted, and then add the Worcestershire and Tabasco. Season to taste with salt and pepper. Keep warm, stirring occasionally", ord: 5},
-  {recipe_id: 3, data: "Cook pasta until al dente. Drain", ord: 6},
-  {recipe_id: 3, data: "Add pasta to cheese sauce, and stir until combined. Season to taste with salt and pepper.", ord: 7},
-  {recipe_id: 3, data: "Lightly oil a 9x13\" baking dish and spread the pasta in the dish.", ord: 8},
-  {recipe_id: 3, data: "In medium bowl, toss breadcrumbs, Parmesan, olive oil, chopped thyme. Scatter crumbs over the top evenly.", ord: 9},
-  {recipe_id: 3, data: "Bake until crumb topping is golden about 15 min. Let rest 5-10 min.", ord: 10},
-  {recipe_id: 3, data: "Optional add-ins: ", ord: 11},
-  {recipe_id: 3, data: "Bacon or pancetta: After cooking the bacon, cook til golden, then remove from pan. Leave the fat in the pan and use in place of butter. Add bacon to sauce with pasta", ord: 12},
-  {recipe_id: 3, data: "Cook 2 tbsps of minced fresh serrano with onions. Or add crushed red pepper flakes with mustard.", ord: 13},
-  {recipe_id: 3, data: "Chicken and tomatoes: Cook chicken separately and add with pasta. Don't cook tomatoes, just add before baking. ", ord: 14},
-  {recipe_id: 4, data: "Preheat oven to 350 degrees F (175 degrees C). Place ribs meat side up on a rack in a 9x13 inch roasting pan. Cover pan tightly with foil. Bake for 1 1/4 hours.", ord: 1},
-  {recipe_id: 4, data: "In a saucepan over medium heat, combine maple syrup, orange juice concentrate, ketchup, soy sauce, mustard and Worcestershire sauce. Stir in curry powder, garlic and green onions. Simmer for 15 minutes, stirring occasionally.", ord: 2},
-  {recipe_id: 4, data: "Remove ribs from roasting pan, remove rack, and drain excess fat and drippings. Return ribs to pan, cover with sauce, and bake uncovered for 35 minutes, basting occasionally. Sprinkle with sesame seeds just before serving.", ord: 3},
-  {recipe_id: 5, data: "Preheat oven to 350 degrees F (175 degrees C). Coat the bottom of a 9x13 inch casserole dish with olive oil, and sprinkle with garlic and hot red pepper flakes.", ord: 1},
-  {recipe_id: 5, data: "Arrange the chicken breasts in bottom of the dish, and pour marinara sauce over chicken. Sprinkle basil over marinara sauce, and top with half the mozzarella cheese, followed by half the Parmesan cheese. Sprinkle on the croutons, then top with the remaining mozzarella cheese and remaining Parmesan cheese.", ord: 2},
-  {recipe_id: 5, data: "Bake in preheated oven until cheese and croutons are golden brown and the chicken is no longer pink inside, about 35 minutes to an hour, depending on the shape and thickness of your chicken breasts. An instant-read thermometer inserted into the thickest part of a chicken breast should read at least 160 degrees F (70 degrees C).", ord: 3},
-  {recipe_id: 6, data: "Beat shortening, 1 cup white sugar, and light brown sugar together in a bowl until light and fluffy. Stir in pumpkin puree; beat in eggs and vanilla extract.", ord: 1},
-  {recipe_id: 6, data: "Whisk flour, baking powder, 1 1/2 tsp. cinnamon, cream of tartar, salt, and nutmeg together in a bowl. Gradually stir flour mixture into pumpkin mixture until dough is just combined. Cover the bowl with plastic wrap and refrigerate until chilled, at least 1 hr.", ord: 2},
-  {recipe_id: 6, data: "Preheat oven to 350 degrees F (175 C). Line baking sheets with parchment paper.", ord: 3},
-  {recipe_id: 6, data: "Whisk 1/2 cup white sugar, 1 tsp. cinnamon, and allspice together in a small bowl, Roll dough into 1-inch balls; rollballs in cinnaon-sugar mixture and place 2 in. apart on prepared baking sheets. Slightly flatten each ball with a flat-bottomed glass.", ord: 4},
-  {recipe_id: 6, data: "Bake until golden and set, 12 to 13 min.  Cool on baking sheet for 5 min. before transferring to a wire rack to cool completely.", ord: 5},
-  {recipe_id: 7, data: "Separate the onion rounds into individual rings. Place in a gallon-sized zipper-lock freezer bag and put them in the freezer until completely frozen, at least 1 hour (they can stay in the freezer for up to 1 month).", ord: 1},
-  {recipe_id: 7, data: "When ready to fry, remove the onion rings from the freezer bag, transfer to a bowl, and thaw under tepid running water. Transfer to a rimmed baking sheet lined with a clean kitchen towel or several layers of paper towels and dry the rings thoroughly. Carefully peel off the inner papery membrane from each ring and discard (the rings will be very floppy). Set aside.", ord: 2},
-  {recipe_id: 7, data: "Preheat the oil to 375°F in a large wok or a Dutch oven over medium-high heat. Combine the flour, cornstarch, baking powder, baking soda, and paprika in a medium bowl and whisk together. Combine the beer and vodka in a small bowl.", ord: 3},
-  {recipe_id: 7, data: "Slowly add the beer mixture to the flour mixture, whisking constantly until the batter has texture of thick paint (you may not need all of the beer). The batter should leave a trail if you drip it back into the bowl off the whisk. Do not overmix; a few small lumps are OK. Dip one onion ring in the batter, making sure that all surfaces are coated, lift it out, letting the excess batter drip off, and add it to the hot oil by slowly lowering it in with your fingers until just one side is sticking out, then dropping it in. Repeat until half of the rings are in the oil.", ord: 4},
-  {recipe_id: 7, data: "Fry, flipping the rings halfway through cooking, until they are deep golden brown, about 4 minutes. Transfer the rings to a large mixing bowl lined with paper towels and toss while sprinkling salt over them. The fried rings can be placed on a rack on a rimmed baking sheet and kept hot in a 200°F oven while you fry the remaining rings. Serve the rings immediately.", ord: 5},
-  {recipe_id: 8, data: "Adjust oven rack to center position and preheat oven to 450°F. Place flour in a large bowl. If making sweet biscuits, whisk in sugar. Stirring with a wooden spoon, drizzle in cream. Stir until a lumpy dough is formed. Do not over mix.", ord: 1},
-  {recipe_id: 8, data: "For Drop Biscuits: Using a 1-ounce cookie scoop, scoop balls of dough onto a parchment-lined baking sheet, spacing them 2 inches apart. Brush tops with cream and bake until golden brown, about 12 minutes. Let cool slightly and serve.", ord: 2},
-  {recipe_id: 8, data: "For Flaky Rolled Biscuits: With a rolling pin, roll the dough into a 12-inch square. Using a bench scraper, fold the right third of the dough over the center, then fold the left third over so you end up with a 12-by-4-inch rectangle. Fold the top third down over the center, then fold the bottom third up so the whole thing is reduced to a 4-inch square. Press the square down and roll it out again into a 12-inch square. Repeat the folding process once more, then roll the dough again into a 12-inch square. Use a 3- to 4-inch biscuit cutter to cut out rounds and transfer to a parchment-lined baking sheet, spaced 2 inches apart. Press together scraps to form additional biscuits. Brush tops with cream and bake until golden brown, about 12 minutes. Let cool slightly and serve.", ord: 3},
-  {recipe_id: 9, data: "In a large nonstick skillet, combine ground turkey, jalapeno (if using) and 2 tablespoons of the taco seasoning mix. Cook over medium heat until turkey is no longer pink; remove from heat and set aside.", ord: 1},
-  {recipe_id: 9, data: "Meanwhile, spread cream cheese into the bottom of a 13x9x2-inch baking dish. Spread refried beans over cream cheese. Stir the lemon juice into the mashed avocado and spread over refried beans. In a small bowl, stir together sour cream, mayonnaise and remaining taco seasoning mix. Spread sour cream mixture on top of the avocado layer. Top with ground turkey mixture, then sprinkle top with cheddar cheese.", ord: 2},
-  {recipe_id: 9, data: "Bake, uncovered, in a 325 degrees oven about 25 minutes or until heated through and cheese is melted. Top with green onion, tomatoes and sliced peppers. Serve with baked tortilla chips.", ord: 3}
+
+recipe = Recipe.create(
+  user_id: user, group_id: 1, personal: true,
+  title: "Pumpkin Pancakes",
+  description: "You can use canned or cooked fresh pumpkin.",
+  tab_tag_id: 5
+)
+recipe.ingredients.create!([
+  {data: "1 1/2 cups milk", ord: 1},
+  {data: "1 cup pumpkin pure", ord: 2},
+  {data: "1 egg", ord: 3},
+  {data: "2 tablespoons vegetable oil", ord: 4},
+  {data: " 2 tablespoons vinegar", ord: 5},
+  {data: " 2 cups all-purpose flour", ord: 6},
+  {data: " 3 tablespoons brown sugar", ord: 7},
+  {data: " 2 teaspoons baking powder", ord: 8},
+  {data: " 1 teaspoon baking soda", ord: 9},
+  {data: " 1 teaspoon ground allspice", ord: 10},
+  {data: " 1 teaspoon ground cinnamon", ord: 11},
+  {data: " 1/2 teaspoon ground ginge", ord: 12}
 ])
-Recipe.create!([
-  {user_id: 1, group_id: 1, personal: true, title: "Two-Ingredient Cream Biscuits", photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445446388/f3j2zfjca0awylavbawr.jpg", description: "These two-ingredient biscuits have one of the lowest effort-to-greatness ratios of any recipe I can think of. They take practically no effort or practice to pull off, yet produce some of the lightest, tenderest, tastiest biscuits around.", tab_tag_id: 2},
-  {user_id: 1, group_id: 1, personal: true, title: "Light Taco Dip", photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445446800/coboudngbgayjrl6wc2u.jpg", description: "Lightened-up ingredients and a confetti of crisp, colorful vegetables make this potluck-friendly appetizer more nutritious than a typical layered dip but every bit as tasty.", tab_tag_id: 3},
-  {user_id: 5, group_id: 1, personal: false, title: "Maple Glazed Ribs", photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445444656/oyfe6awg2gfqpajpbtap.jpg", description: "Delicious pork spareribs with a maple syrup glaze. This is a blue-ribbon winning county fair recipe.", tab_tag_id: 1},
-  {user_id: 5, group_id: 1, personal: false, title: "Parmesan Chicken Bake", photo: "", description: "This chicken Parmesan is done casserole style (so, no breading or frying!), but still offers up that irresistible combination of tender chicken, crunchy/cheesy coating, and flavorful sauce.", tab_tag_id: 1},
-  {user_id: 6, group_id: 1, personal: false, title: "Pumpkin Snickerdoodles", photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445445353/ildpontpk030dwt2z6zp.jpg", description: "These decadent cookies will melt in your mouth! Also good made into a bar with cream cheese frosting!", tab_tag_id: 4},
-  {user_id: 6, group_id: 1, personal: false, title: "Food Lab Onion Rings", photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445445632/oub6cfgsmbllbofxzbcr.jpg", description: "My favorite recipe! http://www.seriouseats.com/recipes/2015/09/foolproof-onion-rings-food-lab-recipe.html", tab_tag_id: 3},
-  {user_id: 3, group_id: 2, personal: true, title: "Southwest Black Bean Soup", photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445435413/etyischjuagffcsp4bxj.jpg", description: "http://www.johnsonville.com/recipe/southwest-black-bean-soup.html", tab_tag_id: 2},
-  {user_id: 3, group_id: 2, personal: true, title: "Baked Macaroni and Cheese", photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445436712/exxtqi841tbi5e2vytgl.jpg", description: "http://www.food.com/recipe/classic-baked-macaroni-cheese-289761", tab_tag_id: 1}
+
+recipe.instructions.create!([
+{data: "In a bowl, mix together the milk, pumpkin, egg, oil and vinegar. ",ord: 1},
+{data: "Combine the flour, brown sugar, baking powder, baking soda, allspice, cinnamon, ginger and salt in a separate bowl. ",ord: 2},
+{data: "Stir into the pumpkin mixture just enough to combine.",ord: 3},
+{data: "Heat a lightly oiled griddle or frying pan over medium high heat. ",ord: 4},
+{data: "Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake. ",ord: 5},
+{data: "Brown on both sides and serve hot.",ord: 6}
 ])
-RecipeSearchTag.create!([
-  {search_tag_id: 1, recipe_id: 2},
-  {search_tag_id: 2, recipe_id: 2},
-  {search_tag_id: 3, recipe_id: 2},
-  {search_tag_id: 4, recipe_id: 3},
-  {search_tag_id: 5, recipe_id: 3},
-  {search_tag_id: 6, recipe_id: 3},
-  {search_tag_id: 7, recipe_id: 4},
-  {search_tag_id: 8, recipe_id: 5},
-  {search_tag_id: 9, recipe_id: 5},
-  {search_tag_id: 10, recipe_id: 6},
-  {search_tag_id: 11, recipe_id: 6},
-  {search_tag_id: 9, recipe_id: 6},
-  {search_tag_id: 12, recipe_id: 7},
-  {search_tag_id: 13, recipe_id: 7},
-  {search_tag_id: 14, recipe_id: 8},
-  {search_tag_id: 15, recipe_id: 8},
-  {search_tag_id: 9, recipe_id: 8},
-  {search_tag_id: 16, recipe_id: 9},
-  {search_tag_id: 17, recipe_id: 9}
+
+recipe = Recipe.create(
+  user_id: user, group_id: 1, personal: false,
+  title: "Cinnamon Pumpkin Waffles",
+  description: "Serve with honey butter and maple syrup.",
+  tab_tag_id: 1}
+)
+recipe.ingredients.create!([
+  {data: "1 cup whole wheat flour ", ord: 1},
+  {data: "1/4 cup wheat germ ", ord: 2},
+  {data: "1/3 cup white sugar", ord: 3},
+  {data: "1 teaspoon ground cinnamon ", ord: 4},
+  {data: "1 teaspoon pumpkin pie spice ", ord: 5},
+  {data: "1/2 teaspoon ground nutmeg ", ord: 6},
+  {data: "1/2 teaspoon salt ", ord: 7},
+  {data: "1 tablespoon baking powder ", ord: 8},
+  {data: "3/4 cup milk ", ord: 9},
+  {data: "1/2 cup pumpkin puree ", ord: 10},
+  {data: "2 tablespoons melted butter ", ord: 11},
+  {data: "2 tablespoons olive oil ", ord: 12},
+  {data: "1/2 cup unsweetened applesauce ", ord: 13},
+  {data: "1 egg, 1 egg white", ord: 14}
 ])
-SearchTag.create!([
+
+recipe.instructions.create!([
+  {data: "Preheat a waffle iron according to manufacturer's instructions. ", ord: 1},
+  {data: "Combine flour, wheat germ, sugar, cinnamon, pumpkin pie spice, nutmeg, salt, and baking powder in a bowl. Set aside.", ord: 2},
+  {data: "Beat together milk, pumpkin puree, butter, oil, applesauce, whole egg, and egg white. ", ord: 3},
+  {data: "Stir flour mixture into the pumpkin mixture along with the pecans.", ord: 4},
+  {data: "Ladle the batter onto the preheated waffle iron. ", ord: 5},
+  {data: "Cook the waffles until golden and crisp, 5 to 7 minutes.", ord: 6}
+])
+
+recipe = Recipe.create(
+  user_id: user, group_id: 1, personal: true,
+  title: "Pumpkin Smoothie",
+  description: "Can add banana",
+  tab_tag_id: 5
+)
+
+recipe.ingredients.create!([
+{data: "1 (16 ounce) can pumpkin puree",ord: 1},
+{data: "2 cups milk ",ord: 2},
+{data: "1/4 cup brown sugar",ord: 3},
+{data: "2 tsp ground cinnamon",ord: 4}
+])
+
+recipe.instructions.create!([
+{data: "Place the pumpkin puree in a freezer bag; store in freezer for at least 24 hours.",ord: 1},
+{data: "Heat the bag of pumpkin puree in the microwave on HIGH to soften, 1 to 2 minutes.",ord: 2},
+{data: "Pour the milk into a blender. Add the brown sugar, cinnamon, and pumpkin; blend until smooth.",ord: 3}
+])
+
+# recipe = Recipe.create(
+#   user_id: user, group_id: 1, personal: false,
+#   title: "Cinnamon Pumpkin Waffles",
+#   description: "Serve with honey butter and maple syrup.",
+#   tab_tag_id: 1
+# )
+# recipe.ingredients.create!([
+# ])
+# recipe.instructions.create!([
+# ])
+
+SearchTag.create([
   {data: "soup"},
   {data: "quick"},
   {data: "easy"},
@@ -183,26 +153,10 @@ SearchTag.create!([
   {data: "Nachos"},
   {data: "Dips"}
 ])
-TabTag.create!([
+TabTag.create([
   {data: "Entrees"},
   {data: "Side Dishes"},
   {data: "Appetizers"},
   {data: "Desserts"},
   {data: "Other"}
-])
-User.create!([
-  {email: "kristin.franke311@gmail.com", password_digest: "$2a$10$sTQRLxI5lN0jl5dZfTH5y.EJsZC5w5BdFaGwncko8L5KQbeUTHaEK", session_token: "dS4SaQc3FNugC8tcRx9Ovw", name: "Kristin", image: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445426926/quzts2x0qaxa4o6l36fc.jpg"},
-  {email: "email2", password_digest: "$2a$10$0MhtyAq.uYkyasPWszxKTO3H.wmkVQehdLmx.PzTUybGRaLjqxbqe", session_token: nil, name: "Paxton Pfannerstill", image: nil},
-  {email: "email1", password_digest: "$2a$10$swrFdg6IOGV.5AU/2eM9BuYx32ZJgr0tsxwJGt.cwjfRgnlhLFo3i", session_token: nil, name: "Macey Mann", image: nil},
-  {email: "email3", password_digest: "$2a$10$FDkqfWpMHJzS.q9zPYnLgO4xP92CMAZ36tS./gCez2pRoOdQEKffq", session_token: nil, name: "Rowland Ratke", image: nil},
-  {email: "example@cookbook.com", password_digest: "$2a$10$WzXjGAQkYIuRXlNWdjV4eOxBFZ/z1AnGgrBU6VGKN87WmGN0UOM26", session_token: nil, name: "Lauren Ipsum", image: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445388889/fzg39hwaoaqtdhjzxuic.jpg"},
-  {email: "cchuang90@gmail.com", password_digest: "$2a$10$CxH5IoEy9UjEPnEIcZIgcuBRL2rwjErxvqumRFPSGyzb7v3m7YEJ.", session_token: "YRzy5fWGw2bhZYTJvdEs3g", name: "Chris Huang", image: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1445379692/fjoxqmhjwzbehbpia5ym.jpg"}
-])
-UserGroup.create!([
-  {user_id: 1, group_id: 1, status: "admin"},
-  {user_id: 2, group_id: 2, status: "admin"},
-  {user_id: 3, group_id: 2, status: "admin"},
-  {user_id: 6, group_id: 1, status: "member"},
-  {user_id: 7, group_id: 1, status: "pending"},
-  {user_id: 5, group_id: 1, status: "admin"}
 ])

@@ -3,6 +3,9 @@
   root.FormList = React.createClass({
     getInitialState: function () {
         var length = this.props.object.length === 0 ? 1 : this.props.object.length
+        if (this.props.object.length === 0) {
+          this.props.object[0] = {}
+        }
       return {listCount: length};
     },
 
