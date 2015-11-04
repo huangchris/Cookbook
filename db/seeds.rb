@@ -15,7 +15,7 @@ recipe = Recipe.create!(
   user_id: user.id, group_id: 1, personal: false,
   title: "Pumpkin Gingerbread",
   description: "Wonderfully flavorful and fragrant bread for the holidays.",
-  photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1446664642/xkhjchy5wq4bfwstkeqv.jpg"
+  photo: "http://res.cloudinary.com/dssjfjk9t/image/upload/v1446664642/xkhjchy5wq4bfwstkeqv.jpg",
   tab_tag_id: 5
 )
 recipe.ingredients.create!([
