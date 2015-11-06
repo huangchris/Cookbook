@@ -75,7 +75,7 @@ recipe = Recipe.create(
   user_id: user, group_id: 1, personal: false,
   title: "Cinnamon Pumpkin Waffles",
   description: "Serve with honey butter and maple syrup.",
-  tab_tag_id: 1}
+  tab_tag_id: 1
 )
 recipe.ingredients.create!([
   {data: "1 cup whole wheat flour ", ord: 1},
@@ -87,7 +87,7 @@ recipe.ingredients.create!([
   {data: "1/2 teaspoon salt ", ord: 7},
   {data: "1 tablespoon baking powder ", ord: 8},
   {data: "3/4 cup milk ", ord: 9},
-  {data: "1/2 cup pumpkin puree ", ord: 10},
+  {data: "1/2 cup pumpkin puree", ord: 10},
   {data: "2 tablespoons melted butter ", ord: 11},
   {data: "2 tablespoons olive oil ", ord: 12},
   {data: "1/2 cup unsweetened applesauce ", ord: 13},
