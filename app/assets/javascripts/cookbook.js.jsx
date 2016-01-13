@@ -1,4 +1,3 @@
-// EUTM!
 $(function(root) {
   'use strict';
   root.App = React.createClass({

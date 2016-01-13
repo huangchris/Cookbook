@@ -155,8 +155,8 @@ li {
   overflow: hidden;
 }
 .col-xs-4.pictures img {
-  max-width: none;
-  height:250px;
+  min-width: 100%;
+  min-height:250px;
 }
 .col-xs-3.admin {
   float:right;
