@@ -74,7 +74,6 @@
     },
 
     searchRecipes: function(e) {
-      // This is ugly as balls:
       this.setState({recipes: RecipeStore.search(e.target.value)})
 
       // Moved into store.

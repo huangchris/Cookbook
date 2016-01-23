@@ -51,9 +51,9 @@
 
     search: function(string) {
       return _tabCache.filter(function(recipe) {
-        return (recipe.title.toLowerCase().startsWith(string.toLowerCase()) ||
+        return (recipe.title.toLowerCase().match(string.toLowerCase()) ||
                 recipe.search_tags.some(function(tag){
-                  return tag.data.toLowerCase().startsWith(string.toLowerCase())
+                  return tag.data.toLowerCase().match(string.toLowerCase())
                 }))
       })
     },
